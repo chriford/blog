@@ -14,6 +14,9 @@ superuser:
 run:
 	@python manage.py runserver 8000
 
+django-shell:
+	@python manage.py shell
+
 build:
 	@docker-compose build
 
