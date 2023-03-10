@@ -12,7 +12,7 @@ from django.db.models.signals import (
 from django.db.models import Q
 from django.dispatch import receiver
 
-from blog.auth import (
+from security import (
     User,
     Profile,
 )

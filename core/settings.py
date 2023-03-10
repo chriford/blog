@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'security.apps.SecurityConfig',
     
     "rest_framework",
     "crispy_forms",
@@ -183,7 +184,7 @@ JAZZMIN_SETTINGS = {
     ],
 }
 # from django.conf.global_settings import AUTH_USER_MODEL
-# AUTH_USER_MODEL = 'blog.auth'
+# AUTH_USER_MODEL = 'security'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin, AbstractUser, AbstractBaseUser
-from blog.auth.manager import CustomUserManager
+from security.manager import CustomUserManager
 
-class User(models.Model):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name=_('email address'),
         max_length=255,
