@@ -163,28 +163,28 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
-JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Library Admin",
-    # "topmenu_links": True,
-     "welcome_sign": "Admin Login",
-     "related_modal_active": True,
-     "search_model": ["blog.User",],
-     "topmenu_links": [
+# JAZZMIN_SETTINGS = {
+#     # title of the window (Will default to current_admin_site.site_title if absent or None)
+#     "site_title": "Library Admin",
+#     # "topmenu_links": True,
+#      "welcome_sign": "Admin Login",
+#      "related_modal_active": True,
+#      "search_model": ["blog.User",],
+#      "topmenu_links": [
 
-        # Url that gets reversed (Permissions can be added)
-        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "View site",  "url": "sales:index", "permissions": ["auth.view_user"]},
-        # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
-        # model admin to link to (Permissions checked against model)
-        {"model": "blog.User"},
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "blog"},
-    ],
-}
+#         # Url that gets reversed (Permissions can be added)
+#         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+#         {"name": "View site",  "url": "sales:index", "permissions": ["auth.view_user"]},
+#         # external url that opens in a new window (Permissions can be added)
+#         {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+#         # model admin to link to (Permissions checked against model)
+#         {"model": "blog.User"},
+#         # App with dropdown menu to all its models pages (Permissions checked against models)
+#         {"app": "blog"},
+#     ],
+# }
 # from django.conf.global_settings import AUTH_USER_MODEL
-# AUTH_USER_MODEL = 'security'
+AUTH_USER_MODEL = 'security.User'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

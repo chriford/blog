@@ -35,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         auto_now=True,
     )
     profile = models.OneToOneField(
-        to='blog.Profile',
+        to='security.Profile',
         on_delete=models.CASCADE,
         null=True,
         blank=True,

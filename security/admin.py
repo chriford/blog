@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from security import (
+from .models import (
     User,
     Profile,
 )
