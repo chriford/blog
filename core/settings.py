@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q*j8d9$qbg%odd(0k&8l+zq(c84_*#9=nm$u3!h*t*kdq9$i_8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '*'
@@ -45,13 +45,14 @@ INSTALLED_APPS = [
     
     "rest_framework",
     "crispy_forms",
-    # "whitenoise.runserver_nostatic",
-    # "crispy_bootstrap5",
+    "whitenoise.runserver_nostatic",
+    "crispy_bootstrap5",
     "rolepermissions",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -145,11 +146,11 @@ STATICFILES_DIRS = [
 ]
 LOGIN_REDIRECT_URL = 'login'
 LOGOUT_REDIRECT_URL = '/'
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-# CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 ROLEPERMISSIONS_MODULE = 'blog.roles'
 
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -163,26 +164,26 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
-# JAZZMIN_SETTINGS = {
-#     # title of the window (Will default to current_admin_site.site_title if absent or None)
-#     "site_title": "Library Admin",
-#     # "topmenu_links": True,
-#      "welcome_sign": "Admin Login",
-#      "related_modal_active": True,
-#      "search_model": ["blog.User",],
-#      "topmenu_links": [
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Library Admin",
+    "topmenu_links": True,
+     "welcome_sign": "Admin Login",
+     "related_modal_active": True,
+    #  "search_model": ["security.User",],
+     "topmenu_links": [
 
-#         # Url that gets reversed (Permissions can be added)
-#         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
-#         {"name": "View site",  "url": "sales:index", "permissions": ["auth.view_user"]},
-#         # external url that opens in a new window (Permissions can be added)
-#         {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
-#         # model admin to link to (Permissions checked against model)
-#         {"model": "blog.User"},
-#         # App with dropdown menu to all its models pages (Permissions checked against models)
-#         {"app": "blog"},
-#     ],
-# }
+    #     # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "/", "permissions": ["auth.view_user"]},
+    #     {"name": "View site",  "url": "sales:index", "permissions": ["auth.view_user"]},
+    #     # external url that opens in a new window (Permissions can be added)
+    #     {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+    #     # model admin to link to (Permissions checked against model)
+    #     {"model": "security.User"},
+    #     # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "security"},
+    ],
+}
 # from django.conf.global_settings import AUTH_USER_MODEL
 AUTH_USER_MODEL = 'security.User'
 

@@ -13,22 +13,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav d-flex justify-content-between me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item px-2 d-flex">
-            <i class="nav-link fa fa-fw fa-headset py-3"></i>
-            <a class="nav-link px-2" aria-current="page" href="{% url 'sales:services' %}">services</a>
-          </li>
-          <li class="nav-item px-2 d-flex">
-            <i class="nav-link fa fa-fw fa-headset py-3"></i>
-            <a class="nav-link px-2" aria-current="page" href="#">category</a>
-          </li>
      
           <li class="nav-item px-2 d-flex">
             <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
-            <a class="nav-link px-2" aria-current="page" href="#">about us</a>
+            <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts' %}">Category</a>
           </li>
+     
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts' %}">Posts</a>
+          </li>
+     
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts' %}">About</a>
+          </li>
+     
           <li class="nav-item px-2 d-flex">
             <li class="nav-link fa fa-fw fa-headset py-3 fa-light"></li>
-            <a class="nav-link px-2" aria-current="page" href="#">customer care</a>
+            <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts' %}">customer care</a>
           </li>
         </ul>
         <img 

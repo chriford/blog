@@ -19,10 +19,10 @@
         crossorigin="anonymous"></script>
     <script src="https://checkout.flutterwave.com/v3.js"></script>
     {% if request.user.is_authenticated %}
-        {% include "../include/auth_nav_bar.html" %}
+        {% include "../include/navigation.html" %}
     {% endif %}
         
-        {% include "../include/sidebar.html %}
+        {% include "../include/sidebar.html" %}
     {% block content %} {% endblock %}
 </body>
 
