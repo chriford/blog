@@ -1,4 +1,4 @@
 from .setting import *
-from .post import *
+from .posts import *
 from .favorite import *
 from .comment import *

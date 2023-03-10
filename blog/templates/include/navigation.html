@@ -1,0 +1,43 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <img 
+          src="{% static 'images/logo/image-01.png' %}"
+          class="rounded-circle"
+          width="40"
+          height="40"
+          alt="profile photo"
+        >
+      <button  class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" aria-label="Toggle sidebar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav d-flex justify-content-between me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="{% url 'sales:services' %}">services</a>
+          </li>
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="#">category</a>
+          </li>
+     
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
+            <a class="nav-link px-2" aria-current="page" href="#">about us</a>
+          </li>
+          <li class="nav-item px-2 d-flex">
+            <li class="nav-link fa fa-fw fa-headset py-3 fa-light"></li>
+            <a class="nav-link px-2" aria-current="page" href="#">customer care</a>
+          </li>
+        </ul>
+        <img 
+          src="{% static 'images/logo/profile.jpg' %}"
+          class="rounded-circle"
+          width="40"
+          height="40"
+          alt="profile photo"
+        >
+      </div>
+    </div>
+  </nav>
