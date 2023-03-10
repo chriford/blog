@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  gunicorn_web:
+    build:
+      context: ./docker/Dockerfile
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    environment:
+      - DEBUG=True
+    volumes:
+      - backup:.
+    networks:
+      - main
+    depends_on:
+      - database
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+  
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+    volumes:
+      - static:/static
+    ports:
+      - 80:80
+    depends_on:
+      - gunicorn_web
+
+  database:
+    container_name: postgres_db
+    environment:
+      POSTRES_DB: blog
+      POSTGRES_USER: blogger
+      POSTGRES_PASSWORD: digiBrands12
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  
+networks:
+  main:
+
+volumes:
+  static:
+  pgdata:
