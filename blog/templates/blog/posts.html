@@ -1,12 +1,108 @@
 {% extends '../layout/base.html' %}
+{% load static %}
 {% block head %}
-    <style>
-
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: rgb(73, 72, 72);
+        animation: body 1.25s linear;
+      }
+      @keyframes body {
+        to {
+          background-color: rgb(116, 123, 130);
+        }
+      }
+      .progress {
+        height: 3px;
+        width: 0%;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        animation: progress 0.6s linear;
+      }
+      @keyframes progress {
+        to {
+          background-color: rgb(122, 140, 125);
+          width: 100%;
+        }
+      }
+      #header-container {
+            background-image: url(/static/image/tech01.jpg); 
+            background-size: cover;
+            color: white;
+        }
+        #content {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+        .card {
+            background-color: rgb(245, 243, 243);
+        }
     </style>
-    <title>
-        Posts
-    </title>
+<title>
+    Posts
+</title>
 {% endblock %}
 {% block content %}
-    <h1>posts</h1>
+
+<div id="header-container">
+    <section id="header-section" class="container ">
+        <div class="text-info">
+            <p class="h4">Top blogs</p>
+            <p class="h1">Over 36+ posts</p>
+        </div>     
+    </section>
+</div>
+<div class="container ml-2 py-3 my-3 mt-5" style="position:sticky;" id="content">
+    <div class="row">
+        <div class="col-md-6 col-12 col-sm-12 col-lg-4">
+            <figure class="card ">
+                <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
+                <div class="card-header text-center">
+                    The Negative Side Of Medicine
+                </div>
+                <div class="card-body">
+                    <p class="h4 text-muted">Did you know that the body can't
+                        handle being treated with medicine from time to time</p>
+                </div>
+                <p class="text-center">
+                    <a href="/">Read more &plus;</a>
+                </p>
+            </figure>
+        </div>
+        <div class="col-md-6 col-12 col-sm-12 col-lg-4">
+            <figure class="card ">
+                <img src="{% static 'image/medication.jpg' %}" alt="">
+                <div class="card-header text-center">
+                    The Negative Side Of Medicine
+                </div>
+                <div class="card-body">
+                    <p class="h4 text-muted">Did you know that the body can't
+                        handle being treated with medicine from time to time</p>
+                </div>
+                <p class="text-center">
+                    <a href="/">Read more &plus;</a>
+                </p>
+            </figure>
+        </div>
+        <div class="col-md-6 col-12 col-sm-12 col-lg-4">
+            <figure class="card ">
+                <img src="{% static 'image/medication.jpg' %}" alt="">
+                <div class="card-header text-center">
+                    The Negative Side Of Medicine
+                </div>
+                <div class="card-body">
+                    <p class="h4 text-muted">Did you know that the body can't
+                        handle being treated with medicine from time to time</p>
+                </div>
+                <p class="text-center">
+                    <a href="/">Read more &plus;</a>
+                </p>
+            </figure>
+        </div>
+    </div>
+</div>
 {% endblock %}

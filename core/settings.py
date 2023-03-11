@@ -144,8 +144,8 @@ if not os.path.exists(os.path.join(BASE_DIR, 'blog/static')):
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'blog/static')
 ]
-LOGIN_REDIRECT_URL = 'login'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'security:login'
+LOGOUT_REDIRECT_URL = 'security:signup'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 ROLEPERMISSIONS_MODULE = 'blog.roles'
