@@ -12,6 +12,6 @@ from django.shortcuts import (
     HttpResponseRedirect,
 )
 
-@login_required(login_url=settings.LOGIN_REDIRECT_URL)
+# @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):
     return render(request, 'blog/posts.html')
