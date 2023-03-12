@@ -1,10 +1,10 @@
-{% extends '../layout/auth_base.html' %}
+{% extends '../layout/base.html' %}
 {% block head %}
 <style>
 
 </style>
 <title>
-
+Sigup
 </title>
 {% endblock %}
 {% block content %}
@@ -41,7 +41,7 @@
                 <input type="submit" class="btn btn-primary w-100">
                 <div class="flex d-flex mt-2 justify-content-between">
                     <a style="text-decoration: none;" href="% url 'security:signin' %}">Already have an account</a>
-                    <!-- <a style="text-decoration: none;" href="{% url 'ecostore:forgot-password' %}">Forgot password</a> -->
+                    <!-- <a style="text-decoration: none;" href="{% url 'security:forgot-password' %}">Forgot password</a> -->
                     <span></span>
                 </div>
             </div>

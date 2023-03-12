@@ -2,8 +2,38 @@
 {% load static %}
 {% block head %}
 <style>
-        body {
-            background-color: #434343;
+    body {
+        padding: 0;
+        margin: 0;
+        min-height: 500vh;
+        background-color: rgb(139, 201, 228);
+        animation: body 1s linear;
+      }
+      @keyframes body {
+        to {
+          background-color: rgb(45, 46, 47);
+        }
+      }
+      
+      .progress {
+        height: 3px;
+        width: 0%;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        animation: progress 1s linear;
+      }
+      @keyframes progress {
+        to {
+          background-color: rgb(20, 255, 226);
+          width: 100%;
+        }
+      }
+      body {
+            background-color:  rgb(19, 48, 97);
+            background-image: url('/blog/static/image/medication.jpg');
+            background-size: cover;
         }
         #content {
             background-color: white;
@@ -13,6 +43,10 @@
         #head {
             color: white;
         }
+        .card {
+            background-color: rgb(245, 243, 243);
+        }
+
     </style>
 <title>
     Posts
@@ -23,11 +57,22 @@
     <p class="h4">Top blogs</p>
     <p class="h1">Over 36+ posts</p>
 </div>
+
+<div class="cube-wrap">
+  <div class="cube">
+    <div class="side top"></div>
+    <div class="side bottom"></div>
+    <div class="side front"></div>
+    <div class="side back"></div>
+    <div class="side left"></div>
+    <div class="side right"></div>
+  </div>
+</div>
 <div class="container ml-2 py-3 my-3 mt-5" style="position:sticky;" id="content">
     <div class="row">
         <div class="col-6">
             <figure class="card ">
-                <img src="{% static 'image/medication.jpg' %}" alt="">
+                <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
                 <div class="card-header text-center">
                     The Negative Side Of Medicine
                 </div>
@@ -117,4 +162,9 @@
         </div>
     </div>
 </div>
+<script>
+    window.addEventListener('scroll', () => {
+        document.body.style.setProperty('--scroll',window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+      }, false);
+</script>
 {% endblock %}

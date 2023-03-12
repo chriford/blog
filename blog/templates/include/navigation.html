@@ -1,11 +1,15 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <img
+      <img
       src="{% static 'logo/blog.png' %}"
       class="rounded-circle"
       alt="profile photo"
-      style="width: 10%;">
+      onclick="
+      const hiddenNavigatorBtn = document.getElementById(`hidden_btn`);  
+      hiddenNavigatorBtn.href = `{% url 'blog:posts' %}`; hiddenNavigatorBtn.click();
+      "
+      style="width: 10%; cursor:pointer;">
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasWithBothOptions"
       aria-controls="offcanvasWithBothOptions" aria-label="Toggle sidebar">
@@ -17,43 +21,42 @@
 
         <li class="nav-item px-2 d-flex">
           <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
-          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'
-            %}">Category</a>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Category</a>
         </li>
 
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
-          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'
-            %}">Posts</a>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Posts</a>
         </li>
 
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
-          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'
-            %}">About</a>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">About</a>
         </li>
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
-          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'
-            %}">Admin</a>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:management'%}">Management</a>
         </li>
-      </ul>
+        </ul>
       <div class="text-white">
-        <a class="text-white mr-3 text-decoration-none" id="login" href="">
+      {% if not request.user.is_authenticated %}
+        <a class="text-white mr-3 text-decoration-none" id="login" href="{% url 'security:login' %}">
           Log in
         </a>
-        <a class="text-white h4 text-decoration-none" id="signup" href="">
-          <span class="badge bg-animate bg-info badge-info">
-            Sign up
+        <a class="text-white h4 text-decoration-none" id="signup" href="{% url 'security:signup' %}">
+          <span class="badge bg-animate bg-info badge-info">Sign up
           </span>
         </a>
-        <!-- <img
+        {% else %}
+        <img
           src="{% static 'image/guru.png' %}"
           class="rounded-circle"
           width="40"
           height="40"
-          alt="profile photo"> -->
+          alt="profile photo">
+        {% endif %}
       </div>
     </div>
   </div>
+  <a id="hidden_btn"></a>
 </nav>
