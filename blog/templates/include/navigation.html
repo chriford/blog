@@ -48,12 +48,25 @@
           </span>
         </a>
         {% else %}
-        <img
-          src="{% static 'image/guru.png' %}"
-          class="rounded-circle"
-          width="40"
-          height="40"
-          alt="profile photo">
+        
+        <div class="">
+            <img
+              src="{% static 'image/guru.png' %}"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false"
+              class="rounded-circle dropdown dropdown-toggle"
+              width="40"
+              height="40"
+              alt="profile photo">
+              <div class="float-right">
+  
+                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+            </div>
         {% endif %}
       </div>
     </div>

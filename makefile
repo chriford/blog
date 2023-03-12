@@ -12,7 +12,7 @@ superuser:
 	@python manage.py createsuperuser
 
 run:
-	@python manage.py runserver 8000
+	@python manage.py runserver 8001
 
 django-shell:
 	@python manage.py shell
