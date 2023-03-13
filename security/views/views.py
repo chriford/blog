@@ -34,7 +34,7 @@ def signin(request):
     return render(request, 'auth/signin.html', context)
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
-def logout(request):
+def signout(request):
     logout(request)
     messages.add_message(request, messages.INFO, "You have been logged out")
     return redirect(settings.LOGIN_REDIRECT_URL)

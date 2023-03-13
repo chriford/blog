@@ -3,7 +3,7 @@ FROM python-3.9
 ENV PYTHONBUFFERED=1
 ENV DEBIAN_FRONTEND noninteractive
 
-LABEL maintainer="Alison Mukoma <mukomalison@gmail.com>"
+LABEL maintainer="Chriford Siame <siamechrif@gmail.com>"
 
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN dpkg-divert --local --rename --add /sbin/initctl
