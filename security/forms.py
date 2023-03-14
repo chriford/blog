@@ -8,10 +8,13 @@ from crispy_forms.layout import (
     HTML,
     Row,
     Column,
+    Field,
+    Fieldset,
+    MultiField,
 )
 from security.models import User
 
-class UserCreationForm(forms.Form):
+class UserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     class Meta:
         model = User
@@ -20,6 +23,7 @@ class UserCreationForm(forms.Form):
             'first_name',
             'last_name',
             'email',
+            'phone_number',
             'password1',
             'password2',
         ]
@@ -28,7 +32,25 @@ class UserCreationForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Submit('submit', 'create user', css_class='btn btn-primary'),
+            Div(
+                Column(
+                    Fieldset("Register Form", css_class="text-muted text-center h6")
+                ),
+                css_class="border-bottom"
+            ),
+            Column(
+                Field("username", css_class="col-md-12"),
+                Field("email", css_class="col-md-12"),
+            ),
+            Row(
+                Field("first_name", css_class="col-md-8"),
+                Field("last_name", css_class="col-md-4")
+            ),
+            Column(
+                Field("password1", css_class="col-md-12"),
+                Field("password2", css_class="col-md-12"),
+            ),
+            Submit('submit', 'create user', css_class='btn btn-primary w-100'),
         )
             
     def save(self, commit = True):

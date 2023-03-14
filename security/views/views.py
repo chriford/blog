@@ -7,28 +7,22 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMessage, get_connection
 
 from security.models import User, Profile
+from security.forms import UserCreationForm
 
 def signup(request):
     if request.method == 'POST':
-        first_name = request.POST.get('first_name', None)
-        last_name = request.POST.get('last_name', None)
-        username = request.POST.get('username', None)
-        email = request.POST.get('email', None)
-        password = request.POST.get('password', None)
-        password2 = request.POST.get('password2', None)
-        if password.__eq__(password2):
-            user = User.objects.create(
-                username=username,
-                email=email,
-                first_name=first_name,
-                last_name=last_name,
-                password=password
-            )
-            user.set_password(password)
-            user.save()
+        user_create_form = UserCreationForm(request.POST)
+        if user_create_form.is_valid():
+            user = user_create_form.save()
             login(request, user)
-            return redirect('blog:posts')   
-    context = {}
+            messages.success(request, "Registration successful")
+            messages.success(request, "Credentials have been sent to your email address")
+            return redirect('blog:posts')
+        else:
+            return redirect('security:signup')   
+    context = {
+        "user_create_form": UserCreationForm, 
+    }
     return render(request, 'auth/signup.html', context)
 
 def signin(request):
