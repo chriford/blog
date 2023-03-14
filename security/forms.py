@@ -43,8 +43,8 @@ class UserCreationForm(UserCreationForm):
                 Field("email", css_class="col-md-12"),
             ),
             Row(
-                Field("first_name", css_class="col-md-8"),
-                Field("last_name", css_class="col-md-4")
+                Field("first_name", css_class="col-md-6"),
+                Field("last_name", css_class="col-md-6")
             ),
             Column(
                 Field("password1", css_class="col-md-12"),

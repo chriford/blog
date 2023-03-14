@@ -20,10 +20,11 @@ def signup(request):
             return redirect('blog:posts')
         else:
             return redirect('security:signup')   
-    context = {
-        "user_create_form": UserCreationForm, 
-    }
-    return render(request, 'auth/signup.html', context)
+    else:
+        if not request.user.is_authenticated:
+            return redirect('security:login')
+        else:
+            return redirect('blog:posts')
 
 def signin(request):
     if request.method == 'POST':
@@ -36,7 +37,9 @@ def signin(request):
             return redirect('/')
         else:
             return redirect('/login/')
-    context = {}
+    context = {
+            "user_create_form": UserCreationForm, 
+        }
     return render(request, 'auth/signin.html', context)
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)

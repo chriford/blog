@@ -43,7 +43,7 @@
         <a class="text-white mr-3 text-decoration-none" id="login" href="{% url 'security:login' %}">
           Log in
         </a>
-        <a class="text-white h4 text-decoration-none" id="signup" href="{% url 'security:signup' %}">
+        <a class="text-white h4 text-decoration-none" id="signup" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           <span class="badge bg-animate bg-info badge-info">Sign up
           </span>
         </a>
@@ -73,3 +73,4 @@
   </div>
   <a id="hidden_btn"></a>
 </nav>
+{% include '../auth/modal/register.html' %}
