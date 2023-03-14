@@ -151,19 +151,19 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 ROLEPERMISSIONS_MODULE = 'blog.roles'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'WARNING',
+#     },
+# }
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Library Admin",
@@ -187,6 +187,14 @@ JAZZMIN_SETTINGS = {
 # from django.conf.global_settings import AUTH_USER_MODEL
 AUTH_USER_MODEL = 'security.User'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'siamechrif@gmail.com'
+SERVER_EMAIL = 'siamechrif@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'siamechrif@gmail.com'
+EMAIL_HOST_PASSWORD = 'woupvzjpulbshocb'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
