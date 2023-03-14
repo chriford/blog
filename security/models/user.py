@@ -14,6 +14,22 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True,
     )
+    first_name = models.CharField(
+        verbose_name=_('first_name'),
+        max_length=255,
+        null=True,
+    )
+    last_name = models.CharField(
+        verbose_name=_('Last name'),
+        max_length=255,
+        null=True,
+    )
+    phone_number = models.CharField(
+        verbose_name=_('Phone number'),
+        max_length=15,
+        null=True,
+        blank=True,
+    )
     is_active = models.BooleanField(
         verbose_name=_('active'),
         default=True,
@@ -40,6 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
+    
     objects = CustomUserManager()
     
     USERNAME_FIELD = 'username'

@@ -1,10 +1,12 @@
 {% extends '../layout/base.html' %}
 {% block head %}
 <style>
-
+ body {
+    background-color: #e4e7ed;
+ }
 </style>
 <title>
-
+ Login
 </title>
 {% endblock %}
 {% block content %}
@@ -17,11 +19,11 @@
             </div>
             <div class="card-body">
                 <input type="text" class="form-control my-3" name="identifier"   placeholder="Enter username" minlength="3" required>
-                <input type="password" class="form-control my-3" name="password" placeholder="Enter password" minlength="6" required>
+                <input type="password" class="form-control my-3" name="password" placeholder="Enter password" minlength="4" required>
                 <input type="submit" class="btn btn-primary w-100">
                 <div class="flex d-flex mt-2 justify-content-between">
-                    <a style="text-decoration: none;" href="% url 'security:signup' %}">create account</a>
-                    <a style="text-decoration: none;" href="% url 'security:forgot-password' %}">Forgot password</a>
+                    <a style="text-decoration: none;" href="{% url 'security:signup' %}">create account</a>
+                    <a style="text-decoration: none;" href="{% url 'security:forgot-password' %}">Forgot password</a>
                 </div>
             </div>
         </div>

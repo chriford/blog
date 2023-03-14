@@ -1,47 +1,30 @@
 {% extends '../layout/base.html' %}
 {% block head %}
 <style>
-
+ body {
+    background-color: #e4e7ed;
+ }
 </style>
 <title>
-Sigup
+ Signup
 </title>
+{% load crispy_forms_tags %}
+{% load static %}
+
 {% endblock %}
 {% block content %}
 <div class="row my-4 mx-1">
     <form method="post" class="container my-4 flex d-flex flex-row justify-content-center">
         {% csrf_token %}
-        <div class="card col-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="card shadow shadow-hover col-12 col-sm-6 col-md-6 col-lg-6">
             <div class="card-header">
                 <p class="h4 text-center">Signup</p>
             </div>
             <div class="card-body">
-                <input type="text" class="form-control my-3" name="first-name" placeholder="Enter first name" minlength="3"
-                    required>
-
-                <input type="text" class="form-control my-3" name="last-name" placeholder="Enter last name" minlength="3"
-                    required>
-
-                <input type="text" class="form-control my-3" name="username" placeholder="Enter username" minlength="3"
-                    required>
-
-                <input type="email" class="form-control my-3" name="email" placeholder="Enter email address"
-                    minlength="6" required>
-
-
-                <input type="number" class="form-control my-3" name="phone-number" placeholder="Enter your phone number"
-                    minlength="6" required>
-
-                <input type="password" class="form-control my-3" name="password" placeholder="Enter password"
-                    minlength="6" required>
-
-                <input type="password" class="form-control my-3" name="password2" placeholder="Re-enter password"
-                    minlength="6" required>
-
+                {{ user_create_form|crispy }}
                 <input type="submit" class="btn btn-primary w-100">
                 <div class="flex d-flex mt-2 justify-content-between">
-                    <a style="text-decoration: none;" href="% url 'security:signin' %}">Already have an account</a>
-                    <!-- <a style="text-decoration: none;" href="{% url 'security:forgot-password' %}">Forgot password</a> -->
+                    <a style="text-decoration: none;" href="{% url 'security:login' %}">already have an create account?</a>
                     <span></span>
                 </div>
             </div>
