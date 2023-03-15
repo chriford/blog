@@ -14,14 +14,17 @@ from django.shortcuts import (
 from blog.models import (
     Post,
 )
+from blog.forms import PostForm
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):
     posts = Post.objects.all()
+
     context = {
+        'post_form': PostForm,
         'posts': posts,
     }
-    return render(request, 'blog/posts.html')
+    return render(request, 'blog/posts.html', context)
 
 
 def management(request):
