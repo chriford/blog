@@ -13,18 +13,18 @@ def signup(request):
     if request.method == 'POST':
         user_create_form = UserCreationForm(request.POST)
         if user_create_form.is_valid():
-            user = user_create_form.save()
+            user = user_create_form.save(commit=True)
             login(request, user)
             messages.success(request, "Registration successful")
             messages.success(request, "Credentials have been sent to your email address")
             return redirect('blog:posts')
         else:
+            messages.error(request, "Registration failed")
             return redirect('security:signup')   
-    else:
-        if not request.user.is_authenticated:
-            return redirect('security:login')
-        else:
-            return redirect('blog:posts')
+    context = {
+            "user_create_form": UserCreationForm, 
+        }
+    return render(request, 'auth/signup.html', context)
 
 def signin(request):
     if request.method == 'POST':
