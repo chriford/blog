@@ -37,14 +37,22 @@
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:management'%}">Management</a>
         </li>
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="/admin/">Admin</a>
+        </li>
         </ul>
       <div class="text-white">
       {% if not request.user.is_authenticated %}
         <a class="text-white mr-3 text-decoration-none" id="login" href="{% url 'security:login' %}">
           Log in
         </a>
-        <a class="text-white h4 text-decoration-none" id="signup" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          <span class="badge bg-animate bg-info badge-info">Sign up
+        {% if request.user.is_superuser %}
+          <a class="text-white h4 text-decoration-none" id="signup" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        {% else %}
+          <a class="text-white h4 text-decoration-none" id="signup" href="{% url 'security:signup' %}">
+        {% endif %}
+            <span class="badge bg-animate bg-info badge-info">Sign up
           </span>
         </a>
         {% else %}
