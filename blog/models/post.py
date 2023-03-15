@@ -11,6 +11,7 @@ class Post(Timestamp):
         related_name='user',
         help_text=_("The owner of this post."),
         null=True,
+        on_delete=models.CASCADE,
     )
     title = models.CharField(
         max_length=200,
