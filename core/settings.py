@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'security.apps.SecurityConfig',
     
     "rest_framework",
+    # "django_markdown",
+    "drf_yasg2",
     "crispy_forms",
     "whitenoise.runserver_nostatic",
     "crispy_bootstrap5",
@@ -203,3 +205,4 @@ EMAIL_HOST_PASSWORD = 'woupvzjpulbshocb'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SITE_URL = "https://example.com"

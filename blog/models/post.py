@@ -1,9 +1,12 @@
-import logging
 import uuid
+import logging
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from blog.models.timestamp import Timestamp
+
 from blog.models.category import Category
+from blog.models.timestamp import Timestamp
+
 
 class Post(Timestamp):
     owner = models.ForeignKey(
