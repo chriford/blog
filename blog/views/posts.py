@@ -44,14 +44,19 @@ def posts(request):
     return render(request, 'blog/posts.html', context)
 
 
-# post_update
-def post_delete(request, title, pk):
-    context = {}
+def post_delete(request, title, pk, *args, **kwargs):
+    post  = Post.objects.filter(
+        pk=pk,
+        title=title,
+    )
     return HttpResponse(f"{title}-pk will be deleted")
-# def management(request):
-#     context = {}
-#     return render(request, 'blog/management.html', context)
 
+def post_update(request, title, pk, *args, **kwargs):
+    post  = Post.objects.filter(
+        pk=pk,
+        title=title,
+    )
+    return HttpResponse(f"{title}-pk will be updated")
 
 def management(request):
     context = {}
