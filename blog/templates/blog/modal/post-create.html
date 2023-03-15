@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+
+<div class="offcanvas offcanvas-top" tabindex="-1" id="blogPostCreate" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasTopLabel">Title</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <form action="{% url 'security:signup' %}" method="post" class="container bg-secondary">
+          {% csrf_token %}
+          {{ post_form|crispy }}
+          <button type="submit" class="btn btn-success w-100">create</button>
+      </form>
+  </div>
+</div>
