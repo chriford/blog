@@ -1,5 +1,6 @@
 {% extends '../layout/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block head %}
 <style>
     body {
@@ -77,14 +78,15 @@
     </marquee>
     </div>
     <div class="row">
-        {% load crispy_forms_tags %}
-        {{ post_form|crispy}}
-        <div class="container">
-
-            <button type="button" class="btn btn-primary w-100">
-                create post
-            </button>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ post_form|crispy}}
+            <div class="container">
+                <button type="submit" class="btn btn-primary w-100">
+                    create post
+                </button>
+            </div>
+        </form>
         </div>
-    </div>
 </div>
 {% endblock %}

@@ -22,9 +22,9 @@ def post_create(request):
     if request.method == 'POST':
         post_create_form = PostForm(request.POST)
         if post_create_form.is_valid():
-            post = post_create_form.save(commit=False)
-            post.cleaned_data['owner'] = request.user
-            post.save(commit=True)
+            post = post_create_form.save(commit=True)
+            post.owner = request.user
+            post.save()
             return redirect('blog:post-create')
 
     posts = Post.objects.all()
