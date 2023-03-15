@@ -12,6 +12,7 @@ class Category(Timestamp):
         blank=False,
     )
     
+    
     def __str__(self):
         return self.name
         
