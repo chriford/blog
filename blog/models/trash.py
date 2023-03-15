@@ -14,7 +14,7 @@ class Trash(Timestamp):
     )
     owner = models.ForeignKey(
         'security.User',
-        related_name='user',
+        related_name='owner',
         help_text=_("The owner of this post."),
         null=True,
         blank=True,
