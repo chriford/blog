@@ -32,7 +32,7 @@ def post_create(request):
         'post_form': PostForm,
         'posts': posts,
     }
-    return render(request, 'blog/posts.html', context)
+    return render(request, 'blog/post-create.html', context)
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):

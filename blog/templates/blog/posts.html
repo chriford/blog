@@ -59,7 +59,7 @@
         </div>     
     </section>
     <div class="mt-4 mx-2">
-        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="offcanvas" data-bs-target="#blogPostCreate" aria-controls="offcanvasTop">&plus; create</button>
+        <a type="button" class="btn btn-sm btn-primary" href="{% url 'blog:post-create' %}">&plus; create</a>
     </div>
 </div>
 <div class="container ml-2 py-3 my-4 mt-4 mt-3" style="position:sticky;" id="content">
@@ -77,8 +77,6 @@
     </marquee>
     </div>
     <div class="row">
-        {% load crispy_forms_tags %}
-        {{ post_form|crispy}}
         <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
             <figure class="card">
                 <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">

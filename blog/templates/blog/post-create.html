@@ -79,7 +79,12 @@
     <div class="row">
         {% load crispy_forms_tags %}
         {{ post_form|crispy}}
+        <div class="container">
 
+            <button type="button" class="btn btn-primary w-100">
+                create post
+            </button>
+        </div>
     </div>
 </div>
 {% endblock %}
