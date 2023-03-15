@@ -11,6 +11,7 @@ class Post(Timestamp):
         related_name='user',
         help_text=_("The owner of this post."),
         null=True,
+        blank=True,
         on_delete=models.CASCADE,
     )
     title = models.CharField(
@@ -19,6 +20,13 @@ class Post(Timestamp):
         help_text=_("Title of the post"),
         null=True,
         blank=False,
+    )
+    category = models.ForeignKey(
+        'blog.Category',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=False,
+        help_text=_("Select the category of this post"),
     )
     body = models.TextField(
         verbose_name=_("Body"),

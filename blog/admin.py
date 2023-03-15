@@ -15,5 +15,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = ['owner','title', 'created_at','updated_at']
     search_fields = ['title','owner']
+    list_filter = ['owner', 'category']
     list_per_page = 25
 
