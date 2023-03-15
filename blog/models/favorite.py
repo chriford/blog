@@ -15,6 +15,7 @@ class Favorite(Timestamp):
         null=True,
         blank=False,
     )
+    display = models.BooleanField(default=False)
     
     def __str__(self):
         return f"{self.post.title} - favorite-{self.pk}"
