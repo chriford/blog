@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _ # noqa
-from blog.models import (
+from blog.models.timestamp import (
     Timestamp,
 )
 

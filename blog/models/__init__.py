@@ -1,5 +1,5 @@
 from .setting import *
-from .post import *
+from .post import Post
 from .favorite import *
 from .comment import *
 from .bin import *
