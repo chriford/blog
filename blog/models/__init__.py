@@ -6,3 +6,4 @@ from .bin import *
 from .payment import *
 from .timestamp import *
 from .category import *
+from .image import *
