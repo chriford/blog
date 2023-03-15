@@ -11,9 +11,16 @@ from django.shortcuts import (
     redirect,
     HttpResponseRedirect,
 )
+from blog.models import (
+    Post,
+)
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
+    }
     return render(request, 'blog/posts.html')
 
 
