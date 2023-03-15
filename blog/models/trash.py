@@ -4,14 +4,17 @@ import logging
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from blog.models.category import Category
 from blog.models.timestamp import Timestamp
 
 
-class Post(Timestamp):
+class Trash(Timestamp):
+    post_id = models.PositiveIntegerField(
+        null=True,
+        blank=False
+    )
     owner = models.ForeignKey(
         'security.User',
-        related_name='user',
+        related_name='owner',
         help_text=_("The owner of this post."),
         null=True,
         blank=True,
@@ -35,21 +38,11 @@ class Post(Timestamp):
         verbose_name=_("Body"),
         null=True,
     )
+    restore = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(
+        auto_now_add=True,
+        
+    )
     
     def __str__(self):
-        return self.title
-
-    def comment_objects(self):
-        from blog.models import Comment
-        post_comments = Comment.objects.filter(
-            post = self,    
-        )
-        return post_comments
-    
-    @property
-    def comments(self):
-        return self.comment_objects(self)
-
-    @property
-    def total_comments(self):
-        return self.comment_objects(self).count()
+        return f"{self.post.title} - trash-{self.pk}"
