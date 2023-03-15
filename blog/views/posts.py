@@ -13,6 +13,8 @@ from django.shortcuts import (
 )
 from blog.models import (
     Post,
+    Favorite,
+    Comment,
 )
 from blog.forms import PostForm
 
