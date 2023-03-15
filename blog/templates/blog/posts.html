@@ -77,6 +77,8 @@
     </marquee>
     </div>
     <div class="row">
+        {% load crispy_forms_tags %}
+        {{ post_form|crispy}}
         <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
             <figure class="card">
                 <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
