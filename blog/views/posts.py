@@ -45,6 +45,17 @@ def posts(request):
     }
     return render(request, 'blog/posts.html', context)
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
+def post_view(request, title, pk, *args, **kwargs):
+    post_obj = Post.objects.filter(
+        title=title,
+    ).get(pk=pk)
+    context = {
+        'post_form': PostForm,
+        'post': post_obj,
+    }
+    return render(request, 'blog/post-view.html', context)
+
 
 def post_delete(request, title, pk, *args, **kwargs):
     post  = Post.objects.filter(

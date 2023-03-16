@@ -50,7 +50,6 @@
 </title>
 {% endblock %}
 {% block content %}
-{% include './modal/post-create.html' %}
 <div id="header-container" class="d-flex justify-content-between">
     <section id="header-section" class="container">
         <div class="text-info">
@@ -77,126 +76,39 @@
     </marquee>
     </div>
     <div class="row">
+        {% for post in posts %}
         <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
             <figure class="card">
-                <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
-                <div class="card-header text-center">
-                    The Negative Side Of Medicine
-                </div>
-                <div class="card-body border-bottom pb-2">
-                    <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-archive"></li> save
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-up"></li> like
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-down"></li> dislike
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-comment"></li> comment
-                        </sup>
+                    <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
+                    <div class="card-header h3 text-center">
+                        {{post.category.name}}
                     </div>
-                    <p class="h4 text-muted pt-4">Did you know that the body can't
-                        handle being treated with medicine from time to time</p>
-                </div>
-                <p class="text-center">
-                    <a href="/">Read more &plus;</a>
-                </p>
-            </figure>
-            
-        </div>
-        <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
-            <figure class="card">
-                <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
-                <div class="card-header text-center">
-                    The Negative Side Of Medicine
-                </div>
-                <div class="card-body border-bottom pb-2">
-                    <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-archive"></li> save
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-up"></li> like
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-down"></li> dislike
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-comment"></li> comment
-                        </sup>
+                    <div class="card-body border-bottom pb-2">
+                        <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
+                            <sup class="text-muted header-options">
+                                <li class="fa fa-fw fa-archive"></li> save
+                            </sup>
+                            <sup class="text-muted header-options">
+                                <li class="fa fa-fw fa-thumbs-up"></li> like
+                            </sup>
+                            <sup class="text-muted header-options">
+                                <li class="fa fa-fw fa-thumbs-down"></li> dislike
+                            </sup>
+                            <sup class="text-muted header-options">
+                                <li class="fa fa-fw fa-comment"></li> comment
+                            </sup>
+                        </div>
+                        <p class="h5 text-muted pt-4">
+                            {{post.body|truncatechars:80}}
+                        </p>
                     </div>
-                    <p class="h4 text-muted pt-4">Did you know that the body can't
-                        handle being treated with medicine from time to time</p>
-                </div>
-                <p class="text-center">
-                    <a href="/">Read more &plus;</a>
-                </p>
-            </figure>
-            
-        </div>
-        <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
-            <figure class="card">
-                <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
-                <div class="card-header text-center">
-                    The Negative Side Of Medicine
-                </div>
-                <div class="card-body border-bottom pb-2">
-                    <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-archive"></li> save
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-up"></li> like
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-down"></li> dislike
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-comment"></li> comment
-                        </sup>
-                    </div>
-                    <p class="h4 text-muted pt-4">Did you know that the body can't
-                        handle being treated with medicine from time to time</p>
-                </div>
-                <p class="text-center">
-                    <a href="/">Read more &plus;</a>
-                </p>
-            </figure>
-            
-        </div>
-        <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
-            <figure class="card">
-                <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
-                <div class="card-header text-center">
-                    The Negative Side Of Medicine
-                </div>
-                <div class="card-body border-bottom pb-2">
-                    <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-archive"></li> save
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-up"></li> like
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-down"></li> dislike
-                        </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-comment"></li> comment
-                        </sup>
-                    </div>
-                    <p class="h4 text-muted pt-4">Did you know that the body can't
-                        handle being treated with medicine from time to time</p>
-                </div>
-                <p class="text-center">
-                    <a href="/">Read more &plus;</a>
-                </p>
-            </figure>
-            
-        </div>
+                    <p class="text-center">
+                        <a id="{{post.pk}}" href="{% url 'blog:post-view' title=post.title pk=post.pk %}">Read more &plus;</a>
+                    </p>
+                    <!-- {% include './modal/post-view.html' %} -->
+                </figure>
+            </div>
+        {% endfor %}
         <div class="col-md-6 col-12 col-sm-12 col-lg-4">
             <figure class="btn btn-outline-success card h-75 d-flex justify-content-center align-content-center">
                 <p class="text-muted h2 text-center">

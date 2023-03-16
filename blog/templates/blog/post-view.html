@@ -47,7 +47,7 @@
         }
     </style>
 <title>
-    Post create
+    Post view
 </title>
 {% endblock %}
 {% block content %}
@@ -76,16 +76,34 @@
         </p>
     </marquee>
     </div>
-    <div class="row">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ post_form|crispy}}
-            <div class="container">
-                <button type="submit" class="btn btn-primary w-100">
-                    create post
-                </button>
-            </div>
-        </form>
-        </div>
+    <div class="row ">
+        <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
+          <figure class="card w-75">
+                  <img nopin="nopin" class=" h-50" src="{% static 'image/medication.jpg' %}" alt="">
+                  <div class="h3 text-center">
+                      {{post.title}}
+                  </div>
+                  <div class="card-header border-bottom w-100 pb-2">
+                      <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
+                          <sup class="text-muted header-options">
+                              <li class="fa fa-fw fa-archive"></li> save
+                          </sup>
+                          <sup class="text-muted header-options">
+                              <li class="fa fa-fw fa-thumbs-up"></li> like
+                          </sup>
+                          <sup class="text-muted header-options">
+                              <li class="fa fa-fw fa-thumbs-down"></li> dislike
+                          </sup>
+                          <sup class="text-muted header-options">
+                              <li class="fa fa-fw fa-comment"></li> comment
+                          </sup>
+                      </div>
+                      <p class="card-body h5 text-muted pt-4">
+                          {{post.body}}
+                      </p>
+                  </div>
+              </figure>
+          </div>
+      </div>
 </div>
 {% endblock %}
