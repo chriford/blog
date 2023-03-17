@@ -1,0 +1,30 @@
+{% extends '../../layout/base.html' %}
+{% block head %}
+
+<style>
+    #bg-image01 {
+        background-image: url(/static/banner/blog-404.gif);
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-size: contain;
+        width: auto;
+    }
+    .main-container {
+        background-color: #737373;
+
+    }
+</style>
+<title>404</title>
+{% endblock %}
+{% block content %}
+<div class="main-container">
+    {{previous_url}}
+    <div class="h-100 img-fluid d-none d-md-block d-lg-block d-xl-block d-xxl-block" style="margin-top: -3em;" id="bg-image01">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+    
+    <div class="h-100 img-fluid d-md-none d-block" id="bg-image01">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+</div>
+{% endblock %}

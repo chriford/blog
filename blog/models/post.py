@@ -1,5 +1,6 @@
 import uuid
 import logging
+from datetime import timedelta
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -33,6 +34,11 @@ class Post(Timestamp):
     )
     body = models.TextField(
         verbose_name=_("Body"),
+        null=True,
+    )
+    is_active = models.BooleanField(default=True)
+    is_deleted = models.BooleanField(default=False)
+    delete_on = models.DateTimeField(
         null=True,
     )
     

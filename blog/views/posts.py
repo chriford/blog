@@ -13,6 +13,7 @@ from django.shortcuts import (
 )
 from blog.models import (
     Post,
+    Trash,
     Favorite,
     Comment,
 )
@@ -61,6 +62,14 @@ def post_delete(request, title, pk, *args, **kwargs):
     post  = Post.objects.filter(
         pk=pk,
         title=title,
+    ).first()
+    post.is_deleted = True
+    post.save(
+        update_fields=(
+            'is_active',
+            'is_deleted',
+            'delete_on',
+        )
     )
     return HttpResponse(f"{title}-pk will be deleted")
 
