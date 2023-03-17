@@ -45,6 +45,15 @@
         .card {
             background-color: rgb(245, 243, 243);
         }
+        #styler-btn {
+            border-radius: 2em;
+            min-height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: min-content;
+            background-color: orange;
+        }
     </style>
 <title>
     Post view
@@ -78,29 +87,38 @@
     </div>
     <div class="row ">
         <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
-          <figure class="card w-75">
-                  <img nopin="nopin" class=" h-50" src="{% static 'image/medication.jpg' %}" alt="">
-                  <div class="h3 text-center">
-                      {{post.title}}
-                  </div>
-                  <div class="card-header border-bottom w-100 pb-2">
-                      <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                          <sup class="text-muted header-options">
-                              <li class="fa fa-fw fa-archive"></li> save
-                          </sup>
-                          <sup class="text-muted header-options">
-                              <li class="fa fa-fw fa-thumbs-up"></li> like
-                          </sup>
-                          <sup class="text-muted header-options">
-                              <li class="fa fa-fw fa-thumbs-down"></li> dislike
-                          </sup>
-                          <sup class="text-muted header-options">
-                              <li class="fa fa-fw fa-comment"></li> comment
-                          </sup>
-                      </div>
-                      <p class="card-body h5 text-muted pt-4">
-                          {{post.body}}
-                      </p>
+          <figure class="card">
+                <img nopin="nopin" class=" h-50" src="{% static 'image/medication.jpg' %}" alt="">
+                <div class="h3 text-center text-muted py-2">
+                    {{post.title}}
+                </div>
+                <div class="card-header border-bottom w-100 pb-1">
+                    <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
+                        <sup class="text-muted header-options">
+                            <li class="fa fa-fw fa-archive"></li> save
+                        </sup>
+                        <sup class="text-muted header-options">
+                            <li class="fa fa-fw fa-thumbs-up"></li> like
+                        </sup>
+                        <sup class="text-muted header-options">
+                            <li class="fa fa-fw fa-thumbs-down"></li> dislike
+                        </sup>
+                        <sup class="text-muted header-options">
+                            <li class="fa fa-fw fa-comment"></li> comment
+                        </sup>
+                    </div>
+                    <div class="card-body">
+                        <p class="h5 text-muted pt-4">
+                            {{post.body}}
+                        </p>
+                    </div>
+                    <form class="card-footer gap-1">
+                        <textarea placeholder="comment" rows="1" class="w-100 p-2 border-gray" style="border-radius: 18px;"></textarea>
+                        <span style="margin-top: 3px; margin-left: 1em;" class="badge badge-secondary bg-dark min-h-100"><br><br></span>
+                        <div class="mr-1 w-auto">
+                            <button type="submit" class="py-1 px-1 position-absolute">submit</button>
+                        </div>
+                    </form>
                   </div>
               </figure>
           </div>

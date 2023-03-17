@@ -22,8 +22,7 @@ urlpatterns = [
     path('post/create/', post_create, name='post-create'),
     path('post/<str:title>/delete/blog/<int:pk>/', post_delete, name='post-delete'),
     path('post/<str:title>/update/blog/<int:pk>/', post_update, name='post-update'),
-    path('post/<str:title>/read/blog/<int:pk>/', post_update, name='post-view'),
-    
+    path('post/<str:title>/read/blog/<int:pk>/', post_view, name='post-view'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
