@@ -7,6 +7,8 @@ from rest_framework import permissions
 from drf_yasg2.views import get_schema_view
 from drf_yasg2 import openapi
 
+from blog.views import page_not_found_view
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -32,3 +34,5 @@ urlpatterns = [
     # path('^markdown/', include('django_markdown.urls')),
     path('', include('security.urls', namespace='security')),
 ] +  swagger_urlpatterns
+
+handler404 = page_not_found_view 
