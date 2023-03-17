@@ -1,1 +1,1 @@
-c
+from .post import *
