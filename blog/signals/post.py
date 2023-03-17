@@ -17,9 +17,10 @@ from blog.models import (
 def post_update(sender, instance, update_fields, **kwargs):
     post_count = sender.objects.count()
     is_deleted_status: bool = update_fields.get('is_deleted')
-    print(is_deleted_status)
-    print(kwargs)
-    print(instance)
+    print('is deleted status'.capitalize(), is_deleted_status)
+    print('kwargs'.capitalize(), kwargs)
+    print('post count'.capitalize(), post_count)
+    print('instance'.capitalize(), instance)
     # if is_deleted_status:
     #     instance.delete_on = datetime.timedelta(weeks=4, days=2),
     # else:

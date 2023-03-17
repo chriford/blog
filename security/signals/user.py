@@ -12,7 +12,7 @@ from django.db.models.signals import (
 from django.db.models import Q
 from django.dispatch import receiver
 
-from security import (
+from security.models import (
     User,
     Profile,
 )
