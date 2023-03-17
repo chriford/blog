@@ -13,6 +13,7 @@ from django.shortcuts import (
 )
 from blog.models import (
     Post,
+    Trash,
     Favorite,
     Comment,
 )

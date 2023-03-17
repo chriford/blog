@@ -85,7 +85,7 @@
         </p>
     </marquee>
     </div>
-    <div class="row ">
+    <div class="row">
         <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
           <figure class="card">
                 <img nopin="nopin" class=" h-50" src="{% static 'image/medication.jpg' %}" alt="">
@@ -112,11 +112,14 @@
                             {{post.body}}
                         </p>
                     </div>
-                    <form class="card-footer gap-1">
-                        <textarea placeholder="comment" rows="1" class="w-100 p-2 border-gray" style="border-radius: 18px;"></textarea>
-                        <span style="margin-top: 3px; margin-left: 1em;" class="badge badge-secondary bg-dark min-h-100"><br><br></span>
-                        <div class="mr-1 w-auto">
-                            <button type="submit" class="py-1 px-1 position-absolute">submit</button>
+                    <form class="card-footer">
+                        <div class="row embed-responsive">
+                            <div class="col-10 col-md-11 col-lg-11">
+                                <textarea class="w-100 p-2 border-gray" placeholder="comment" rows="1" style="border-radius: 18px;"></textarea>
+                            </div>
+                            <div class="col-2 col-md-1 col-lg-1">
+                                <button type="submit" class="py-1 px-1 position-absolute float-end">submit</button>
+                            </div>
                         </div>
                     </form>
                   </div>
