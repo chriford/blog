@@ -18,16 +18,16 @@ django-shell:
 	@python manage.py shell
 
 build:
-	@docker-compose build
+	@docker compose build
 
 start:
-	@docker-compose up -d
+	@docker compose up -d
 
 start-live:
-	@docker-compose up
+	@docker compose up
 
 stop:
-	@docker-compose down
+	@docker compose down
 
 kill:
-	@docker-compose down -v
+	@docker compose down -v
