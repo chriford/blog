@@ -1,20 +1,22 @@
 version: '3.8'
 services:
   gunicorn_web:
+    container_name: django_project
     build:
-      context: . # use base image in the current dir and not on github
+      context: . # local base image dir
       ssh: ["default"] # mount the deafult ssh agent
       dockerfile: Dockerfile
       shm_size: '1gb'
-      platforms: ["linux/arm64","linux/arm32",]
+      # platforms: ["linux/arm64","linux/arm32",]
       # cache_to:
-      #   - type=local, dest=./deployment    
+      #   - type=local, dest=./deployment
     ports:
       - 8000:8000
     env_file:
       - .env
     environment:
       - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=core.settings
     volumes:
       - ./docker/backup:/app
     networks:
@@ -22,14 +24,14 @@ services:
     depends_on:
       - database
     labels:
-      - com.digibrands.by=Chriford=label
+      - com.digibrands.by=Chriford
 
 
   redis:
     container_name: redis
     image: redis:alpine
     labels:
-      - com.digibrands.by=Chriford=label
+      - com.digibrands.by=Chriford
 
   nginx:
     container_name: nginx
@@ -57,7 +59,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     labels:
-      - com.digibrands.by=Chriford=label
+      - com.digibrands.by=Chriford
 
 networks:
   main:
