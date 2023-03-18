@@ -10,7 +10,7 @@ services:
     environment:
       - DEBUG=True
     volumes:
-      - /backup:.
+      - .:/docker/backup
     networks:
       - main
     depends_on:
