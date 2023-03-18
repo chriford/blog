@@ -22,16 +22,20 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+third_party_urlpatterns = [
+    # path('^markdown/', include('django_markdown.urls')),
+    path("select2/", include("django_select2.urls")),
+    
+]
 swagger_urlpatterns = [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-]
+] + third_party_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
-    # path('^markdown/', include('django_markdown.urls')),
     path('', include('security.urls', namespace='security')),
     path('not-found/', not_found_page_view, name='error_page')
 ] +  swagger_urlpatterns

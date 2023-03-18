@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "crispy_bootstrap5",
     "rolepermissions",
+    "django_select2",
 ]
 
 MIDDLEWARE = [
