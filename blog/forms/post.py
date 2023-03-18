@@ -13,23 +13,35 @@ from crispy_forms.layout import (
 )
 
 class PostForm(ModelForm):
-    class Meta:
-        model = Post
-        fields = ['owner', 'title', 'category', 'body',]
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_class = 'bg-white'
-        self.helper.form_id = 'post-create-form-id'
+        # self.helper.form_class = 'row bg-white'
+        # self.helper.form_id = 'post-create-form-id'
         self.helper.layout = Layout(
-            Column('body', css_class="col-md-12 col-md-12 col-12 col-sm-12"),
+            Row(
+                Field('owner', css_class="col-md-6 col-lg-6 col-sm-6"),
+                # Field('category', css_class="col-md-6 col-lg-6 col-sm-6"),
+            ),
             Row(
                 Field('title', css_class="col-md-6 col-lg-6 col-sm-6"),
-                Field('category', css_class="col-md-6 col-lg-6 col-sm-6"),
             ),
-            Column('body', css_class="col-md-12 col-sm-12"),
-            HTML('<p>This is</p>')
+            Column(
+                Field('body', css_class="col-md-12 col-sm-12"),
+                Field('is_active', css_class="col-md-12 col-sm-12"),
+            ),
+            Div(
+                Submit('submit', 'create post', css_class='btn btn-success w-100'),
+                css_class='mt-2 d-none d-lg-block d-md-block d-xl-block d-xxl-block'
+            ),
+            Row(
+                Submit('submit', 'create post', css_class='btn btn-sm btn-secondary w-100 col-6'),
+                # css_class='mt-2 d-none d-sm-block d-block d-lg-none d-md-none d-xl-none d-xxl-none'
+            )
         )
+    class Meta:
+        model = Post
+        fields = ['owner', 'title', 'category', 'body', 'is_active']
 

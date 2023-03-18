@@ -61,7 +61,20 @@
         <a class="btn btn-sm btn-primary float-right" href="{% url 'blog:post-create' %}"><li class="fa fa-fw fa-plus"></li> Add</a>
     </div>
 </div>
-<div class="container ml-2 py-3 my-4 mt-4 mt-3" style="position:sticky;" id="content">
+{% if not request.user.is_authenticated %}
+    <div class="d-flex">
+        <marquee class="py-0" behavior="" direction="right">
+            <sup class="text-muted">Join blogit, a community with over 400 users</sup>
+    </marquee>
+
+    <marquee class="py-0" behavior="" direction="right">
+        <sup class="text-muted">Join blogit, a community with over 400 users</sup>
+    </marquee>
+</div>
+{% else %}
+<br><br>
+{% endif %}
+<div class=" container ml-2 py-3 my-2 mt-1" style="position:sticky;" id="content">
     <div
     style="margin-top: -2em;"
     >    
