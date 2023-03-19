@@ -29,6 +29,7 @@ elasticsearch==7.17.9
 elasticsearch-dsl==7.4.1
 exceptiongroup==1.1.0
 flake8==6.0.0
+gunicorn==19.9.0
 idna==3.4
 importlib-metadata==6.0.0
 inflection==0.5.1
@@ -36,12 +37,12 @@ iniconfig==2.0.0
 itypes==1.2.0
 Jinja2==3.1.2
 Markdown==3.4.1
-gunicorn==19.9.0
 MarkupSafe==2.1.2
 mccabe==0.7.0
 packaging==23.0
 Pillow==9.4.0
 pluggy==1.0.0
+psycopg2-binary==2.9.5
 pycodestyle==2.10.0
 pyflakes==3.0.1
 PyJWT==2.6.0
@@ -57,6 +58,7 @@ sqlparse==0.4.3
 tomli==2.0.1
 uritemplate==4.1.1
 urllib3==1.26.14
+uWSGI==2.0.21
 webencodings==0.5.1
 whitenoise==6.4.0
 yapf==0.32.0
