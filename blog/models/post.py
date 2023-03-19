@@ -40,6 +40,7 @@ class Post(Timestamp):
     is_deleted = models.BooleanField(default=False)
     delete_on = models.DateTimeField(
         null=True,
+        blank=True,
     )
     
     def __str__(self):
