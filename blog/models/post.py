@@ -55,11 +55,11 @@ class Post(Timestamp):
     
     @property
     def comments(self):
-        return self.comment_objects(self)
+        return self.comment_objects()
 
     @property
     def total_comments(self):
-        return self.comment_objects(self).count()
+        return self.comment_objects().count()
 
     # class Meta:
         # abstract_name_plural = 'Posts'

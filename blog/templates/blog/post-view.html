@@ -93,18 +93,22 @@
                     {{post.title}}
                 </div>
                 <div class="card-header border-bottom w-100 pb-1">
-                    <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-archive"></li> save
+                    <div class="d-flex py-2 justify-content-between align-content-center border-bottom pb-1">
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-save" style="top: -20px;"></li>
+                            <span class="mt-1 px-1">(10)</span>
                         </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-up"></li> like
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
+                            <span class="mt-1 px-1">(300)</span>
                         </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-thumbs-down"></li> dislike
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
+                            <span class="mt-1 px-1">(1k)</span>
                         </sup>
-                        <sup class="text-muted header-options">
-                            <li class="fa fa-fw fa-comment"></li> comment
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
+                        <span class="mt-1 px-1">({{post.total_comments}}k)</span>
                         </sup>
                     </div>
                     <div class="card-body">
@@ -112,16 +116,33 @@
                             {{post.body}}
                         </p>
                     </div>
-                    <form class="card-footer">
+                    <form class="card-footr bg-inherit">
                         <div class="row embed-responsive">
                             <div class="col-10 col-md-11 col-lg-11">
                                 <textarea class="w-100 p-2 border-gray" placeholder="comment" rows="1" style="border-radius: 18px;"></textarea>
                             </div>
-                            <div class="col-2 col-md-1 col-lg-1">
+                            <!-- <div class="col-2 col-md-1 col-lg-1">
                                 <button type="submit" class="py-1 px-1 position-absolute float-end">submit</button>
-                            </div>
+                            </div> -->
                         </div>
                     </form>
+                    <div class="py-3">
+                        {% for comment in post.comments %}
+                            <div class="card px-3 pt-2 mx-2 mt-2">
+                                <div class="text-center">
+                                    {{comment.comment}}
+                                </div>
+                                <p class="w-100 d-flex justify-conent-around">
+                                    <a href="" class=" float-left text-decoration-none">
+                                        like
+                                    </a> 
+                                    <a href="" class=" float-right text-decoration-none mx-2">
+                                            reply
+                                        </a>
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
                   </div>
               </figure>
           </div>
