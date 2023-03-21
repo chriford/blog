@@ -7,7 +7,22 @@ from blog.models import (
     Favorite,
     Trash,
     Image,
+    Like,
 )
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+        list_display = [
+            "liker",
+            "like",
+            "dislike",
+            "is_liked",
+            "is_disliked",
+            "is_neutral",
+        ]
+        search_fields = ['like',]
+        list_per_page = 20
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
