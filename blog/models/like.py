@@ -10,7 +10,7 @@ from blog.models.timestamp import Timestamp
 
 
 class Like(Timestamp):
-    liker = models.ForeignKey(
+    liker = models.OneToOneField(
         'security.User',
         related_name='liker',
         help_text=_("The owner of this like."),
