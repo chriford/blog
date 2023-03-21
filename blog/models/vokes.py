@@ -9,23 +9,24 @@ from blog.models.category import Category
 from blog.models.timestamp import Timestamp
 
 
-class Like(Timestamp):
-    liker = models.OneToOneField(
+class Voke(Timestamp):
+    user = models.OneToOneField(
         'security.User',
-        related_name='liker',
         help_text=_("The owner of this like."),
         null=True,
         blank=True,
         on_delete=models.CASCADE,
     )
-    like = models.PositiveIntegerField(
-        verbose_name=_("Like"),
+    upvoke = models.PositiveIntegerField(
+        verbose_name=_("Upvoke"),
+        help_text=_("Upvoke or like count"),
         null=True,
         blank=True,
         default=0,
     )
-    dislike = models.PositiveIntegerField(
-        verbose_name=_("Dislike"),
+    downvoke = models.PositiveIntegerField(
+        verbose_name=_("Downvoke"),
+        help_text=_("Downvoke or diskike count"),
         null=True,
         blank=True,
         default=0,

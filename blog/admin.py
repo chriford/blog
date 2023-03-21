@@ -7,15 +7,15 @@ from blog.models import (
     Favorite,
     Trash,
     Image,
-    Like,
+    Voke,
 )
 
-@admin.register(Like)
-class LikeAdmin(admin.ModelAdmin):
+@admin.register(Voke)
+class VokeAdmin(admin.ModelAdmin):
         list_display = [
-            "liker",
-            "like",
-            "dislike",
+            "user",
+            "upvoke",
+            "downvoke",
             "is_liked",
             "is_disliked",
             "is_neutral",

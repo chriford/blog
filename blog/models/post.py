@@ -53,6 +53,14 @@ class Post(Timestamp):
         )
         return post_comments
     
+    def voke_objects(self):
+        from blog.models import Comment
+        post_comments = Comment.objects.filter(
+            post = self,    
+        )
+        return post_comments
+    
+    
     @property
     def comments(self):
         return self.comment_objects()
