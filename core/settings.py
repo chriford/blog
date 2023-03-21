@@ -191,6 +191,7 @@ JAZZMIN_SETTINGS = {
     #     {"model": "security.User"},
     #     # App with dropdown menu to all its models pages (Permissions checked against models)
         {"app": "security"},
+        {"app": "blog"},
     ],
 }
 # from django.conf.global_settings import AUTH_USER_MODEL

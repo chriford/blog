@@ -70,7 +70,6 @@ class PostAdmin(admin.ModelAdmin):
     list_display = [
         'owner',
         'title', 
-        'body',
         'category',
         'created_at',
         'updated_at',

@@ -60,3 +60,6 @@ class Post(Timestamp):
     @property
     def total_comments(self):
         return self.comment_objects(self).count()
+
+    # class Meta:
+        # abstract_name_plural = 'Posts'
