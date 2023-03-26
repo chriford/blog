@@ -7,7 +7,22 @@ from blog.models import (
     Favorite,
     Trash,
     Image,
+    Voke,
 )
+
+@admin.register(Voke)
+class VokeAdmin(admin.ModelAdmin):
+        list_display = [
+            "user",
+            "upvoke",
+            "downvoke",
+            "is_liked",
+            "is_disliked",
+            "is_neutral",
+        ]
+        search_fields = ['like',]
+        list_per_page = 20
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -70,7 +85,6 @@ class PostAdmin(admin.ModelAdmin):
     list_display = [
         'owner',
         'title', 
-        'body',
         'category',
         'created_at',
         'updated_at',

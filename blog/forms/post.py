@@ -13,8 +13,6 @@ from crispy_forms.layout import (
 )
 
 class PostForm(ModelForm):
-
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -36,10 +34,10 @@ class PostForm(ModelForm):
                 Submit('submit', 'create post', css_class='btn btn-success w-100'),
                 css_class='mt-2 d-none d-lg-block d-md-block d-xl-block d-xxl-block'
             ),
-            Row(
-                Submit('submit', 'create post', css_class='btn btn-sm btn-secondary w-100 col-6'),
-                # css_class='mt-2 d-none d-sm-block d-block d-lg-none d-md-none d-xl-none d-xxl-none'
-            )
+            # Row(
+            #     Submit('submit', 'create post', css_class='btn btn-sm btn-secondary w-100 col-6'),
+            #     css_class='mt-2'
+            # )
         )
     class Meta:
         model = Post

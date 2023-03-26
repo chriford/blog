@@ -6,7 +6,6 @@ from django.urls import path, re_path
 from rest_framework import permissions
 from drf_yasg2.views import get_schema_view
 from drf_yasg2 import openapi
-
 from security.views import error_view, not_found_page_view
 
 schema_view = get_schema_view(
@@ -25,6 +24,7 @@ schema_view = get_schema_view(
 third_party_urlpatterns = [
     # path('^markdown/', include('django_markdown.urls')),
     path("select2/", include("django_select2.urls")),
+
     
 ]
 swagger_urlpatterns = [
