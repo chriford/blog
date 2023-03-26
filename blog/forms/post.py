@@ -13,8 +13,6 @@ from crispy_forms.layout import (
 )
 
 class PostForm(ModelForm):
-
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

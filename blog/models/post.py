@@ -40,6 +40,7 @@ class Post(Timestamp):
     is_deleted = models.BooleanField(default=False)
     delete_on = models.DateTimeField(
         null=True,
+        blank=True,
     )
     
     def __str__(self):
@@ -52,10 +53,21 @@ class Post(Timestamp):
         )
         return post_comments
     
+    def voke_objects(self):
+        from blog.models import Comment
+        post_comments = Comment.objects.filter(
+            post = self,    
+        )
+        return post_comments
+    
+    
     @property
     def comments(self):
-        return self.comment_objects(self)
+        return self.comment_objects()
 
     @property
     def total_comments(self):
-        return self.comment_objects(self).count()
+        return self.comment_objects().count()
+
+    # class Meta:
+        # abstract_name_plural = 'Posts'
