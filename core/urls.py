@@ -7,7 +7,10 @@ from rest_framework import permissions
 from drf_yasg2.views import get_schema_view
 from drf_yasg2 import openapi
 
-from security.views import error_view, not_found_page_view
+from security.views import (
+    not_found_exception,
+    not_found_page_view,
+)
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -40,4 +43,4 @@ urlpatterns = [
     path('not-found/', not_found_page_view, name='error_page')
 ] +  swagger_urlpatterns
 
-handler404 = error_view 
+handler404 = not_found_exception 

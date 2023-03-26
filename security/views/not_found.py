@@ -5,7 +5,7 @@ from django.shortcuts import (
     redirect,
 )
 
-def error_view(request, exception):
+def not_found_exception(request, exception):
     return redirect('error_page')
 
 def not_found_page_view(request, *args, **kwargs):
