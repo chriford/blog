@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'security.apps.SecurityConfig',
     
     "rest_framework",
-    # "tinymce",
     # "django_markdown",
     "drf_yasg2",
     "rest_framework_simplejwt",
@@ -224,9 +223,6 @@ SWAGGER_SETTINGS = {
     },
     "USE_SESSION_AUTH": False,
 }
-# TINYMCE_JS_URL = os.path.join(STATIC_URL, "static/tiny_mce.js")
-# TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "static/tiny_mce")
-
 # CACHES = {
 #     "select2": {
 #         "BACKEND": "django_redis.cache.RedisCache",
