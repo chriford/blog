@@ -7,3 +7,4 @@ from .payment import *
 from .timestamp import *
 from .category import *
 from .image import *
+from .vokes import *
