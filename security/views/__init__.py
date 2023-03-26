@@ -1,2 +1,3 @@
 from .views import *
-from .not_found import *
+from .page_not_found_error import *
+from .internal_server_error import *
