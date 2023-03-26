@@ -10,6 +10,8 @@ from drf_yasg2 import openapi
 from security.views import (
     not_found_exception,
     not_found_page_view,
+    internal_server_exception,
+    internal_server_page_view,
 )
 
 schema_view = get_schema_view(
@@ -40,7 +42,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('', include('security.urls', namespace='security')),
-    path('not-found/', not_found_page_view, name='error_page')
+    path('page/not/found/', not_found_page_view, name='not-found-page'),
+    path('internal/server/error/', internal_server_page_view, name='internal-server-page'),
 ] +  swagger_urlpatterns
 
 handler404 = not_found_exception 
+handler404 = internal_server_exception 
