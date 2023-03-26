@@ -5,14 +5,15 @@ from django.shortcuts import (
     redirect,
 )
 
-def error_view(request, exception):
-    return redirect('error_page')
 
-def not_found_page_view(request, *args, **kwargs):
+def internal_server_exception(request, exception):
+    return redirect('internal-server-page')
+
+def internal_server_page_view(request, *args, **kwargs):
     context = {
         'request': request,
         'prevous_url': request. META,
         'msg': kwargs,
         'layout_path': 'layout/base.html',
     }
-    return render(request, 'auth/pages/404.html', context)
+    return render(request, 'auth/pages/500.html', context)

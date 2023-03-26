@@ -21,7 +21,7 @@ class PostForm(ModelForm):
         self.helper.layout = Layout(
             Row(
                 Field('owner', css_class="col-md-6 col-lg-6 col-sm-6"),
-                # Field('category', css_class="col-md-6 col-lg-6 col-sm-6"),
+                Field('category', css_class="col-md-6 col-lg-6 col-sm-6"),
             ),
             Row(
                 Field('title', css_class="col-md-6 col-lg-6 col-sm-6"),
@@ -32,12 +32,8 @@ class PostForm(ModelForm):
             ),
             Div(
                 Submit('submit', 'create post', css_class='btn btn-success w-100'),
-                css_class='mt-2 d-none d-lg-block d-md-block d-xl-block d-xxl-block'
+                css_class='mt-2'
             ),
-            # Row(
-            #     Submit('submit', 'create post', css_class='btn btn-sm btn-secondary w-100 col-6'),
-            #     css_class='mt-2'
-            # )
         )
     class Meta:
         model = Post
