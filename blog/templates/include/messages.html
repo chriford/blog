@@ -35,5 +35,17 @@
                 timer: 7500
             })
         </script>
+    {% elif message.tags == 'info' %}
+        <script>
+            Swal.fire({
+                title: '{{ message }}',
+                timerProgressBar: true,
+                denyButtonText: "close",
+                showDenyButton: true,
+                icon: 'info',
+                showConfirmButton: false,
+                timer: 8000
+            })
+        </script>
     {% endif %}
 {% endfor %}
