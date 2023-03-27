@@ -56,7 +56,6 @@ def post_forms_page(request):
     }
     return render(request, 'blog/post-create.html', context)
 
-@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):
     if request.user.is_authenticated:
         if request.user.is_first_time_login:
@@ -74,7 +73,6 @@ def posts(request):
     }
     return render(request, 'blog/posts.html', context)
 
-@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_view(request, title, pk, *args, **kwargs):
     post_obj = Post.objects.filter(
         title=title,
