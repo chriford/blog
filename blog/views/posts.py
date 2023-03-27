@@ -121,6 +121,11 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
         pass
     
 def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *args, **kwargs):
+    """Updates a blog post queried by provide parameters:
+        title: str
+        pk: int
+        form_arg: str
+    """
     blog_post  = Post.objects.filter(
         pk=pk,
         title=title,
