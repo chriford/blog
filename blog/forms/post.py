@@ -17,12 +17,10 @@ class PostForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        # self.helper.form_action = reverse_lazy('blog:model-form-data-create', 'post-create-form')
-        self.helper.form_action = "{% url 'blog:model-form-data-create', form_arg='post-create-form' %}"
-        # self.helper.form_class = 'row bg-white'
-        self.helper.form_method = 'POST'
-        # self.helper.form_id = 'post-create-form-id'
+        self.helper.form_action = ''
+        self.helper.form_method = ''
         self.helper.layout = Layout(
+            HTML("{% csrf_token %}"),
             Row(
                 Field('owner', css_class="col-md-6 col-lg-6 col-sm-6"),
                 Field('category', css_class="col-md-6 col-lg-6 col-sm-6"),

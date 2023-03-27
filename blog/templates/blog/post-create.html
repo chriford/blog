@@ -82,9 +82,9 @@
                             .........................................
                         </p>
                     </marquee>
-                    <div class="container pb-2">
+                    <form action="{% url 'blog:model-form-data-create', form_arg='post-create-form' %}" class="container pb-2">
                         {% crispy post_form %}
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -101,9 +101,9 @@
                             ....................................................
                         </p>
                     </marquee>
-                    <div class="container pb-2">
+                    <form action="{% url 'blog:model-form-data-create', form_arg='category-create-form' %}" class="container pb-2">
                         {% crispy category_form %}
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

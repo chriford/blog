@@ -18,9 +18,10 @@ class CategoryForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'POST'
-        self.helper.form_action = "{% url 'blog:model-form-data-create', form_arg='category-create-form' %}"
+        self.helper.form_action = ''
+        self.helper.form_method = ''
         self.helper.layout = Layout(
+            HTML("{% csrf_token %}"),
             Column(
                 Field('name', css_class="col-md-12 col-sm-12"),
             ),
