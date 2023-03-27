@@ -34,15 +34,14 @@ def model_form_data_create(request, form_arg: str):
                 post.save()
                 return redirect('blog:post-forms-page')
 
-            elif form_arg == 'category-create-form':
-                category_create_form = CategoryForm(request.POST)
-                if category_create_form.is_valid():
-                    # return HttpResponse("category created")
-                    category = category_create_form.save(commit=True)
-                    category.owner = request.user
-                    category.save()
-                    return redirect('blog:post-forms-page')
-
+        elif form_arg == 'category-create-form':
+            category_create_form = CategoryForm(request.POST)
+            # if category_create_form.is_valid(): 
+            category = category_create_form.save(commit=True)
+            category.owner = request.user
+            category.save()
+            return redirect('blog:post-forms-page')
+    return HttpResponse("not a post method")
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_forms_page(request):
     posts = Post.objects.all()
