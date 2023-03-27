@@ -5,12 +5,12 @@
     body {
         padding: 0;
         margin: 0;
-        background-color: rgb(73, 72, 72);
+        background-color: #6c757c;
         animation: body 1.25s linear;
       }
       @keyframes body {
         to {
-          background-color: rgb(116, 123, 130);
+          background-color: rgb(151, 186, 222);
         }
       }
       .header-options {
@@ -57,9 +57,10 @@
             <p class="h1">Over 36+ posts</p>
         </div>     
     </section>
-    <a class="btn btn-sm btn-primary float-right" href="{% url 'blog:post-create' %}"><li class="fa fa-fw fa-plus" style="top: -20px;"></li>
     <div class="mt-4 mx-2">
-     Add</a>
+        <a class="btn btn-sm btn-primary float-right" href="{% url 'blog:post-forms-page' %}"><li class="fa fa-fw fa-plus" style="top: -20px;"></li>
+            Add
+        </a>
     </div>
 </div>
 {% if not request.user.is_authenticated %}
@@ -91,50 +92,17 @@
     </div>
     <div class="row">
         {% for post in posts %}
-        <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
-            <figure class="card">
-                    <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
-                    <div class="card-header h3 text-center">
-                        {{post.category.name}}
-                    </div>
-                    <div class="card-body border-bottom pb-2">
-                        <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
-                            <sup class="text-muted header-options d-flex">
-                                <li class="fa fa-fw fa-save" style="top: -20px;"></li>
-                                <span class="mt-1 px-1">(10)</span>
-                            </sup>
-                            <sup class="text-muted header-options d-flex">
-                                <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
-                                <span class="mt-1 px-1">(300)</span>
-                            </sup>
-                            <sup class="text-muted header-options d-flex">
-                                <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
-                                <span class="mt-1 px-1">(1k)</span>
-                            </sup>
-                            <sup class="text-muted header-options d-flex">
-                                <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
-                            <span class="mt-1 px-1">({{post.total_comments}}k)</span>
-                            </sup>
-                        </div>
-                        <p class="h5 text-muted pt-4">
-                            {{post.body|truncatechars:80}}
-                        </p>
-                    </div>
-                    <p class="text-center">
-                        <a id="{{post.pk}}" href="{% url 'blog:post-view' title=post.title pk=post.pk %}">Read more &plus;</a>
-                    </p>
-                </figure>
-            </div>
+        {% include 'include/blog-card.html' %}
         {% endfor %}
         <div class="col-md-6 col-12 col-sm-12 col-lg-4">
-            <figure class="btn btn-outline-success card h-75 d-flex justify-content-center align-content-center">
+            <a href="{% url 'blog:post-forms-page' %}" class="btn btn-outline-success card h-75 d-flex justify-content-center align-content-center">
                 <p class="text-muted h2 text-center">
-                    <li class="fa fa-fw fa-plus" style="top: -20px;"></li>
                     <div>
-                     Add
+                        <li class="fa fa-fw fa-plus" style="top: -20px;"></li>
+                        Add
                     </div>
                 </p>
-            </figure>            
+            </a>            
         </div>
     </div>
 </div>

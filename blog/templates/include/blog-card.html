@@ -1,0 +1,35 @@
+{% load static %}
+<div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
+    <figure class="card">
+            <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
+            <div class="card-header h3 text-center">
+                {{post.category.name}}
+            </div>
+            <div class="card-body border-bottom pb-2">
+                <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
+                    <sup class="text-muted header-options d-flex">
+                        <li class="fa fa-fw fa-save" style="top: -20px;"></li>
+                        <span class="mt-1 px-1">(10)</span>
+                    </sup>
+                    <sup class="text-muted header-options d-flex">
+                        <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
+                        <span class="mt-1 px-1">(300)</span>
+                    </sup>
+                    <sup class="text-muted header-options d-flex">
+                        <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
+                        <span class="mt-1 px-1">(1k)</span>
+                    </sup>
+                    <sup class="text-muted header-options d-flex">
+                        <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
+                    <span class="mt-1 px-1">({{post.total_comments}}k)</span>
+                    </sup>
+                </div>
+                <p class="h5 text-muted pt-4">
+                    {{post.body|truncatechars:80}}
+                </p>
+            </div>
+            <p class="text-center">
+                <a id="{{post.pk}}" href="{% url 'blog:post-view' title=post.title pk=post.pk %}">Read more &plus;</a>
+            </p>
+        </figure>
+    </div>
