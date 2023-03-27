@@ -143,11 +143,10 @@ def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *
                 messages.error("blog post creation failed due to invalid blog post form")
                 return redirect('blog:post-forms-page')
 
-        elif form_arg == 'category-update-form':
+        elif form_arg == 'category-update-form' and title == '00':
             category_update_form = CategoryForm(request.POST)
             if category_update_form.is_valid(): 
                 category = category_update_form.save(commit=True)
-                category.owner = request.user
                 category.save()
                 messages.success("category updated successfully")
                 return redirect('blog:post-forms-page')
