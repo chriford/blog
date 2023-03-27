@@ -1,7 +1,39 @@
-
 {% for message in messages %}
     {% if message.tags == 'success' %}
-        {{ message }}
-        {% comment %} do something {% endcomment %}
+        <script>
+            Swal.fire({
+                title: '{{ message }}',
+                timerProgressBar: true,
+                denyButtonText: "close",
+                showDenyButton: true,
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 7500
+            })
+        </script>
+    {% elif message.tags == 'error' %}
+        <script>
+            Swal.fire({
+                title: '{{ message }}',
+                timerProgressBar: true,
+                denyButtonText: "close",
+                showDenyButton: true,
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 7500
+            })
+        </script>
+    {% elif message.tags == 'warning' %}
+        <script>
+            Swal.fire({
+                title: '{{ message }}',
+                timerProgressBar: true,
+                denyButtonText: "close",
+                showDenyButton: true,
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 7500
+            })
+        </script>
     {% endif %}
 {% endfor %}

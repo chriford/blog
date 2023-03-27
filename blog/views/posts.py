@@ -55,6 +55,7 @@ def post_forms_page(request):
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):
     posts = Post.objects.all()
+    messages.success(request, "Welcome to the app")
     context = {
         'post_form': PostForm,
         'category_form': CategoryForm,
