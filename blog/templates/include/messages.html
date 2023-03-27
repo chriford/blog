@@ -1,7 +1,7 @@
 
-sss
 {% for message in messages %}
     {% if message.tags == 'success' %}
+        {{ message }}
         {% comment %} do something {% endcomment %}
     {% endif %}
 {% endfor %}

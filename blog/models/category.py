@@ -8,6 +8,7 @@ class Category(Timestamp):
     name = models.CharField(
         max_length=200,
         verbose_name=_("Name"),
+        unique=True,
         null=True,
         blank=False,
     )
