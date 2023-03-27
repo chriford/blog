@@ -12,6 +12,7 @@ from django.shortcuts import (
 )
 from blog.models import (
     Post,
+    Category,
     Trash,
     Favorite,
     Comment,
@@ -33,24 +34,35 @@ def model_form_data_create(request, form_arg: str):
                 post = post_create_form.save(commit=True)
                 post.owner = request.user
                 post.save()
-                messages.success("New blog created successfully")
+                messages.success(request, "New blog created successfully")
                 return redirect('blog:post-forms-page')
             else:
-                messages.error("Blog creation failed due to invalid blog form")
+                messages.error(request, "Blog creation failed due to invalid blog form")
                 return redirect('blog:post-forms-page')
                 
         elif form_arg == 'category-create-form':
             category_create_form = CategoryForm(request.POST)
             if category_create_form.is_valid(): 
+                unique_category = category_create_form.cleaned_data.get('name').title()
+                try:
+                    category = Category.objects.get(name=unique_category)
+                    messages.warning(request, "Category must be unique")
+                    return redirect('blog:post-forms-page')
+                except Category.DoesNotExist:
+                    pass
                 category = category_create_form.save(commit=True)
                 category.owner = request.user
                 category.save()
-                messages.success("New category created successfully")
+                messages.success(request, "New category created successfully")
+                return redirect('blog:post-forms-page')
+            elif category_create_form.errors:
+                message = category_create_form.errors.as_text().lower()
+                messages.success(request, "%s"%(message))
                 return redirect('blog:post-forms-page')
             else:
-                messages.error("Blog creation failed due to invalid category form")
+                messages.error(request, "Blog creation failed due to invalid category form")
                 return redirect('blog:post-forms-page')
-
+    
     return redirect('blog:post-forms-page')
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
@@ -109,12 +121,12 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
                 'delete_on',
             )
         )
-        messages.success(f"Blog post disabled successfully!")
+        messages.success(request, f"Blog post disabled successfully!")
         return redirect('blog:post-forms-page') # should redirect to the blog management page
     
     elif status == 'permanet':
         post.delete()    
-        messages.success(f"Blog post deleted successfully!")
+        messages.success(request, f"Blog post deleted successfully!")
         return redirect('blog:post-forms-page') # should redirect to the blog management page
 
     else:
@@ -142,10 +154,10 @@ def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *
                 post = blog_post_form.save(commit=True)
                 post.owner = request.user
                 post.save()
-                messages.success("blog post updated successfully")
+                messages.success(request, "blog post updated successfully")
                 return redirect('blog:post-forms-page')
             else:
-                messages.error("blog post creation failed due to invalid blog post form")
+                messages.error(request, "blog post creation failed due to invalid blog post form")
                 return redirect('blog:post-forms-page')
 
         elif form_arg == 'category-update-form' and title == '00':
@@ -153,10 +165,10 @@ def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *
             if category_update_form.is_valid(): 
                 category = category_update_form.save(commit=True)
                 category.save()
-                messages.success("category updated successfully")
+                messages.success(request, "category updated successfully")
                 return redirect('blog:post-forms-page')
             else:
-                messages.error("category update failed due to invalid category form")
+                messages.error(request, "category update failed due to invalid category form")
                 return redirect('blog:post-forms-page')
         else:
             pass

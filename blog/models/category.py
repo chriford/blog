@@ -13,6 +13,9 @@ class Category(Timestamp):
         blank=False,
     )
     
+    def save(self, *args, **kwargs):
+        self.name = self.name.title()
+        return super().save(*args, **kwargs)
     
     def __str__(self):
         return self.name
