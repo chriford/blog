@@ -18,9 +18,10 @@ class PostForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = ''
-        self.helper.form_method = ''
         self.helper.layout = Layout(
-            HTML("{% csrf_token %}"),
+            HTML("""{% csrf_token %}
+            <p class='text-center border-bottom py-2 text-muted'>create your new blog here</p>
+            <h /r>"""),
             Row(
                 Field('owner', css_class="col-md-6 col-lg-6 col-sm-6"),
                 Field('category', css_class="col-md-6 col-lg-6 col-sm-6"),
@@ -33,7 +34,7 @@ class PostForm(ModelForm):
                 Field('is_active', css_class="col-md-12 col-sm-12"),
             ),
             Div(
-                Submit('submit', 'create post', css_class='btn btn-success w-100'),
+                Submit('submit', 'Create Blog', css_class='btn btn-success w-100'),
                 css_class='mt-2'
             ),
         )

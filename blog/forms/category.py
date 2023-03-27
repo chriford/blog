@@ -19,9 +19,10 @@ class CategoryForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = ''
-        self.helper.form_method = ''
         self.helper.layout = Layout(
-            HTML("{% csrf_token %}"),
+            HTML("""{% csrf_token %}
+            <p class='text-center border-bottom py-2 text-muted'>create blog category</p>
+            <h /r>"""),
             Column(
                 Field('name', css_class="col-md-12 col-sm-12"),
             ),
