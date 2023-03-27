@@ -17,21 +17,36 @@ from blog.models import (
     Favorite,
     Comment,
 )
-from blog.forms import PostForm
+from blog.forms import (
+    PostForm,
+    CategoryForm,
+)
 
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
-def post_create(request):
+def model_form_data_create(request, form_arg: str):
     if request.method == 'POST':
-        post_create_form = PostForm(request.POST)
-        if post_create_form.is_valid():
-            post = post_create_form.save(commit=True)
-            post.owner = request.user
-            post.save()
-            return redirect('blog:post-create')
+        if form_arg == 'post-create-form':
+            post_create_form = PostForm(request.POST)
+            if post_create_form.is_valid():
+                post = post_create_form.save(commit=True)
+                post.owner = request.user
+                post.save()
+                return redirect('blog:post-forms-page')
 
+        elif form_arg == 'category-create-form':
+            category_create_form = CategoryForm(request.POST)
+            # if category_create_form.is_valid(): 
+            category = category_create_form.save(commit=True)
+            category.owner = request.user
+            category.save()
+            return redirect('blog:post-forms-page')
+    return HttpResponse("not a post method")
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
+def post_forms_page(request):
     posts = Post.objects.all()
     context = {
+        'category_form': CategoryForm,
         'post_form': PostForm,
         'posts': posts,
     }
@@ -42,6 +57,7 @@ def posts(request):
     posts = Post.objects.all()
     context = {
         'post_form': PostForm,
+        'category_form': CategoryForm,
         'posts': posts,
     }
     return render(request, 'blog/posts.html', context)
