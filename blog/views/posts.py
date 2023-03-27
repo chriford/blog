@@ -11,6 +11,7 @@ from django.shortcuts import (
     redirect,
     HttpResponseRedirect,
 )
+
 from blog.models import (
     Post,
     Trash,
@@ -21,7 +22,9 @@ from blog.forms import (
     PostForm,
     CategoryForm,
 )
-
+from security.models import (
+    User,
+)
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def model_form_data_create(request, form_arg: str):
@@ -42,6 +45,7 @@ def model_form_data_create(request, form_arg: str):
             category.save()
             return redirect('blog:post-forms-page')
     return HttpResponse("not a post method")
+
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_forms_page(request):
     posts = Post.objects.all()
@@ -54,8 +58,15 @@ def post_forms_page(request):
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def posts(request):
+    if request.user.is_authenticated:
+        if request.user.is_first_time_login:
+            user = User.objects.get(
+                pk=request.user.pk
+            )
+            user.is_first_time_login = False
+            user.save()
+            messages.info(f"Welcome to the blog community {user.username}")
     posts = Post.objects.all()
-    messages.success(request, "Welcome to the app")
     context = {
         'post_form': PostForm,
         'category_form': CategoryForm,
