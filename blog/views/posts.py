@@ -71,7 +71,7 @@ def posts(request):
             )
             user.is_first_time_login = False
             user.save()
-            messages.info(f"Welcome to the blog community {user.username}!")
+            messages.info(request, f"Welcome to the blog community {user.username}!")
         else:
             pass
     else:
@@ -160,7 +160,7 @@ def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *
                 return redirect('blog:post-forms-page')
         else:
             pass
-    messages.info("redirected from forbidden page")
+    messages.info(request, "redirected from forbidden page")
     return redirect('blog:post-forms-page') # should redirect to the blog management page
 
 def management(request):
