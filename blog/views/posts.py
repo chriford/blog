@@ -64,7 +64,7 @@ def posts(request):
             )
             user.is_first_time_login = False
             user.save()
-            messages.info(f"Welcome to the blog community {user.username}")
+            messages.info(f"Welcome to the blog community {user.username}!")
     posts = Post.objects.all()
     context = {
         'post_form': PostForm,
