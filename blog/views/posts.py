@@ -37,6 +37,7 @@ def model_form_data_create(request, form_arg: str):
             elif form_arg == 'category-create-form':
                 category_create_form = CategoryForm(request.POST)
                 if category_create_form.is_valid():
+                    # return HttpResponse("category created")
                     category = category_create_form.save(commit=True)
                     category.owner = request.user
                     category.save()

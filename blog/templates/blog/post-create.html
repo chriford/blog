@@ -45,6 +45,9 @@
         .card {
             background-color: rgb(245, 243, 243);
         }
+        body {
+            background-color: #6c757c;
+        }
     </style>
 <title>
     Post create
@@ -56,32 +59,56 @@
         <div class="text-info">
             <p class="h4">Top blogs</p>
             <p class="h1">Over 36+ posts</p>
-        </div>     
+        </div>
     </section>
     <div class="mt-4 mx-2">
-        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary"><li class="fa fa-fw fa-arrow-left"></li> back</a>
+        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary"><li
+                class="fa fa-fw fa-arrow-left"></li> back</a>
     </div>
 </div>
-<div class="container ml-2 py-3 my-4 mt-4 mt-3" style="position:sticky;" id="content">
-    <div
-    style="margin-top: -2em;"
-    >    
-        <marquee 
-        behavior="scroll" 
-        direction="center"
-        class="text-white text-dark"
-        >
-        <p class="text-info">
-            ........................................................................................
-        </p>
-    </marquee>
-    </div>
+
+<div class="container ml-2 py-3 my-4 mt-4 mt-3 bg-secondary" style="position:sticky;"
+    id="content">
+
     <div class="row">
-        <form> 
-            {% csrf_token %}
-            {% crispy post_form %}
-            {% crispy category_form %}
-        </form>
+        <div class="col-8 col-md-8 col-lg-8">
+            <div class="" id="content">
+                <div style="margin-top: -.7em;">
+                    <marquee
+                        behavior="scroll"
+                        direction="center"
+                        class="text-white text-dark">
+                        <p class="text-info">
+                            .........................................
+                        </p>
+                    </marquee>
+                    <div class="container pb-2">
+                        {% crispy post_form %}
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-4 col-md-4 col-lg-4">
+
+            <div id="content">
+                <div style="margin-top: -.7em;">
+                    <marquee
+                        behavior="scroll"
+                        direction="center"
+                        class="text-white text-dark">
+                        <p class="text-info">
+                            ....................................................
+                        </p>
+                    </marquee>
+                    <div class="container pb-2">
+                        {% crispy category_form %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+-->
 </div>
 {% endblock %}

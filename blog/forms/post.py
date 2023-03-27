@@ -1,6 +1,7 @@
 from blog.models.post import Post
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
+from django.urls import reverse_lazy
 from crispy_forms.layout import (
     Layout,
     Div,
@@ -16,7 +17,10 @@ class PostForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
+        # self.helper.form_action = reverse_lazy('blog:model-form-data-create', 'post-create-form')
+        self.helper.form_action = "{% url 'blog:model-form-data-create', form_arg='post-create-form' %}"
         # self.helper.form_class = 'row bg-white'
+        self.helper.form_method = 'POST'
         # self.helper.form_id = 'post-create-form-id'
         self.helper.layout = Layout(
             Row(
