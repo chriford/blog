@@ -1,32 +1,32 @@
 version: '3.8'
 services:
-  gunicorn_web:
-    container_name: django_project
-    build:
-      context: . # local base image dir
-      ssh: ["default"] # mount the deafult ssh agent
-      dockerfile: Dockerfile
-      shm_size: '1gb'
-      # platforms: ["linux/arm64","linux/arm32",]
-      # cache_to:
-      #   - type=local, dest=./deployment
-    command: celery worker --app=blog --loglevel=info
-    ports:
-      - 8000:8000
-    env_file:
-      - ./.env
-    environment:
-      - DEBUG=True
-      - DJANGO_SETTINGS_MODULE=core.settings
-      - CELERY_BROKER_URL=redis://redis:6379/0
-    volumes:
-      - ./docker/backup:/app
-    networks:
-      - main
-    depends_on:
-      - database
-    labels:
-      - com.digibrands.by=Chriford
+  # gunicorn_web:
+  #   container_name: django_project
+  #   build:
+  #     context: . # local base image dir
+  #     ssh: ["default"] # mount the deafult ssh agent
+  #     dockerfile: Dockerfile
+  #     shm_size: '1gb'
+  #     # platforms: ["linux/arm64","linux/arm32",]
+  #     # cache_to:
+  #     #   - type=local, dest=./deployment
+  #   command: celery worker --app=blog --loglevel=info
+  #   ports:
+  #     - 8000:8000
+  #   env_file:
+  #     - ./.env
+  #   environment:
+  #     - DEBUG=True
+  #     - DJANGO_SETTINGS_MODULE=core.settings
+  #     - CELERY_BROKER_URL=redis://redis:6379/0
+  #   volumes:
+  #     - ./docker/backup:/app
+  #   networks:
+  #     - main
+  #   depends_on:
+  #     - database
+  #   labels:
+  #     - com.digibrands.by=Chriford
 
 
   redis:
@@ -35,19 +35,30 @@ services:
     labels:
       - com.digibrands.by=Chriford
 
-  nginx:
-    container_name: nginx
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    volumes:
-      - static:/static
-    ports:
-      - "5354:5354"
-    depends_on:
-      - gunicorn_web
-    labels:
-      - com.digibrands.by=label
+  # nginx:
+  #   container_name: nginx
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - static:/static
+  #   ports:
+  #     - "5354:5354"
+  #   depends_on:
+  #     - gunicorn_web
+  #   labels:
+  #     - com.digibrands.by=label
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+  #   container_name: elasticsearch
+  #   ports: 
+  #     - "9200:9200"
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=true
+  #     - path.data=/usr/share/elasticsearch/data
+  #     - bootstrap.memory_lock=true
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
   database:
     container_name: postgres_db
