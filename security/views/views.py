@@ -54,6 +54,18 @@ def profile(request):
     context = {}
     return render(request, 'auth/profile.html', context)
 
+def change_password(request):
+    if request.method == "POST":
+        send_email(
+            recipient_list=[settings.EMAIL_HOST_USER],
+            subject="BLOG - Password Update",
+            body="Your password has been changed successfully",
+        )
+        messages.success(request, "Your password has been changed successfully")
+        return redirect('security:profile')
+    context = {}
+    return render(request, 'auth/change_password.html', context)
+
 def password_reset(request):
     if request.method == "POST": 
         send_email(
@@ -66,3 +78,4 @@ def password_reset(request):
 
     context = {}
     return render(request, 'auth/forgot_password.html', context)
+
