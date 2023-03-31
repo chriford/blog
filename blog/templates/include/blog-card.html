@@ -1,9 +1,13 @@
 {% load static %}
 <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
     <figure class="card">
-            <img nopin="nopin" src="{% static 'image/medication.jpg' %}" alt="">
+        {% if post.image_set.file.first.file %}
+            <img nopin="nopin" src="{{post.image_set.first.file.url}}" alt="">
+        {% else %}
+            <img nopin="nopin" src="{{post.static_image}}" alt="">
+        {% endif %}
             <div class="card-header h3 text-center">
-                {{post.category.name}}
+                {{post.title}}
             </div>
             <div class="card-body border-bottom pb-2">
                 <div class="d-flex justify-content-between align-content-center border-bottom pb-1">
