@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div id="content">
-                <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2 mt-2">
+                <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2 mt-2">
                     {% crispy image_form %}
                 </form>
             </div>

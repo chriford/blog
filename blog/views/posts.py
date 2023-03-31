@@ -41,6 +41,17 @@ def model_form_data_create(request, form_arg: str):
                 messages.error(request, "Blog creation failed due to invalid blog form")
                 return redirect('blog:post-forms-page')
                 
+        elif form_arg == 'post-image-create-form':
+            image_create_form = ImageForm(request.POST, request.FILES)
+            image_create_form.file = request.FILES['file']
+            if image_create_form.is_valid():
+                image_create_form.save()
+                messages.success(request, "Post bg image created successfully")
+                return redirect('blog:post-forms-page')
+            else:
+                messages.error(request, "Post bg image failed due to invalid blog form")
+                return redirect('blog:post-forms-page')
+            
         elif form_arg == 'category-create-form':
             category_create_form = CategoryForm(request.POST)
             if category_create_form.is_valid(): 
