@@ -6,7 +6,7 @@ from django.shortcuts import (
 )
 
 
-def internal_server_exception(request, exception):
+def internal_server_exception(request, exception, *args, **kwargs):
     return redirect('internal-server-page')
 
 def internal_server_page_view(request, *args, **kwargs):

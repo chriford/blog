@@ -48,4 +48,4 @@ urlpatterns = [
 ] +  swagger_urlpatterns
 
 handler404 = not_found_exception 
-handler404 = internal_server_exception 
+# handler500 = internal_server_exception
