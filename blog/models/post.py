@@ -68,8 +68,3 @@ class Post(Timestamp):
     @property
     def total_comments(self):
         return self.comment_objects().count()
-    
-    @property
-    def static_image(self):
-        return "{% static 'image/medication.jpg' %}"
-       
