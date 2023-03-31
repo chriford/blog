@@ -22,4 +22,4 @@ class Image(Timestamp):
     )
     
     def __str__(self):
-        return f"{self.post.title} - image-{self.pk}"
+        return f"{self.post.title}"
