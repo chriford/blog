@@ -20,6 +20,7 @@ from blog.models import (
 from blog.forms import (
     PostForm,
     CategoryForm,
+    ImageForm,
 )
 from security.models import (
     User,
@@ -70,6 +71,7 @@ def post_forms_page(request):
     posts = Post.objects.all()
     context = {
         'category_form': CategoryForm,
+        'image_form': ImageForm,
         'post_form': PostForm,
         'posts': posts,
     }
