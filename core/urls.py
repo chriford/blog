@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 
-
+from django.conf.urls.static import static
 from django.urls import path, re_path
 from rest_framework import permissions
 from drf_yasg2.views import get_schema_view
@@ -46,6 +47,11 @@ urlpatterns = [
     path('page/not/found/', not_found_page_view, name='not-found-page'),
     path('internal/server/error/', internal_server_page_view, name='internal-server-page'),
 ] +  swagger_urlpatterns
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
 
 handler404 = not_found_exception 
 # handler500 = internal_server_exception
