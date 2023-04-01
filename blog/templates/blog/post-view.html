@@ -89,7 +89,7 @@
         <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
           <figure class="card">
                 <img nopin="nopin" class=" h-50" src="{% static 'image/blank.png' %}" srcset="{{post.set_image.file.url}}">
-                
+
                 <div class="h3 text-center text-muted py-2">
                     {{post.title}}
                 </div>
@@ -117,10 +117,11 @@
                             {{post.body}}
                         </p>
                     </div>
-                    <form class="card-footr pb-4 bg-inherit">
+                    <form class="card-footr pb-4 bg-inherit" method="post" action="{% url 'blog:comment' post.pk post.title %}">
+                        {% csrf_token %}
                         <div class="pb-3 embed-responsive">
                             <span class="px-2">
-                                <textarea class=" w-100 p-2 border-gray" placeholder="comment" rows="1" style="border-radius: 12px;"></textarea>
+                                <textarea class=" w-100 p-2 border-gray" placeholder="comment" name="comment" rows="1" style="border-radius: 12px;"></textarea>
                             </span>
                             <div class="px-3 ">
                                 <button type="submit" class="float-right py-1 ml-2 px-1 position-absolute float-end">submit</button>
