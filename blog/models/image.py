@@ -13,7 +13,7 @@ class Image(Timestamp):
         null=True,
         blank=False,
     )
-    post = models.ForeignKey(
+    post = models.OneToOneField(
         verbose_name=_("Post"),
         to='blog.Post',
         on_delete=models.CASCADE,

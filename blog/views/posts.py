@@ -34,6 +34,7 @@ def model_form_data_create(request, form_arg: str):
             if post_create_form.is_valid():
                 post = post_create_form.save(commit=True)
                 post.owner = request.user
+                post.is_active = False
                 post.save()
                 messages.success(request, "New blog created successfully")
                 return redirect('blog:post-forms-page')
