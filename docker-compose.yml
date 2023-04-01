@@ -48,27 +48,23 @@ services:
   #     - gunicorn_web
   #   labels:
   #     - com.digibrands.by=label
-  # elasticsearch:
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
-  #   container_name: elasticsearch
-  #   ports: 
-  #     - "9200:9200"
-  #   environment:
-  #     - discovery.type=single-node
-  #     - xpack.security.enabled=true
-  #     - path.data=/usr/share/elasticsearch/data
-  #     - bootstrap.memory_lock=true
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  elasticsearch:
+    container_name: esearch
+    image: elasticsearch:7.14.2
+    ports: 
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
 
   database:
     container_name: postgres_db
     image: postgres
-    # environment:
-    #   POSTRES_DB: blog
-    #   POSTGRES_USER: blogger
-    #   POSTGRES_PASSWORD: digi.Brands7.
-    # ports:
-    #   - "5432:5432"
+    environment:
+      POSTRES_DB: blog
+      POSTGRES_USER: blogger
+      POSTGRES_PASSWORD: digi.Brands7.
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     labels:

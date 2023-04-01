@@ -1,10 +1,8 @@
 {% load static %}
 
-
 <div class="col-md-6 col-12 col-sm-12 col-lg-4 gap-">
     <figure class="card">
-        <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}"
-            srcset="{{post.image_set.first.file.url}}">
+        <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}" srcset="{{post.image_set.first.file.url}}">
         <div class="card-header h3 text-center">
             {{post.title|truncatechars:60}}
         </div>
@@ -33,8 +31,7 @@
             </p>
         </div>
         <p class="text-center">
-            <a id="{{post.pk}}" href="{% url 'blog:post-view' title=post.title
-                pk=post.pk %}">Read more &plus;</a>
+            <a id="{{post.pk}}" href="{% url 'blog:post-view' title=post.title pk=post.pk %}">Read more &plus;</a>
         </p>
     </figure>
 </div>
