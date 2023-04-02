@@ -131,17 +131,21 @@
                     <div class="">
                         {% for comment in post.comments %}
                             <div class="card px-3 pt-2 mx-2 mt-2">
-                                <div class="text-center">
+                                <div class="text-left">
                                     {{comment.comment}}
                                 </div>
-                                <p class="w-100 d-flex justify-conent-around">
-                                    <a href="" class=" float-left text-decoration-none">
-                                        like
+                                <div class="w-100 d-flex">
+                                    <a href="% url 'blog:comment_action' pk=comment.pk 'like' %}" class="text-decoration-none">
+                                        <li class="fa fa-fw fa-thumbs-up text-muted text-primary"></li>
                                     </a> 
-                                    <a href="" class=" float-right text-decoration-none mx-2">
-                                            reply
-                                        </a>
-                                </p>
+                                    <a href="% url 'blog:comment_action' pk=comment.pk 'update' %}" class="text-decoration-none mx-2">
+                                        <li class="fa fa-fw fa-pencil text-muted text-primary"></li>
+                                    </a>
+                                    
+                                    <a href="% url 'blog:comment_action' pk=comment.pk 'delete' %}" class="float-right">
+                                        <li class="fa fa-fw fa-trash text-muted text-primary"></li>
+                                    </a>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>

@@ -43,6 +43,9 @@ class Post(Timestamp):
         blank=True,
     )
     
+    class Meta:
+        ordering = ['-pk']
+    
     def __str__(self):
         return self.title
 
