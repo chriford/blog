@@ -98,10 +98,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        # 'USER': 'blogger',
-        # 'HOST': 'localhost',
-        # 'PORT': 5432,
-        # 'PASSWORD': 'digi.Brands7.',
+        # 'USER': 'blog',
+        # 'HOST': '0.0.0.0',
+        # 'PORT': "5432",
+        # 'PASSWORD': 'digibrand-blog',
     }
 }
 

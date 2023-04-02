@@ -57,15 +57,15 @@ services:
       - discovery.type=single-node
 
   database:
-    container_name: postgres_db
+    # container_name: postgres_db
     image: postgres
     restart: always
     environment:
       POSTRES_DB: blog
-      POSTGRES_USER: blogger
-      POSTGRES_PASSWORD: digi.Brands7.
+      POSTGRES_USER: blog
+      POSTGRES_PASSWORD: digibrand-blog
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
     labels:
