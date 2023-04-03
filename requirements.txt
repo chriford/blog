@@ -18,6 +18,8 @@ blessed==1.19.1
 blinker==1.4
 bpython==0.22.1
 Brlapi==0.7.0
+bump2version==1.0.1
+bumpversion==0.6.0
 celery==4.4.7
 certifi==2022.12.7
 cffi==1.15.1
