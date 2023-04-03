@@ -16,6 +16,7 @@ from .views import (
     post_update,
     post_view,
     comment,
+    comment_action,
 )
 
 app_name = 'blog'
@@ -26,6 +27,7 @@ urlpatterns = [
     path('model-form/data/create/arg/<str:form_arg>', model_form_data_create, name='model-form-data-create'),
     path('post/forms/page/', post_forms_page, name='post-forms-page'),
     path('post/<str:title>/delete/blog/key/<int:pk>/', post_delete, name='post-delete'),
+    path('post/comment/<int:pk>/action/<str:action_type>/update/', comment_action, name='comment_action'),
     path('post/<str:title>/update/blog/key/<int:pk>/', post_update, name='post-update'),
     path('post/<str:title>/read/blog/key/<int:pk>/', post_view, name='post-view'),
     path('post/pk/<int:pk>/title/<str:title>/comment/', comment, name='comment'),

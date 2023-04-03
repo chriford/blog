@@ -1,6 +1,5 @@
 import os
 
-from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -110,7 +109,7 @@ def posts(request):
     }
     return render(request, 'blog/posts.html', context)
 
-def post_view(request, title: str, pk: int, *args, **kwargs):
+def post_view(request, title: str, pk: int):
     post_obj = Post.objects.filter(
         title=title,
     ).get(pk=pk)

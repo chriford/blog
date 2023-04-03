@@ -40,3 +40,31 @@ def comment(request, pk, title, *args, **kwargs):
         }))
     else:
         return redirect('blog:posts')
+
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
+def comment_action(request, pk: int, action_type: str):
+    comment = Comment.objects.get(pk=pk)
+    if action_type == 'delete':
+        comment.delete()
+        messages.success(request, 'comment has been deleted successfully')
+
+    elif action_type == 'update':
+        if request.method == 'POST':
+            return HttpResponse("comment to be updated soon")
+        context = {
+            'comment': comment,
+        }
+        return render(request, 'blog/blog-comment-edit.html', context)
+
+    elif action_type == 'like':
+        blog_comment = request.POST.get('comment', None)
+        Comment.objects.create(post=comment.post, comment=blog_comment)
+        messages.success(request, 'comment added')
+        # return redirect(reverse('blog:comment', kwargs={
+        #     'pk': comment.post.pk,
+        #     'title': comment.post.title,
+        # }))
+
+    else:
+        return redirect('blog:posts')
+

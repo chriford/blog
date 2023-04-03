@@ -130,21 +130,34 @@
                     </form>
                     <div class="">
                         {% for comment in post.comments %}
-                            <div class="card px-3 pt-2 mx-2 mt-2">
-                                <div class="text-left">
+                            <div class="card px-3 pt-2 mx-2 mt-2" data-bs-toggle="hover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">
+                                <div class="text-left" >
                                     {{comment.comment}}
                                 </div>
                                 <div class="w-100 d-flex">
-                                    <a href="% url 'blog:comment_action' pk=comment.pk 'like' %}" class="text-decoration-none">
+                                    <a href="{% url 'blog:comment_action' pk=comment.pk action_type='like' %}" class="text-decoration-none">
                                         <li class="fa fa-fw fa-thumbs-up text-muted text-primary"></li>
                                     </a> 
-                                    <a href="% url 'blog:comment_action' pk=comment.pk 'update' %}" class="text-decoration-none mx-2">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Update('{{comment.comment}}')"  href="#" class="text-decoration-none mx-2">
                                         <li class="fa fa-fw fa-pencil text-muted text-primary"></li>
                                     </a>
-                                    
-                                    <a href="% url 'blog:comment_action' pk=comment.pk 'delete' %}" class="float-right">
+                                    <a href="{% url 'blog:comment_action' pk=comment.pk action_type='delete' %}" class="float-right">
                                         <li class="fa fa-fw fa-trash text-muted text-primary"></li>
                                     </a>
+                                    <script>
+                                        const Update = async (comment) => {
+                                            const { value: text } = await Swal.fire({
+                                                input: 'text',
+                                                inputLabel: `${comment}`,
+                                                inputValue: `${comment}`,
+                                                inputPlaceholder: 'write comment',
+                                              })
+                                              
+                                              if (text) {
+                                                Swal.fire(`${text}`)
+                                              }
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         {% endfor %}

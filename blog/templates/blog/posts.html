@@ -50,7 +50,7 @@
 </title>
 {% endblock %}
 {% block content %}
-<div id="header-container" class="d-flex justify-content-between">
+<div id="header-container" class="d-flex justify-content-between animate__animated">
     <section id="header-section" class="container">
         <div class="text-info">
             <p class="h4">Top blogs</p>
@@ -76,7 +76,7 @@
 {% else %}
 <br><br>
 {% endif %}
-<div class=" container ml-2 py-3 my-2 mt-1" style="position:sticky;" id="content">
+<div class=" container ml-2 py-3 my-2 mt-1 " style="position:sticky;" id="content">
     <div
     style="margin-top: -2em;"
     >    
@@ -90,7 +90,7 @@
         </p>
     </marquee>
     </div>
-    <div class="row">
+    <div class="row animate__animated">
         {% for post in posts %}
         {% include 'include/blog-card.html' %}
         {% endfor %}
