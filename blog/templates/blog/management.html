@@ -25,9 +25,9 @@ id="content">
                             <p class="text-muted h3">
                                 Country
                             </p>
-                            <p class="text-muted">country: {{request.user.country}}</p>
-                            <p class="text-muted">city/state: {{request.user.state}}</p>
-                            <p class="text-muted">postal code: {{request.user.postal_code}}</p>
+                            <p class="text-muted">country: {{request.user.profile.country}}</p>
+                            <p class="text-muted">city/state: {{request.user.profile.state}}</p>
+                            <p class="text-muted">postal code: {{request.user.profile.postal_code}}</p>
                         </div>
                         <div class="pb-4">
                             <p class="text-muted h3">
@@ -46,9 +46,9 @@ id="content">
                                 Address
                             </p> 
                             <p class="text-muted">address: {{request.user.profile.address}}</p>
-                            <p class="text-muted">phone no: {{request.user.country}}</p>
-                            <p class="text-muted">phone no(2): {{request.user.country}}</p>
-
+                            <!-- <p class="text-muted">phone no(2): {{request.user.country}}</p> -->
+                            <p class="text-white">.</p>
+                            <p class="text-white">.</p>
                         </div>
                         <div class="pb-4">
                             <p class="text-muted h3">
@@ -56,7 +56,7 @@ id="content">
                             </p> 
                             <p class="text-muted">First name: {{request.user.first_name}}</p>
                             <p class="text-muted">Last Name: {{request.user.last_name}}</p>
-                            
+                            <p class="text-muted">Date of birth: {{request.user.profile.birth_date}}</p>
                         </div>
                     </div>
                 </form>
@@ -91,9 +91,12 @@ id="content">
                     </p> 
                 </div>
                 <div>
-                    {{request.user.profile.bio}}
+                    {{request.user.profile.bio|safe }}
                 </div> 
             </form>
+        </div>
+        <div class="animate__animated animate__backInRight bg-white mt-2" id="content">
+            <button type="button" class="btn btn-group-sm btn-success w-100">Edit profile details</button>
         </div>
     </div>
 </div>
