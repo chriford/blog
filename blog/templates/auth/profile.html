@@ -12,6 +12,7 @@
     </title>
 {% endblock %}
 {% block content %}
+{% include 'auth/modal/profile-update.html' %}
 <div class=" mx-2 py-3 my-4 mt-4 mt-3 bg-secondary" style="position:sticky;"
 id="content">
 
@@ -96,7 +97,7 @@ id="content">
             </form>
         </div>
         <div class="animate__animated animate__tada bg-white mt-2" id="content">
-            <button type="button" class="btn btn-group-sm btn-success w-100">Edit profile details</button>
+            <button type="button" class="btn btn-group-sm btn-success w-100" data-bs-toggle="offcanvas" data-bs-target="#profileForm" aria-controls="offcanvasWithBothOptions" aria-label="Toggle sidebar">Edit profile details</button>
         </div>
     </div>
 </div>

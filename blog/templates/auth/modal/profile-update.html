@@ -1,0 +1,27 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="offcanvas offcanvas-top mb-0" style="flex-grow: 0;background-color: #e4e7ed; min-height: 100%;" tabindex="-1" id="profileForm" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header bg-dark">
+    <h5 class="offcanvas-title text-muted text-white" id="offcanvasTopLabel">{{post.title}}</h5>
+    <button type="button" class="btn-close btn-danger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body w-100 mb-0" style="min-height: 100vh;">
+      <form action="{% url 'security:signup' %}" method="post" class="container overflow-auto">
+        <div class="ml-2 py-2 my-2 mt-4 mt-3" id="content">
+          <div class="row ">
+            <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
+              <figure class="card w-100">
+                <div class="card-header">
+                    <div class="h3 text-center">
+                        Update User Profile Info
+                    </div>
+                </div>
+                  </figure>
+              </div>
+          </div>
+      </div>
+          <br>
+      </form><br><br><br>
+  </div>
+</div>
