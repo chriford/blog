@@ -102,9 +102,11 @@ def posts(request):
     else:
         pass
     posts = Post.objects.all()
+    categories = Category.objects.all()
     context = {
         'post_form': PostForm,
         'category_form': CategoryForm,
+        'categories': categories,
         'posts': posts,
     }
     return render(request, 'blog/posts.html', context)

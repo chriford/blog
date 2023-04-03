@@ -90,7 +90,23 @@
         </p>
     </marquee>
     </div>
-    <div class="row animate__animated">
+    <div class="row">
+        <div class="container">
+            <form class="container pb-3 row">
+                <select name="category" class="py-1 col-md-4">
+                    <option value="all">all</option>
+                    {% for category in categories %}
+                        <option value="{{category.id}}">{{category.name}}</option>
+                    {% endfor %}
+                </select>
+                <div class="col-md-4">
+                    <input type="text" name="post" placeholder="search blog post" class="py-1 px-2 w-45">
+                </div>
+                <div class="col-md-4">
+                    <button class="w-auto" >search</button>
+                </div>
+        </form>
+    </div>
         {% for post in posts %}
         {% include 'include/blog-card.html' %}
         {% endfor %}
