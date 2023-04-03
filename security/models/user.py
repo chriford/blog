@@ -54,6 +54,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name=_('superuser status'),
         default=False,
     )
+    postal_code = models.CharField(
+        verbose_name=_('Postal code'),
+        max_length=10,
+        null=True,
+        blank=True,
+    )
     is_first_time_login = models.BooleanField(
         verbose_name=_("is first time login"),
         default=True,
