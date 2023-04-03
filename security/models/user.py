@@ -30,18 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
-    country = models.CharField(
-        verbose_name=_('Country'),
-        max_length=25,
-        null=True,
-        blank=True,
-    )
-    state = models.CharField(
-        verbose_name=_('State/Province'),
-        max_length=15,
-        null=True,
-        blank=True,
-    )
+    
     is_active = models.BooleanField(
         verbose_name=_('active'),
         default=True,
@@ -53,12 +42,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(
         verbose_name=_('superuser status'),
         default=False,
-    )
-    postal_code = models.CharField(
-        verbose_name=_('Postal code'),
-        max_length=10,
-        null=True,
-        blank=True,
     )
     is_first_time_login = models.BooleanField(
         verbose_name=_("is first time login"),
