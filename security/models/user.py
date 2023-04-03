@@ -30,6 +30,18 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
+    country = models.CharField(
+        verbose_name=_('Country'),
+        max_length=25,
+        null=True,
+        blank=True,
+    )
+    state = models.CharField(
+        verbose_name=_('State/Province'),
+        max_length=15,
+        null=True,
+        blank=True,
+    )
     is_active = models.BooleanField(
         verbose_name=_('active'),
         default=True,
