@@ -62,9 +62,15 @@ class UserCreationForm(UserCreationForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    birth_date = forms.DateField(widget=forms.DateInput(
+        attrs={
+            'type': 'date',
+        }
+    ))
     class Meta:
         model = Profile
         fields = [
+            'photo',
             'email',
             'first_name',
             'last_name',
@@ -74,17 +80,12 @@ class UserProfileForm(forms.ModelForm):
             'address',
             'phone_number',
             'phone_number2',
+            'birth_date',
             'bio',
         ]
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            
-            Submit(
-                name='submit', 
-                value='update details', 
-                css_class='btn btn-secondary w-100 my-2',
-            )
-        )
+        
+    def save(self, commit = True):
+        profile = super(UserProfileForm, self).save(commit=False)
+        profile.save()
+        return profile
+

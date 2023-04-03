@@ -17,7 +17,7 @@
     <button type="button" class="btn-close btn-danger text-danger" data-bs-dismiss="offcanvas" aria-label="Close"><li class="fa fa-fw fa-times mr-3"></li></button>
   </div>
   <div class="offcanvas-body w-100 mb-0" style="min-height: 100vh;">
-      <form action="{% url 'security:signup' %}" method="post" class="container overflow-auto">
+      <div class="container overflow-auto">
         <div class="ml-2 py-2 my-2 mt-4 mt-3" id="content">
           <div class="row ">
             <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
@@ -26,9 +26,12 @@
                     <div class=" text-muted h3 border-bottom pb-2 text-center animate__animated animate__backInDown">
                         User Profile Info
                     </div>
-                    <form class="card-body animate__animated animate__fadeIn">
+                    <form class="card-body" method="post" action="{% url 'security:profile' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="row">
+                            <div>
+                                {{request.user.profile.form.photo|as_crispy_field}}
+                            </div>
                             <div>
                                 {{request.user.profile.form.email|as_crispy_field}}
                             </div>
@@ -47,8 +50,11 @@
                             <div class="col-md-4 col-12 col-sm-4 col-lg-4">
                                 {{request.user.profile.form.postal_code|as_crispy_field}}
                             </div>
-                            <div class="col-md-12 col-12 col-sm-6 col-lg-12">
+                            <div class="col-md-6 col-12 col-sm-6 col-lg-6">
                                 {{request.user.profile.form.address|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6 col-12 col-sm-6 col-lg-6">
+                                {{request.user.profile.form.birth_date|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
                                 {{request.user.profile.form.phone_number|as_crispy_field}}
@@ -60,14 +66,14 @@
                                 {{request.user.profile.form.bio|as_crispy_field}}
                             </div>
                         </div>
-                        <button type="submit" class="w-100 my-2 btn btn-primary">save profile</button>
+                        <button type="submit" class="w-100 my-2 btn btn-primary">save profile details</button>
                     </form>
                 </div>
                   </figure>
               </div>
           </div>
       </div>
-          <br>
-      </form><br><br><br>
+        <br>
+    </div><br><br><br>
   </div>
 </div>

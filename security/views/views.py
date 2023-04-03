@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import EmailMessage, get_connection
 
 from security.models import User, Profile
-from security.forms import UserCreationForm
+from security.forms import UserCreationForm, UserProfileForm
 from blog_utils import (
     send_email,
 ) 
@@ -49,11 +49,19 @@ def signout(request):
     logout(request)
     messages.add_message(request, messages.INFO, "You have been logged out")
     return redirect(settings.LOGIN_REDIRECT_URL)
-        
+
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)    
 def profile(request):
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, request.FILES or None)
+        if profile_form.is_valid():
+            profile_form.save(commit=True)
+            messages.success(request, 'profile details updated successfully')
+            return redirect('security:profile')
     context = {}
     return render(request, 'auth/profile.html', context)
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def change_password(request):
     if request.method == "POST":
         send_email(
@@ -66,6 +74,7 @@ def change_password(request):
     context = {}
     return render(request, 'auth/change_password.html', context)
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def password_reset(request):
     if request.method == "POST": 
         send_email(
