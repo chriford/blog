@@ -35,7 +35,7 @@ id="content">
                             </p>
                             <p class="text-muted">email: {{request.user.email}}</p>
                             <p class="text-muted">phone no: {{request.user.profile.phone_number}}</p>
-                            <p class="text-muted">phone no(2): {{request.user.profile.phone_number}}</p>
+                            <p class="text-muted">phone no(2): {{request.user.profile.phone_number2}}</p>
     
                         </div>
                         
@@ -45,7 +45,7 @@ id="content">
                             <p class="text-muted h3">
                                 Address
                             </p> 
-                            <p class="text-muted">email: {{request.user.country}}</p>
+                            <p class="text-muted">address: {{request.user.profile.address}}</p>
                             <p class="text-muted">phone no: {{request.user.country}}</p>
                             <p class="text-muted">phone no(2): {{request.user.country}}</p>
 
@@ -54,10 +54,9 @@ id="content">
                             <p class="text-muted h3">
                                 Personal
                             </p> 
-                            <p class="text-muted">First name: {{request.user.country}}</p>
-                            <p class="text-muted">Last Name: {{request.user.country}}</p>
-                            <p class="text-muted">other phone no: {{request.user.country}}</p>
-
+                            <p class="text-muted">First name: {{request.user.first_name}}</p>
+                            <p class="text-muted">Last Name: {{request.user.last_name}}</p>
+                            
                         </div>
                     </div>
                 </form>

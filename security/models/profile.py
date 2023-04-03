@@ -74,6 +74,10 @@ class Profile(Timestamp):
         null=True,
         blank=True,
     )
+    birth_date = models.DateField(
+        null=True,
+        blank=True,
+    )
     bio = models.TextField(
         verbose_name=_('Bio'),
         max_length=1000,
