@@ -65,10 +65,26 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = [
+            'email',
+            'first_name',
+            'last_name',
             'postal_code',
             'country',
             'state',
             'address',
             'phone_number',
             'phone_number2',
+            'bio',
         ]
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            
+            Submit(
+                name='submit', 
+                value='update details', 
+                css_class='btn btn-secondary w-100 my-2',
+            )
+        )

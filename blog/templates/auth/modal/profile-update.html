@@ -3,8 +3,18 @@
 
 <div class="offcanvas offcanvas-top mb-0" style="flex-grow: 0;background-color: #e4e7ed; min-height: 100%;" tabindex="-1" id="profileForm" aria-labelledby="offcanvasTopLabel">
   <div class="offcanvas-header bg-dark">
-    <h5 class="offcanvas-title text-muted text-white" id="offcanvasTopLabel">{{post.title}}</h5>
-    <button type="button" class="btn-close btn-danger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <h5 class="offcanvas-title text-muted text-white" id="offcanvasTopLabel">
+        <img
+      src="{% static 'logo/blog.png' %}"
+      class="rounded-circle"
+      alt="profile photo"
+      onclick="
+      const hiddenNavigatorBtn = document.getElementById(`hidden_btn`);  
+      hiddenNavigatorBtn.href = `{% url 'blog:posts' %}`; hiddenNavigatorBtn.click();
+      "
+      style="width: 33%; cursor:pointer;">
+    </h5>
+    <button type="button" class="btn-close btn-danger text-danger" data-bs-dismiss="offcanvas" aria-label="Close"><li class="fa fa-fw fa-times mr-3"></li></button>
   </div>
   <div class="offcanvas-body w-100 mb-0" style="min-height: 100vh;">
       <form action="{% url 'security:signup' %}" method="post" class="container overflow-auto">
@@ -13,12 +23,45 @@
             <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
               <figure class="card w-100">
                 <div class="card-header">
-                    <div class="h3 border-bottom pb-2 text-center">
-                        User Profile Details
+                    <div class=" text-muted h3 border-bottom pb-2 text-center animate__animated animate__backInDown">
+                        User Profile Info
                     </div>
-                    <div class="card-body">
-                        {{request.user.profile.form}}
-                    </div>
+                    <form class="card-body animate__animated animate__fadeIn">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div>
+                                {{request.user.profile.form.email|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6 col-12 col-sm-6 col-lg-6">
+                                {{request.user.profile.form.first_name|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6 col-12 col-sm-6 col-lg-6">
+                                {{request.user.profile.form.last_name|as_crispy_field}}
+                            </div>
+                            <div class="col-md-4 col-12 col-sm-4 col-lg-4">
+                                {{request.user.profile.form.country|as_crispy_field}}
+                            </div>
+                            <div class="col-md-4 col-12 col-sm-4 col-lg-4">
+                                {{request.user.profile.form.state|as_crispy_field}}
+                            </div>
+                            <div class="col-md-4 col-12 col-sm-4 col-lg-4">
+                                {{request.user.profile.form.postal_code|as_crispy_field}}
+                            </div>
+                            <div class="col-md-12 col-12 col-sm-6 col-lg-12">
+                                {{request.user.profile.form.address|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6 col-12 col-sm-6 col-lg-6">
+                                {{request.user.profile.form.phone_number|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6 col-12 col-sm-6 col-lg-6">
+                                {{request.user.profile.form.phone_number2|as_crispy_field}}
+                            </div>
+                            <div class="col-md-12 col-12 col-sm-6 col-lg-12">
+                                {{request.user.profile.form.bio|as_crispy_field}}
+                            </div>
+                        </div>
+                        <button type="submit" class="w-100 my-2 btn btn-primary">save profile</button>
+                    </form>
                 </div>
                   </figure>
               </div>
