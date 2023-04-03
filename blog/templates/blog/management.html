@@ -1,12 +1,104 @@
 {% extends '../layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 {% block head %}
     <style>
-
+        body {
+            background-color: #e4e7ed;
+         } 
     </style>
     <title>
         Management
     </title>
 {% endblock %}
 {% block content %}
-    <h1>Management</h1>
+<div class=" mx-2 py-3 my-4 mt-4 mt-3 bg-secondary" style="position:sticky;"
+id="content">
+
+<div class="row mx-3">
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8 pb-4 bg-white pb-3">
+        <div class="animate__animated animate__backInDown" id="content">
+            <div style="margin-top: -.7em;">
+                <form method="post" action="" class="row container py-3">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pb-4">
+                            <p class="text-muted h3">
+                                Country
+                            </p>
+                            <p class="text-muted">country: </p>
+                            <p class="text-muted">city/state: </p>
+                            <p class="text-muted">postal code: </p>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pb-4">
+                            <p class="text-muted h3">
+                                Contact
+                            </p>
+                            <p class="text-muted">email: </p>
+                            <p class="text-muted">phone no: </p>
+                            <p class="text-muted">phone no(2): </p>
+    
+                        </div>
+                        
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pb-4">
+                            <p class="text-muted h3">
+                                Address
+                            </p> 
+                            <p class="text-muted">email: </p>
+                            <p class="text-muted">phone no: </p>
+                            <p class="text-muted">phone no(2): </p>
+
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 pb-4">
+                            <p class="text-muted h3">
+                                Personal
+                            </p> 
+                            <p class="text-muted">email: </p>
+                            <p class="text-muted">phone no: </p>
+                            <p class="text-muted">other phone no: </p>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
+        <div class="animate__animated animate__backInRight bg-white" id="content">
+            <div style="margin-top: -.7em;">
+                <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2">
+                    <div class="row pt-2">
+                        <div class="col-md-4 col-4 col-sm-4 col-md-4 col-lg-4">
+                            <img class="rounded-circle" width="60" height="60" src="{% static 'image/medication.jpg' %}" alt="">
+                        </div>
+                        <div class="col-md-8 col-8 col-sm-8 col-lg-8">
+                            <div class="text-muted">
+                                Isaac Tembo
+                            </div>
+                            <div>
+                                <button type="button" class="btn display-1 text-primary underline-hover">edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="animate__animated animate__backInRight bg-white" id="content">
+            <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2 mt-2">
+                <div class="">
+                    <p class="text-muted h3">
+                        About Me
+                    </p> 
+                </div>
+                <div>
+                    yali yali yala
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 
+-->
+</div>
 {% endblock %}
