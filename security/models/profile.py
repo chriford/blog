@@ -36,6 +36,24 @@ class Profile(Timestamp):
         null=True,
         blank=False,
     )
+    country = models.CharField(
+        verbose_name=_('Country'),
+        max_length=25,
+        null=True,
+        blank=True,
+    )
+    state = models.CharField(
+        verbose_name=_('State/Province'),
+        max_length=15,
+        null=True,
+        blank=True,
+    )
+    postal_code = models.CharField(
+        verbose_name=_('Postal code'),
+        max_length=10,
+        null=True,
+        blank=True,
+    )
     phone_number = models.CharField(
         verbose_name=_('Phone number'),
         default='+260',
