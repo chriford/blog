@@ -13,8 +13,11 @@
             <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
               <figure class="card w-100">
                 <div class="card-header">
-                    <div class="h3 text-center">
-                        Update User Profile Info
+                    <div class="h3 border-bottom pb-2 text-center">
+                        User Profile Details
+                    </div>
+                    <div class="card-body">
+                        {{request.user.profile.form}}
                     </div>
                 </div>
                   </figure>

@@ -87,3 +87,8 @@ class Profile(Timestamp):
     
     def __str__(self):
         return f"Profie | {self.first_name} {self.last_name} | User ID - {self.user_id}"
+
+    @property
+    def form(self):
+        from security.forms import UserProfileForm
+        return UserProfileForm(instance=self)

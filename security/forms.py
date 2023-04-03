@@ -12,7 +12,7 @@ from crispy_forms.layout import (
     Fieldset,
     MultiField,
 )
-from security.models import User
+from security.models import User, Profile
 
 class UserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -59,3 +59,16 @@ class UserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            'postal_code',
+            'country',
+            'state',
+            'address',
+            'phone_number',
+            'phone_number2',
+        ]
