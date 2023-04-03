@@ -190,6 +190,7 @@ def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *
     messages.info(request, "redirected from forbidden page")
     return redirect('blog:post-forms-page') # should redirect to the blog management page
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def management(request):
     context = {}
     return render(request, 'blog/management.html', context)
