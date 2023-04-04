@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('security', '0008_auto_20230403_2133'),
+        ("security", "0008_auto_20230403_2133"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='birth_date',
+            model_name="profile",
+            name="birth_date",
             field=models.DateField(blank=True, null=True),
         ),
     ]

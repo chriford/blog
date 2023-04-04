@@ -13,18 +13,19 @@ from blog.models import (
 )
 
 # @receiver(post_save, sender=Image)
-# def activate_blog_post(sender, instance, created, *args, **kwargs):    
+# def activate_blog_post(sender, instance, created, *args, **kwargs):
 #     if created:
 #         blog = Post.objects.get(pk=instance.post.pk)
 #         blog.is_active = True
 #         blog.save()
 
+
 @receiver(pre_save, sender=Image)
-def reactivate_blog_post(sender, instance, *args, **kwargs):    
+def reactivate_blog_post(sender, instance, *args, **kwargs):
     blog = Post.objects.filter(
-        pk=instance.post.pk, 
+        pk=instance.post.pk,
         title=instance.post.title,
     ).first()
     print(blog.body)
-    blog.is_active = True    
+    blog.is_active = True
     blog.save()

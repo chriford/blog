@@ -5,15 +5,19 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0023_alter_image_file'),
+        ("blog", "0023_alter_image_file"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='image',
-            name='post',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='blog.post', verbose_name='Post'),
+            model_name="image",
+            name="post",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="blog.post",
+                verbose_name="Post",
+            ),
         ),
     ]

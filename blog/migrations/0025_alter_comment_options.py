@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0024_alter_image_post'),
+        ("blog", "0024_alter_image_post"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='comment',
-            options={'ordering': ['-pk']},
+            name="comment",
+            options={"ordering": ["-pk"]},
         ),
     ]

@@ -8,13 +8,10 @@ from blog.models.timestamp import Timestamp
 
 
 class Trash(Timestamp):
-    post_id = models.PositiveIntegerField(
-        null=True,
-        blank=False
-    )
+    post_id = models.PositiveIntegerField(null=True, blank=False)
     owner = models.ForeignKey(
-        'security.User',
-        related_name='owner',
+        "security.User",
+        related_name="owner",
         help_text=_("The owner of this post."),
         null=True,
         blank=True,
@@ -28,7 +25,7 @@ class Trash(Timestamp):
         blank=False,
     )
     category = models.ForeignKey(
-        'blog.Category',
+        "blog.Category",
         on_delete=models.SET_NULL,
         null=True,
         blank=False,
@@ -41,11 +38,10 @@ class Trash(Timestamp):
     restore = models.BooleanField(default=False)
     deleted_at = models.DateTimeField(
         auto_now_add=True,
-        
     )
-    
+
     def __str__(self):
         return f"{self.post.title} - trash-{self.pk}"
-    
+
     class Meta:
-        ordering = ['-pk']
+        ordering = ["-pk"]

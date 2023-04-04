@@ -4,22 +4,21 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('security', '0006_user_postal_code'),
+        ("security", "0006_user_postal_code"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='user',
-            name='country',
+            model_name="user",
+            name="country",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='postal_code',
+            model_name="user",
+            name="postal_code",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='state',
+            model_name="user",
+            name="state",
         ),
     ]
