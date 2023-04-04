@@ -68,7 +68,7 @@
         </div>     
     </section>
     <div class="mt-4 mx-2">
-        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary"><li class="fa fa-fw fa-arrow-left"></li> back</a>
+        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary animate__animated animate__rubberBand"><li class="fa fa-fw fa-arrow-left"></li> back</a>
     </div>
 </div>
 <div class="container ml-2 py-3 my-4 mt-4 mt-3" style="position:sticky;" id="content">
@@ -87,9 +87,12 @@
     </div>
     <div class="row">
         <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
-          <figure class="card">
-                <img nopin="nopin" class=" h-50" src="{% static 'image/blank.png' %}" srcset="{{post.set_image.file.url}}">
-
+          <figure class="card animate__animated animate__fadeInUp w-100">
+                {% if post.image.file %}
+                    <img nopin="nopin" class="img-fluid" style="max-height:18rem; min-height: 6rem;" src="{{post.image.file.url}}">
+                {% else %}
+                    <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+                {% endif %}
                 <div class="h3 text-center text-muted py-2">
                     {{post.title}}
                 </div>
