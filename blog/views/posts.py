@@ -25,6 +25,10 @@ from security.models import (
     User,
 )
 
+from rolepermissions.roles import get_user_roles
+from rolepermissions.decorators import has_role_decorator, has_permission_decorator
+from rolepermissions.roles import RolesManager
+
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def model_form_data_create(request, form_arg: str):
     if request.method == 'POST':
@@ -42,18 +46,18 @@ def model_form_data_create(request, form_arg: str):
                 return redirect('blog:post-forms-page')
                 
         elif form_arg == 'post-image-create-form':
-            image_create_form = ImageForm(request.POST, request.FILES)
             image_file = request.FILES['file']
-            image_create_form.initial = {
+            image_create_form = ImageForm(request.POST, request.FILES, initial={
                 'file': image_file
-            }
+            })
             if image_create_form.is_valid():
                 image_create_form.save()
+                print(image_create_form.errors)
                 messages.success(request, "Post bg image created successfully")
                 return redirect('blog:post-forms-page')
-            else:
-                messages.error(request, "Post bg image failed due to invalid blog form")
-                return redirect('blog:post-forms-page')
+            # else:
+            #     messages.error(request, "Post bg image failed due to invalid blog form")
+            #     return redirect('blog:post-forms-page')
             
         elif form_arg == 'category-create-form':
             category_create_form = CategoryForm(request.POST)
@@ -91,6 +95,7 @@ def post_forms_page(request):
     }
     return render(request, 'blog/post-create.html', context)
 
+@has_role_decorator('admin', redirect_to_login='blog:posts')
 def posts(request):
     if request.user.is_authenticated:
         if request.user.is_first_time_login:
@@ -124,7 +129,8 @@ def post_view(request, title: str, pk: int):
     }
     return render(request, 'blog/post-view.html', context)
 
-
+@has_role_decorator('admin')
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
     post  = Post.objects.filter(
         pk=pk,
@@ -150,6 +156,9 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
     else:
         pass
     
+
+@has_role_decorator('admin')
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *args, **kwargs):
     """Updates a blog post queried by provide parameters:
         title: str
@@ -193,8 +202,24 @@ def post_update(request, title: str = None, pk: int = 0, form_arg: str = None, *
     messages.info(request, "redirected from forbidden page")
     return redirect('blog:post-forms-page') # should redirect to the blog management page
 
+
+@has_role_decorator('admin')
+@has_permission_decorator('can_manage_blog')
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def management(request):
-    context = {}
+    posts = Post.objects.all()
+    categories = Category.objects.all()
+    users = User.objects.all()
+    comments = Comment.objects.all()
+    assigned_roles = get_user_roles(request.user)
+    available_roles = RolesManager.get_roles_names()
+    context = {
+        'post_count':    posts.count(),
+        'category_count': categories.count(),
+        'comment_count':  comments.count(),
+        'user_count':     users.count(),
+        'assigned_roles': assigned_roles,
+        'available_roles': available_roles,
+    }
     return render(request, 'blog/management.html', context)
 

@@ -1,7 +1,9 @@
+import os
 from django.dispatch import receiver
 from django.db.models.signals import (
     post_save,
     pre_save,
+    pre_delete,
 )
 
 from django.dispatch import receiver
@@ -17,17 +19,21 @@ from blog.models import (
 #         blog.is_active = True
 #         blog.save()
 
-
 @receiver(pre_save, sender=Image)
 def reactivate_blog_post(sender, instance, *args, **kwargs):    
-    print(instance.post.body)
-    print(instance.post.pk)
     blog = Post.objects.filter(
         pk=instance.post.pk, 
-        title=instance.post.title, 
-        body=instance.post,
+        title=instance.post.title,
     ).first()
-    # blog.is_active = True    
-    # blog.save()
-    print(kwargs)
-    
+    print(blog.body)
+    blog.is_active = True    
+    blog.save()
+
+@receiver(pre_delete, sender=Image)
+def reactivate_blog_post(sender, instance, *args, **kwargs):    
+    image_file = instance.file.url
+    print(image_file)
+    if os.path.exists(image_file):
+        os.remove(image_file)
+    else:
+        pass

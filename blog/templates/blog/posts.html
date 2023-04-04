@@ -92,7 +92,7 @@
     </div>
     <div class="row">
         <div class="container">
-            <form class="container pb-3 row">
+            <!-- <form class="container pb-3 row">
                 <select name="category" class="py-1 col-md-4">
                     <option value="all">all</option>
                     {% for category in categories %}
@@ -105,8 +105,8 @@
                 <div class="col-md-4">
                     <button class="w-auto" >search</button>
                 </div>
-        </form>
-    </div>
+            </form> -->
+        </div>
         {% for post in posts %}
             {% if post.is_active %}
                 {% include 'include/blog-card.html' %}

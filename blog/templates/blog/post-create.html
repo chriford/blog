@@ -80,17 +80,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
             <div class="animate__animated animate__backInRight" id="content">
                 <div style="margin-top: -.7em;">
-                    <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2">
-                        {% crispy category_form %}
+                    <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2">
+                        {% crispy image_form %}
                     </form>
                 </div>
             </div>
-            <div class="animate__animated animate__backInRight" id="content">
-                <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2 mt-2">
-                    {% crispy image_form %}
+            <div class="animate__animated animate__backInRight mt-sm-2"  id="content">
+                <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2 mt-2">
+                    {% crispy category_form %}
                 </form>
             </div>
         </div>

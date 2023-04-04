@@ -1,106 +1,147 @@
 {% extends '../layout/base.html' %}
+{% load permission_tags %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block head %}
-    <style>
+
+<style>
         body {
             background-color: #e4e7ed;
          } 
     </style>
-    <title>
-        Management
-    </title>
+<title>
+    Management
+</title>
 {% endblock %}
 {% block content %}
 <div class=" mx-2 py-3 my-4 mt-4 mt-3 bg-secondary" style="position:sticky;"
-id="content">
+    id="content">
+<div>
 
-<div class="row mx-3">
-    <div class="col-12 col-sm-12 col-md-8 col-lg-8 pb-4 bg-white mb-3">
-        <div class="animate__animated animate__fadeInUp" id="content">
-            <div style="margin-top: -.7em;">
-                <form method="post" action="" class="row container py-3">
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="pb-4">
-                            <p class="text-muted h3">
-                                Country
-                            </p>
-                            <p class="text-muted">country: {{request.user.profile.country}}</p>
-                            <p class="text-muted">city/state: {{request.user.profile.state}}</p>
-                            <p class="text-muted">postal code: {{request.user.profile.postal_code}}</p>
-                        </div>
-                        <div class="pb-4">
-                            <p class="text-muted h3">
-                                Contact
-                            </p>
-                            <p class="text-muted">email: {{request.user.email}}</p>
-                            <p class="text-muted">phone no: {{request.user.profile.phone_number}}</p>
-                            <p class="text-muted">phone no(2): {{request.user.profile.phone_number2}}</p>
-    
-                        </div>
-                        
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="pb-4">
-                            <p class="text-muted h3">
-                                Address
-                            </p> 
-                            <p class="text-muted">address: {{request.user.profile.address}}</p>
-                            <!-- <p class="text-muted">phone no(2): {{request.user.country}}</p> -->
-                            <p class="text-white">.</p>
-                            <p class="text-white">.</p>
-                        </div>
-                        <div class="pb-4">
-                            <p class="text-muted h3">
-                                Personal
-                            </p> 
-                            <p class="text-muted">First name: {{request.user.first_name}}</p>
-                            <p class="text-muted">Last Name: {{request.user.last_name}}</p>
-                            <p class="text-muted">Date of birth: {{request.user.profile.birth_date}}</p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
-        <div class="animate__animated animate__backInRight bg-white" id="content">
-            <div style="margin-top: -.7em;">
-                <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2">
-                    <div class="row pt-2">
-                        <div class="col-md-4 col-4 col-sm-4 col-md-4 col-lg-4">
-                            <img class="rounded-circle" width="60" height="60" src="{% static 'image/medication.jpg' %}" alt="">
-                        </div>
-                        <div class="col-md-8 col-8 col-sm-8 col-lg-8">
-                            <div class="text-muted">
-                                {{request.user.username}}
+    <div class="row mx-3 mr-0">
+        <div class="row pt-3 col-12 col-sm-12 col-md-8 col-lg-8 pb-4 bg-white
+            mb-3">
+            <div class="mb-0 col-md-3 col-lg-3 col-sm-6 col-6 col-xl-3
+                animate__animated animate__rubberBand" id="content">
+                <div class="border">
+                    <div style="margin-top: -.7em;">
+                        <form method="post" action="" class="py-3">
+                            <div class="text-center">
+                                <p class="text-muted h3">Users</p>
                             </div>
-                            <div>
-                                <button type="button" class="btn display-1 text-primary underline-hover">edit</button>
-                            </div>
-                        </div>
+                            <p class="text-center text-success h5">{{user_count}}</p>
+                        </form>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="animate__animated animate__backInRight bg-white" id="content">
-            <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2 mt-2">
-                <div class="">
-                    <p class="text-muted h3">
-                        About Me
-                    </p> 
                 </div>
-                <div>
-                    {{request.user.profile.bio|safe }}
-                </div> 
-            </form>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-6 col-6 col-xl-3
+            animate__animated animate__rubberBand" id="content">
+                <div class="border">
+                    <div style="margin-top: -.7em;">
+                        <form method="post" action="" class="py-3">
+                            <div class="text-center">
+                                <p class="text-muted h3">Blogs</p>
+                            </div>
+                            <p class="text-center text-danger h5">{{post_count}}</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-6 col-6 col-xl-3
+                animate__animated animate__rubberBand" id="content">
+                <div class="border">
+                    <div style="margin-top: -.7em;">
+                        <form method="post" action="" class="py-3">
+                            <div class="text-center">
+                                <p class="text-muted h3">Categories</p>
+                            </div>
+                            <p class="text-center h5">{{category_count}}</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-6 col-6 col-xl-3
+                animate__animated animate__rubberBand" id="content">
+                <div class="border">
+
+                    <div style="margin-top: -.7em;">
+                        <form method="post" action="" class="py-3">
+                            <div class="text-center">
+                                <p class="text-muted h3">Comments</p>
+                            </div>
+                            <p class="text-center text-primary h5">{{comment_count}}</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="animate__animated animate__tada bg-white mt-2" id="content">
-            <button type="button" class="btn btn-group-sm btn-success w-100">Edit profile details</button>
+        <div class="px-3 col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
+            <div class="animate__animated animate__backInDown animate__slow bg-white" id="content">
+                <div style="margin-top: -.7em;">
+                    <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}"
+                        class="container pb-2">
+                        <div class="row pt-2">
+                            <div class="col-md-8 col-8 col-sm-8 col-lg-8">
+                                <div class="text-muted">
+                                    Assigned Roles({{assigned_roles|length}})
+                                </div>
+                                <div>
+                                    {% for role in assigned_roles %}
+                                    <div class=" badge badge-info badge-btn bg-info">
+                                        {{role.get_name}}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="animate__animated animate__backInRight animate__slow bg-white mt-2" id="content">
+                <div>
+                    <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}"
+                        class="container pb-2">
+                        <div class="row pt-2">
+                            <div class="col-md-8 col-8 col-sm-8 col-lg-8">
+                                <div class="text-muted">
+                                    Available Roles({{available_roles|length}})
+                                </div>
+                                {% for role in available_roles %}
+                                    <div class=" badge badge-info badge-btn bg-info">
+                                        {{role}}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="animate__animated animate__backInUp animate__slow bg-white"
+                id="content">
+                <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}"
+                    class="container pb-2 mt-2">
+                    <div class="">
+                        <p class="text-muted h3">
+                            About Blog
+                        </p>
+                    </div>
+                    <div>
+                        {{request.user.profile.bio }}
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="animate__animated animate__tada bg-white mt-2"
+                id="content">
+                <button type="button" class="btn btn-group-sm btn-success w-100">Edit profile details</button>
+            </div> -->
+            <!-- <div class="border">
+                {{user_roles}}
+            </div> -->
         </div>
     </div>
+    <!-- 
+    -->
 </div>
-<!-- 
--->
 </div>
 {% endblock %}
