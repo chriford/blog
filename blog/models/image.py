@@ -23,3 +23,15 @@ class Image(Timestamp):
     
     def __str__(self):
         return f"{self.post.title}"
+
+    def delete(self, *args, **kwargs):
+        import os
+        from django.conf import settings
+        if self.file:
+            try:
+                self.file.delete()
+            except ValueError:
+                pass
+        self.post.is_active = False
+        self.post.save()
+        return super().delete(*args, **kwargs)

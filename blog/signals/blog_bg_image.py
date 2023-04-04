@@ -28,12 +28,3 @@ def reactivate_blog_post(sender, instance, *args, **kwargs):
     print(blog.body)
     blog.is_active = True    
     blog.save()
-
-@receiver(pre_delete, sender=Image)
-def reactivate_blog_post(sender, instance, *args, **kwargs):    
-    image_file = instance.file.url
-    print(image_file)
-    if os.path.exists(image_file):
-        os.remove(image_file)
-    else:
-        pass
