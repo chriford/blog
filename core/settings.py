@@ -22,7 +22,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    "jazzmin",
+    # "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -223,7 +223,10 @@ SWAGGER_SETTINGS = {
     },
     "USE_SESSION_AUTH": False,
 }
+
+
 # CACHES = {
+#     # … default cache config and others
 #     "select2": {
 #         "BACKEND": "django_redis.cache.RedisCache",
 #         "LOCATION": "redis://127.0.0.1:6379/2",
@@ -233,12 +236,15 @@ SWAGGER_SETTINGS = {
 #     }
 # }
 
+# Tell select2 which cache configuration to use:
 # SELECT2_CACHE_BACKEND = "select2"
+
 ELASTICSEARCH_DSL={
     'default': {
         'hosts': 'localhost:9200'
     },
 }
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

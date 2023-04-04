@@ -31,7 +31,6 @@ schema_view = get_schema_view(
 third_party_urlpatterns = [
     # path('^markdown/', include('django_markdown.urls')),
     path("select2/", include("django_select2.urls")),
-
     
 ]
 swagger_urlpatterns = [
