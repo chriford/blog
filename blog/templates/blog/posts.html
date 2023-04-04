@@ -108,7 +108,10 @@
         </form>
     </div>
         {% for post in posts %}
-        {% include 'include/blog-card.html' %}
+            {% if post.is_active %}
+                {% include 'include/blog-card.html' %}
+            {% else %}
+            {% endif %}
         {% endfor %}
         <div class="col-md-6 col-12 col-sm-12 col-lg-4">
             <a href="{% url 'blog:post-forms-page' %}" class="btn btn-outline-success card h-75 d-flex justify-content-center align-content-center">
