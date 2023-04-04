@@ -30,46 +30,46 @@
                         {% csrf_token %}
                         <div class="row">
                             <div>
-                                {{request.user.profile.form.photo|as_crispy_field}}
+                                {{profile_form.photo|as_crispy_field}}
                             </div>
                             <div>
-                                {{request.user.profile.form.email|as_crispy_field}}
+                                {{profile_form.email|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
-                                {{request.user.profile.form.first_name|as_crispy_field}}
+                                {{profile_form.first_name|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
-                                {{request.user.profile.form.last_name|as_crispy_field}}
+                                {{profile_form.last_name|as_crispy_field}}
                             </div>
                             <div class="col-md-4 col-12 col-sm-4 col-lg-4">
-                                {{request.user.profile.form.country|as_crispy_field}}
+                                {{profile_form.country|as_crispy_field}}
                             </div>
                             <div class="col-md-4 col-12 col-sm-4 col-lg-4">
-                                {{request.user.profile.form.state|as_crispy_field}}
+                                {{profile_form.state|as_crispy_field}}
                             </div>
                             <div class="col-md-4 col-12 col-sm-4 col-lg-4">
-                                {{request.user.profile.form.postal_code|as_crispy_field}}
+                                {{profile_form.postal_code|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
-                                {{request.user.profile.form.address|as_crispy_field}}
+                                {{profile_form.address|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
-                                {{request.user.profile.form.birth_date|as_crispy_field}}
+                                {{profile_form.birth_date|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
-                                {{request.user.profile.form.phone_number|as_crispy_field}}
+                                {{profile_form.phone_number|as_crispy_field}}
                             </div>
                             <div class="col-md-6 col-12 col-sm-6 col-lg-6">
-                                {{request.user.profile.form.phone_number2|as_crispy_field}}
+                                {{profile_form.phone_number2|as_crispy_field}}
                             </div>
                             <div class="col-md-12 col-12 col-sm-6 col-lg-12">
-                                {{request.user.profile.form.bio|as_crispy_field}}
+                                {{profile_form.bio|as_crispy_field}}
                             </div>
                         </div>
                         <button type="submit" class="w-100 my-2 btn btn-primary">save profile details</button>
                     </form>
                 </div>
-                  </figure>
+                </figure>
               </div>
           </div>
       </div>

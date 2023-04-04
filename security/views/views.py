@@ -53,12 +53,19 @@ def signout(request):
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)    
 def profile(request):
     if request.method == 'POST':
-        profile_form = UserProfileForm(request.POST, request.FILES or None)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
-            profile_form.save(commit=True)
+            profile_form.email = request.user.email
+            user = User.objects.get(pk=request.user.pk)
+            user.first_name = profile_form.cleaned_data.get("first_name", None)
+            user.last_name = profile_form.cleaned_data.get("last_name", None)
+            user.save()
+            profile_form.save()
             messages.success(request, 'profile details updated successfully')
             return redirect('security:profile')
-    context = {}
+    context = {
+        'profile_form': UserProfileForm(instance=request.user.profile)
+    }
     return render(request, 'auth/profile.html', context)
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)

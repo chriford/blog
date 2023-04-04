@@ -55,8 +55,8 @@ id="content">
                             <p class="text-muted h3">
                                 Personal
                             </p> 
-                            <p class="text-muted">First name: {{request.user.first_name}}</p>
-                            <p class="text-muted">Last Name: {{request.user.last_name}}</p>
+                            <p class="text-muted">First name: {{request.user.profile.first_name}}</p>
+                            <p class="text-muted">Last Name: {{request.user.profile.last_name}}</p>
                             <p class="text-muted">Date of birth: {{request.user.profile.birth_date}}</p>
                         </div>
                     </div>
@@ -70,7 +70,11 @@ id="content">
                 <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2">
                     <div class="row pt-2">
                         <div class="col-md-4 col-4 col-sm-4 col-md-4 col-lg-4">
-                            <img class="rounded-circle" width="60" height="60" src="{% static 'image/medication.jpg' %}" alt="">
+                            {% if request.user.profile.photo %}
+                                <img class="rounded-circle" width="60" height="60" src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}">
+                            {% else %}
+                                <img class="rounded-circle" width="60" height="60" src="{% static 'image/medication.jpg' %}">
+                            {% endif %}
                         </div>
                         <div class="col-md-8 col-8 col-sm-8 col-lg-8">
                             <div class="text-muted">
