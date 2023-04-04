@@ -68,21 +68,24 @@ id="content">
         <div class="animate__animated animate__backInRight bg-white" id="content">
             <div style="margin-top: -.7em;">
                 <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2">
-                    <div class="row pt-2">
-                        <div class="col-md-4 col-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="row pt-2 px-2">
+                        <div class="col-md-4 col-4 col-sm-4 col-md-4 col-lg-4 border">
                             {% if request.user.profile.photo %}
                                 <img class="rounded-circle" width="60" height="60" src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}">
                             {% else %}
                                 <img class="rounded-circle" width="60" height="60" src="{% static 'image/medication.jpg' %}">
                             {% endif %}
                         </div>
-                        <div class="col-md-8 col-8 col-sm-8 col-lg-8">
-                            <div class="text-muted">
+                        <div class="col-md-8 border col-8 col-sm-8 col-lg-8">
+                            <div class="text-muted h5">
+                                OWNER
+                            </div>
+                            <div class="text-muted h5">
                                 {{request.user.username}}
                             </div>
-                            <div>
+                            <!-- <div>
                                 <button type="button" class="btn display-1 text-primary underline-hover">edit</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </form>

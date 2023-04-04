@@ -2,7 +2,11 @@
 
 <div class="col-md-6 col-12 col-sm-12 col-lg-4">
     <figure class="card animate__animated animate__zoomIn">
-        <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}" srcset="{{post.image_set.first.file.url}}">
+        {% if post.image.file %}
+            <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{{post.image.file.url}}">
+        {% else %}
+            <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+        {% endif %}
         <div class="card-header h3 text-center">
             {{post.title|truncatechars:60}}
         </div>

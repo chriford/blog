@@ -43,7 +43,10 @@ def model_form_data_create(request, form_arg: str):
                 
         elif form_arg == 'post-image-create-form':
             image_create_form = ImageForm(request.POST, request.FILES)
-            image_create_form.file = request.FILES['file']
+            image_file = request.FILES['file']
+            image_create_form.initial = {
+                'file': image_file
+            }
             if image_create_form.is_valid():
                 image_create_form.save()
                 messages.success(request, "Post bg image created successfully")
