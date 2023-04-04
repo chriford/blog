@@ -36,7 +36,7 @@ class Post(Timestamp):
         verbose_name=_("Body"),
         null=True,
     )
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     delete_on = models.DateTimeField(
         null=True,
@@ -71,7 +71,3 @@ class Post(Timestamp):
     @property
     def total_comments(self):
         return self.comment_objects().count()
-
-    @property
-    def bg_image(self):
-        return dir(self)
