@@ -8,8 +8,8 @@ from blog.models.timestamp import Timestamp
 
 class Image(Timestamp): 
     file = models.ImageField(
-        # verbose_name=_("Head Image"),
-        upload_to='blog/images/',
+        verbose_name=_("Head Image"),
+        upload_to='blog/%H-%M-%S/%Y-%m-%d/',
         null=True,
         blank=False,
     )
