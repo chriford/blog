@@ -25,8 +25,6 @@ class Image(Timestamp):
         return f"{self.post.title}"
 
     def delete(self, *args, **kwargs):
-        import os
-        from django.conf import settings
         if self.file:
             try:
                 self.file.delete()
