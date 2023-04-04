@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q*j8d9$qbg%odd(0k&8l+zq(c84_*#9=nm$u3!h*t*kdq9$i_8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [
     '*'
 ]
@@ -22,7 +22,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    "jazzmin",
+    # "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -98,6 +98,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'USER': 'blog',
+        # 'HOST': '0.0.0.0',
+        # 'PORT': "5432",
+        # 'PASSWORD': 'digibrand-blog',
     }
 }
 
@@ -140,7 +144,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 if not os.path.exists(os.path.join(BASE_DIR, 'blog/static')):
     os.mkdir(os.path.join(BASE_DIR, 'blog/static'))
@@ -154,7 +158,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap5"]
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 ROLEPERMISSIONS_MODULE = 'blog.roles'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -219,7 +223,10 @@ SWAGGER_SETTINGS = {
     },
     "USE_SESSION_AUTH": False,
 }
+
+
 # CACHES = {
+#     # … default cache config and others
 #     "select2": {
 #         "BACKEND": "django_redis.cache.RedisCache",
 #         "LOCATION": "redis://127.0.0.1:6379/2",
@@ -229,12 +236,15 @@ SWAGGER_SETTINGS = {
 #     }
 # }
 
+# Tell select2 which cache configuration to use:
 # SELECT2_CACHE_BACKEND = "select2"
+
 ELASTICSEARCH_DSL={
     'default': {
         'hosts': 'localhost:9200'
     },
 }
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

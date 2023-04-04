@@ -8,12 +8,12 @@ from blog.models.timestamp import Timestamp
 
 class Image(Timestamp): 
     file = models.ImageField(
-        verbose_name=_("Head Image"),
-        upload_to='%D-%M-%Y/blog-images',
+        # verbose_name=_("Head Image"),
+        upload_to='blog/images/',
         null=True,
         blank=False,
     )
-    post = models.ForeignKey(
+    post = models.OneToOneField(
         verbose_name=_("Post"),
         to='blog.Post',
         on_delete=models.CASCADE,
@@ -22,4 +22,4 @@ class Image(Timestamp):
     )
     
     def __str__(self):
-        return f"{self.post.title} - image-{self.pk}"
+        return f"{self.post.title}"

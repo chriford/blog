@@ -30,6 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
+    
     is_active = models.BooleanField(
         verbose_name=_('active'),
         default=True,
@@ -41,6 +42,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(
         verbose_name=_('superuser status'),
         default=False,
+    )
+    is_first_time_login = models.BooleanField(
+        verbose_name=_("is first time login"),
+        default=True,
+        blank=True,
     )
     date_joined = models.DateTimeField(
         verbose_name=_('date joined'),

@@ -75,8 +75,8 @@ class TrashAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ['file', 'post', 'created_at','updated_at']
-    search_fields = ['post',]
+    list_display = ['post']
+    search_fields = ['post']
     list_per_page = 20
 
 

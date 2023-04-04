@@ -14,10 +14,9 @@ from blog.models import (
 
 
 @receiver(pre_save, sender=Post)
-def post_update(sender, instance, update_fields, **kwargs):
+def post_update(sender, instance, **kwargs):
     post_count = sender.objects.count()
-    is_deleted_status: bool = update_fields.get('is_deleted')
-    print('is deleted status'.capitalize(), is_deleted_status)
+    print('is deleted status'.capitalize())
     print('kwargs'.capitalize(), kwargs)
     print('post count'.capitalize(), post_count)
     print('instance'.capitalize(), instance)

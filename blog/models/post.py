@@ -36,12 +36,15 @@ class Post(Timestamp):
         verbose_name=_("Body"),
         null=True,
     )
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     delete_on = models.DateTimeField(
         null=True,
         blank=True,
     )
+    
+    class Meta:
+        ordering = ['-pk']
     
     def __str__(self):
         return self.title
@@ -68,6 +71,3 @@ class Post(Timestamp):
     @property
     def total_comments(self):
         return self.comment_objects().count()
-
-    # class Meta:
-        # abstract_name_plural = 'Posts'

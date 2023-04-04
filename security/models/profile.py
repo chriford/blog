@@ -36,6 +36,24 @@ class Profile(Timestamp):
         null=True,
         blank=False,
     )
+    country = models.CharField(
+        verbose_name=_('Country'),
+        max_length=25,
+        null=True,
+        blank=True,
+    )
+    state = models.CharField(
+        verbose_name=_('State/Province'),
+        max_length=15,
+        null=True,
+        blank=True,
+    )
+    postal_code = models.CharField(
+        verbose_name=_('Postal code'),
+        max_length=10,
+        null=True,
+        blank=True,
+    )
     phone_number = models.CharField(
         verbose_name=_('Phone number'),
         default='+260',
@@ -56,6 +74,10 @@ class Profile(Timestamp):
         null=True,
         blank=True,
     )
+    birth_date = models.DateField(
+        null=True,
+        blank=True,
+    )
     bio = models.TextField(
         verbose_name=_('Bio'),
         max_length=1000,
@@ -65,3 +87,8 @@ class Profile(Timestamp):
     
     def __str__(self):
         return f"Profie | {self.first_name} {self.last_name} | User ID - {self.user_id}"
+
+    @property
+    def form(self):
+        from security.forms import UserProfileForm
+        return UserProfileForm(instance=self)

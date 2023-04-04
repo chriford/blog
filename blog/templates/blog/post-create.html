@@ -62,7 +62,7 @@
         </div>
     </section>
     <div class="mt-4 mx-2">
-        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary"><li
+        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary animate__animated animate__rubberBand"><li
                 class="fa fa-fw fa-arrow-left"></li> back</a>
     </div>
 </div>
@@ -72,7 +72,7 @@
 
     <div class="row">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8 pb-4">
-            <div class="" id="content">
+            <div class="animate__animated animate__backInDown" id="content">
                 <div style="margin-top: -.7em;">
                     <form method="post" action="{% url 'blog:model-form-data-create' 'post-create-form' %}" class="container pb-2">
                         {% crispy post_form %}
@@ -80,16 +80,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
-            <div id="content">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="animate__animated animate__backInRight" id="content">
                 <div style="margin-top: -.7em;">
-                    <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2">
-                        {% crispy category_form %}
+                    <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2">
+                        {% crispy image_form %}
                     </form>
                 </div>
             </div>
+            <div class="animate__animated animate__backInRight mt-sm-2"  id="content">
+                <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2 mt-2">
+                    {% crispy category_form %}
+                </form>
+            </div>
         </div>
-
     </div>
     <!-- 
 -->

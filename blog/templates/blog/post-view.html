@@ -88,7 +88,8 @@
     <div class="row">
         <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
           <figure class="card">
-                <img nopin="nopin" class=" h-50" src="{% static 'image/medication.jpg' %}" alt="">
+                <img nopin="nopin" class=" h-50" src="{% static 'image/blank.png' %}" srcset="{{post.set_image.file.url}}">
+
                 <div class="h3 text-center text-muted py-2">
                     {{post.title}}
                 </div>
@@ -116,30 +117,48 @@
                             {{post.body}}
                         </p>
                     </div>
-                    <form class="card-footr bg-inherit">
-                        <div class="row embed-responsive">
-                            <div class="col-10 col-md-11 col-lg-11">
-                                <textarea class="w-100 p-2 border-gray" placeholder="comment" rows="1" style="border-radius: 18px;"></textarea>
+                    <form class="card-footr pb-4 bg-inherit" method="post" action="{% url 'blog:comment' post.pk post.title %}">
+                        {% csrf_token %}
+                        <div class="pb-3 embed-responsive">
+                            <span class="px-2">
+                                <textarea class=" w-100 p-2 border-gray" placeholder="comment" name="comment" rows="1" style="border-radius: 12px;"></textarea>
+                            </span>
+                            <div class="px-3 ">
+                                <button type="submit" class="float-right py-1 ml-2 px-1 position-absolute float-end">submit</button>
                             </div>
-                            <!-- <div class="col-2 col-md-1 col-lg-1">
-                                <button type="submit" class="py-1 px-1 position-absolute float-end">submit</button>
-                            </div> -->
                         </div>
                     </form>
-                    <div class="py-3">
+                    <div class="">
                         {% for comment in post.comments %}
-                            <div class="card px-3 pt-2 mx-2 mt-2">
-                                <div class="text-center">
+                            <div class="card px-3 pt-2 mx-2 mt-2" data-bs-toggle="hover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">
+                                <div class="text-left" >
                                     {{comment.comment}}
                                 </div>
-                                <p class="w-100 d-flex justify-conent-around">
-                                    <a href="" class=" float-left text-decoration-none">
-                                        like
+                                <div class="w-100 d-flex">
+                                    <a href="{% url 'blog:comment_action' pk=comment.pk action_type='like' %}" class="text-decoration-none">
+                                        <li class="fa fa-fw fa-thumbs-up text-muted text-primary"></li>
                                     </a> 
-                                    <a href="" class=" float-right text-decoration-none mx-2">
-                                            reply
-                                        </a>
-                                </p>
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Update('{{comment.comment}}')"  href="#" class="text-decoration-none mx-2">
+                                        <li class="fa fa-fw fa-pencil text-muted text-primary"></li>
+                                    </a>
+                                    <a href="{% url 'blog:comment_action' pk=comment.pk action_type='delete' %}" class="float-right">
+                                        <li class="fa fa-fw fa-trash text-muted text-primary"></li>
+                                    </a>
+                                    <script>
+                                        const Update = async (comment) => {
+                                            const { value: text } = await Swal.fire({
+                                                input: 'text',
+                                                inputLabel: `${comment}`,
+                                                inputValue: `${comment}`,
+                                                inputPlaceholder: 'write comment',
+                                              })
+                                              
+                                              if (text) {
+                                                Swal.fire(`${text}`)
+                                              }
+                                        }
+                                    </script>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>

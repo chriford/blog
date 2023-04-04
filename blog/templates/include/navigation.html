@@ -1,4 +1,5 @@
 {% load static %}
+{% load permission_tags %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
       <img
@@ -19,23 +20,25 @@
       <ul class="navbar-nav d-flex justify-content-between me-auto my-2 my-lg-0
         navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 
-        <li class="nav-item px-2 d-flex">
-          <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
-          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Category</a>
-        </li>
-
+        
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Posts</a>
         </li>
-
+        
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">About</a>
         </li>
+        {% if user|has_role:'admin' %}
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:management'%}">Management</a>
+        </li>
+        {% endif %}
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">settings</a>
         </li>
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
@@ -58,14 +61,25 @@
         {% else %}
         
         <div class="">
-            <img
-              src="{% static 'image/guru.png' %}"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown" aria-expanded="false"
-              class="rounded-circle dropdown dropdown-toggle"
-              width="40"
-              height="40"
-              alt="profile photo">
+          {% if request.user.profile.photo %}
+                <img
+                  src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false"
+                  class="rounded-circle dropdown dropdown-toggle"
+                  width="40"
+                  height="40"
+                  alt="profile photo">
+            {% else %}
+              <img
+                  src="{% static 'image/guru.png' %}"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false"
+                  class="rounded-circle dropdown dropdown-toggle"
+                  width="40"
+                  height="40"
+                  alt="profile photo">
+            {% endif %}
               <div class="float-right">
   
                 <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
