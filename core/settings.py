@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     
     "rest_framework",
     # "django_markdown",
+    'import_export',
     "drf_yasg2",
     "rest_framework_simplejwt",
     "crispy_forms",
@@ -224,20 +225,21 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-snowflake",
+    },
+    "select2": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        # "LOCATION": os.environ.get("CELERY_BROKER_URL", BASE_DIR / 'cached-data'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
 
-# CACHES = {
-#     # … default cache config and others
-#     "select2": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379/2",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
-
-# Tell select2 which cache configuration to use:
-# SELECT2_CACHE_BACKEND = "select2"
+SELECT2_CACHE_BACKEND = "select2"
 
 ELASTICSEARCH_DSL={
     'default': {
