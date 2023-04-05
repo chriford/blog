@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0013_trash'),
+        ("blog", "0013_trash"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='favorite',
-            name='display',
+            model_name="favorite",
+            name="display",
             field=models.BooleanField(default=False),
         ),
     ]

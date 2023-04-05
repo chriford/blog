@@ -11,7 +11,7 @@ from blog.models.timestamp import Timestamp
 
 class Voke(Timestamp):
     user = models.OneToOneField(
-        'security.User',
+        "security.User",
         help_text=_("The owner of this like."),
         null=True,
         blank=True,
@@ -34,8 +34,6 @@ class Voke(Timestamp):
     is_liked = models.BooleanField(default=False)
     is_disliked = models.BooleanField(default=False)
     is_neutral = models.BooleanField(default=True)
-    
+
     def __str__(self):
         return self.is_neutral
-
-

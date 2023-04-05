@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0014_favorite_display'),
+        ("blog", "0014_favorite_display"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='delete_on',
+            model_name="post",
+            name="delete_on",
             field=models.DateTimeField(null=True),
         ),
         migrations.AddField(
-            model_name='post',
-            name='is_active',
+            model_name="post",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='post',
-            name='is_deleted',
+            model_name="post",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
     ]

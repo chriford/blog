@@ -7,13 +7,14 @@ from django.shortcuts import (
 
 
 def internal_server_exception(request, exception, *args, **kwargs):
-    return redirect('internal-server-page')
+    return redirect("internal-server-page")
+
 
 def internal_server_page_view(request, *args, **kwargs):
     context = {
-        'request': request,
-        'prevous_url': request. META,
-        'msg': kwargs,
-        'layout_path': 'layout/base.html',
+        "request": request,
+        "prevous_url": request.META,
+        "msg": kwargs,
+        "layout_path": "layout/base.html",
     }
-    return render(request, 'auth/pages/500.html', context)
+    return render(request, "auth/pages/500.html", context)

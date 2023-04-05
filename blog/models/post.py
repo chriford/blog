@@ -11,8 +11,8 @@ from blog.models.timestamp import Timestamp
 
 class Post(Timestamp):
     owner = models.ForeignKey(
-        'security.User',
-        related_name='user',
+        "security.User",
+        related_name="user",
         help_text=_("The owner of this post."),
         null=True,
         blank=True,
@@ -26,7 +26,7 @@ class Post(Timestamp):
         blank=False,
     )
     category = models.ForeignKey(
-        'blog.Category',
+        "blog.Category",
         on_delete=models.SET_NULL,
         null=True,
         blank=False,
@@ -42,28 +42,29 @@ class Post(Timestamp):
         null=True,
         blank=True,
     )
-    
+
     class Meta:
-        ordering = ['-pk']
-    
+        ordering = ["-pk"]
+
     def __str__(self):
         return self.title
 
     def comment_objects(self):
         from blog.models import Comment
+
         post_comments = Comment.objects.filter(
-            post = self,    
+            post=self,
         )
         return post_comments
-    
+
     def voke_objects(self):
         from blog.models import Comment
+
         post_comments = Comment.objects.filter(
-            post = self,    
+            post=self,
         )
         return post_comments
-    
-    
+
     @property
     def comments(self):
         return self.comment_objects()

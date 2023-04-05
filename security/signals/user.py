@@ -25,15 +25,17 @@ def user_profile_validator(user, profile):
         return
     return
 
+
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, *args, **kwargs):    
+def create_user_profile(sender, instance, created, *args, **kwargs):
     if created:
         user_profile = Profile.objects.create(
-            user_id=instance.pk, 
+            user_id=instance.pk,
             email=instance.email,
         )
         user_profile_validator(user=instance, profile=user_profile)
-        print('\nuser profile created successfully\n')
+        print("\nuser profile created successfully\n")
+
 
 # @receiver(pre_save, sender=User)
 # def update_user_profile(sender, instance, *args, **kwargs):
@@ -45,7 +47,7 @@ def create_user_profile(sender, instance, created, *args, **kwargs):
 #     user_profile = Profile.objects.filter(
 #         Q(email=instance.email) & Q(user_id =instance.pk)
 #     )
-    
+
 #     if user_profile.count().__eq__(1):
 #         user_profile = user_profile.first()
 #         user_profile.email = email
@@ -57,4 +59,4 @@ def create_user_profile(sender, instance, created, *args, **kwargs):
 #         user_profile_validator(user=instance, profile=user_profile)
 #         print('\nuser profile created successfully\n')
 #     else:
-#         print('\n Nothing happend because you have too many profiles\n')        
+#         print('\n Nothing happend because you have too many profiles\n')

@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0015_auto_20230317_1741'),
+        ("blog", "0015_auto_20230317_1741"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='delete_on',
+            model_name="post",
+            name="delete_on",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

@@ -5,21 +5,22 @@ import markdownfield.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0005_auto_20230315_0657'),
+        ("blog", "0005_auto_20230315_0657"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='text',
-            field=markdownfield.models.MarkdownField(default=True, rendered_field='text_rendered'),
+            model_name="post",
+            name="text",
+            field=markdownfield.models.MarkdownField(
+                default=True, rendered_field="text_rendered"
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='post',
-            name='text_rendered',
+            model_name="post",
+            name="text_rendered",
             field=markdownfield.models.RenderedMarkdownField(default=True),
             preserve_default=False,
         ),
