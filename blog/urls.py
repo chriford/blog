@@ -16,14 +16,16 @@ from .views import (
     post_update,
     post_view,
     comment,
+    setting,
     comment_action,
 )
 
 app_name = "blog"
 urlpatterns = [
     path("", posts, name="index"),
+    path("posts/view/", posts, name="posts"),
     path("management/", management, name="management"),
-    path("post/view/", posts, name="posts"),
+    path("settings/", setting, name="settings"),
     path(
         "model-form/data/create/arg/<str:form_arg>",
         model_form_data_create,
