@@ -62,35 +62,41 @@
         </a>
         {% else %}
         
-        <div class="">
+        <div class="d-flex">
           {% if request.user.profile.photo %}
-                <img
-                  src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}"
+          <sup class="mt-4" style="width: 3%;">
+            <i class="fa fa-circle mt-2 ml-4 text-success" style="width: 5px; height: 10px; margin-left: 10x; color: lime; border: 3px green;" aria-hidden="true"></i>
+          </sup>
+          <img
+          src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}"
                   id="dropdownMenuButton1"
                   data-bs-toggle="dropdown" aria-expanded="false"
-                  class="rounded-circle dropdown dropdown-toggle"
+                  class="rounded-circle w-auto dropdown dropdown-toggle"
                   width="40"
                   height="40"
                   alt="profile photo">
+                  <div class="py-0">
             {% else %}
               <img
-                  src="{% static 'image/guru.png' %}"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown" aria-expanded="false"
-                  class="rounded-circle dropdown dropdown-toggle"
-                  width="40"
-                  height="40"
-                  alt="profile photo">
-            {% endif %}
-              <div class="float-right">
-  
-                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="{% url 'security:logout' %}">Logout</a></li>
-                  <li><a class="dropdown-item" href="{% url 'security:profile' %}">Profile settings</a></li>
-                  <li><a class="dropdown-item" href="{% url 'blog:settings' %}">settings</a></li>
-                </ul>
-              </div>
+              src="{% static 'image/guru.png' %}"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                class="rounded-circle dropdown dropdown-toggle"
+                width="40"
+                style="margin-right: 44px;"
+                height="40"
+                alt="profile photo">
             </div>
+          {% endif %}
+            <div class="float-right">
+
+              <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{% url 'security:logout' %}">Logout</a></li>
+                <li><a class="dropdown-item" href="{% url 'security:profile' %}">Profile settings</a></li>
+                <li><a class="dropdown-item" href="{% url 'blog:settings' %}">settings</a></li>
+              </ul>
+            </div>
+          </div>
         {% endif %}
       </div>
     </div>
