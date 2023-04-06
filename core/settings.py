@@ -219,21 +219,21 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "unique-snowflake",
-    },
-    "select2": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        # "LOCATION": os.environ.get("CELERY_BROKER_URL", BASE_DIR / 'cached-data'),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    },
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+#         # "LOCATION": "unique-snowflake",
+#     },
+#     "select2": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         # "LOCATION": os.environ.get("CELERY_BROKER_URL", BASE_DIR / 'cached-data'),
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         },
+#     },
+# }
 
-SELECT2_CACHE_BACKEND = "select2"
+# SELECT2_CACHE_BACKEND = "select2"
 
 ELASTICSEARCH_DSL = {
     "default": {"hosts": "localhost:9200"},

@@ -28,11 +28,13 @@ from security.models import (
 from rolepermissions.roles import RolesManager
 from rolepermissions.roles import get_user_roles
 from rolepermissions.decorators import (
+    has_role,
     has_role_decorator, 
     has_permission_decorator,
 )
 
 
+@has_role_decorator('admin')
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def model_form_data_create(request, form_arg: str):
     if request.method == "POST":
@@ -91,6 +93,7 @@ def model_form_data_create(request, form_arg: str):
     return redirect("blog:post-forms-page")
 
 
+@has_role_decorator('admin')
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_forms_page(request):
     posts = Post.objects.all()
@@ -102,7 +105,7 @@ def post_forms_page(request):
     }
     return render(request, "blog/post-create.html", context)
 
-
+@has_role_decorator('user')
 def posts(request):
     if request.user.is_authenticated:
         if request.user.is_first_time_login:
@@ -123,6 +126,7 @@ def posts(request):
         "posts": posts,
     }
     return render(request, "blog/posts.html", context)
+
 
 @has_role_decorator("user")
 def post_view(request, title: str, pk: int):
@@ -223,8 +227,8 @@ def post_update(
 
 
 @has_role_decorator("admin")
-@has_permission_decorator("can_manage_blog")
-@login_required
+# @has_permission_decorator("can_manage_blog")
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def management(request):
     posts = Post.objects.all()
     categories = Category.objects.all()
