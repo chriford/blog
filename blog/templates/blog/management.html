@@ -87,8 +87,8 @@
                                 </div>
                                 <div>
                                     {% for role in assigned_roles %}
-                                        <div class=" badge badge-info badge-btn bg-info">
-                                            {{role.get_name}}
+                                        <div class=" badge badge-info badge-btn bg-success">
+                                            {{role}}
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -107,9 +107,16 @@
                                     Available Roles({{available_roles|length}})
                                 </div>
                                 {% for role in available_roles %}
-                                    <div class=" badge badge-info badge-btn bg-info">
-                                        {{role}}
-                                    </div>
+                                    {% if role in assigned_roles %}
+                                        <div class=" badge badge-warning badge-btn bg-info">
+                                            {{role}}
+                                            <i class="fa fa-circle text-warning" aria-hidden="true"></i>
+                                        </div>
+                                    {% else %}
+                                        <div class=" badge badge-info badge-btn bg-info">
+                                            {{role}}
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>

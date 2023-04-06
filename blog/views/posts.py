@@ -234,13 +234,14 @@ def management(request):
     users = User.objects.all()
     comments = Comment.objects.all()
     assigned_roles = get_user_roles(request.user)
+    raw_assigned_roles = [role.get_name() for role in assigned_roles]
     available_roles = RolesManager.get_roles_names()
     context = {
         "post_count": posts.count(),
         "category_count": categories.count(),
         "comment_count": comments.count(),
         "user_count": users.count(),
-        "assigned_roles": assigned_roles,
-        "available_roles": available_roles,
+        "assigned_roles": raw_assigned_roles,
+        "available_roles": list(available_roles),
     }
     return render(request, "blog/management.html", context)

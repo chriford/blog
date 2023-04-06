@@ -28,7 +28,7 @@
         
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
-          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">About</a>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:about'%}">About</a>
         </li>
         {% if user|has_role:'admin' %}
           <li class="nav-item px-2 d-flex">
