@@ -105,7 +105,6 @@ def post_forms_page(request):
     }
     return render(request, "blog/post-create.html", context)
 
-@has_role_decorator('user')
 def posts(request):
     if request.user.is_authenticated:
         if request.user.is_first_time_login:

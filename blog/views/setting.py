@@ -36,7 +36,11 @@ from rolepermissions.decorators import (
 
 
 
-@login_required
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
+@has_role_decorator('user', redirect_to_login="/")
 def setting(request):
+    if request.method == 'POST':
+        ...
     context = {}
     return render(request, 'blog/settings.html', context)
+
