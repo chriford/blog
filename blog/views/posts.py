@@ -127,7 +127,6 @@ def posts(request):
     return render(request, "blog/posts.html", context)
 
 
-@has_role_decorator("user")
 def post_view(request, title: str, pk: int):
     post_obj = Post.objects.filter(
         title=title,

@@ -3,9 +3,9 @@
 <div class="col-md-6 col-12 col-sm-12 col-lg-4">
     <figure class="card animate__animated animate__zoomIn">
         {% if post.image.file %}
-            <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{{post.image.file.url}}">
+            <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{{post.image.file.url}}">
         {% else %}
-            <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+            <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
         {% endif %}
         <div class="card-header h3 text-center">
             {{post.title|truncatechars:60}}
@@ -30,7 +30,12 @@
                     <span class="mt-1 px-1">({{post.total_comments}}k)</span>
                 </sup>
             </div>
-            <p class="h5 text-muted pt-4">
+            <div class="pb-0">
+                <p class="text-muted small">
+                    posted on {{post.created_at.date}}
+                </p>
+            </div>
+            <p class="h5 text-muted pt-0">
                 {{post.body|truncatechars:80}}
             </p>
         </div>

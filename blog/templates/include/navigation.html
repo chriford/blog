@@ -19,13 +19,25 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav d-flex justify-content-between me-auto my-2 my-lg-0
         navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-
-        
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Posts</a>
         </li>
         
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="#">Free Gifs</a>
+        </li>
+
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="#">Reviews</a>
+        </li>
+
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="#">Paid photos</a>
+        </li>
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:about'%}">About</a>
@@ -62,11 +74,7 @@
         </a>
         {% else %}
         
-        <div class="d-flex">
           {% if request.user.profile.photo %}
-          <sup class="mt-4" style="width: 3%;">
-            <i class="fa fa-circle mt-2 ml-4 text-success" style="width: 5px; height: 10px; margin-left: 10x; color: lime; border: 3px green;" aria-hidden="true"></i>
-          </sup>
           <img
           src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}"
                   id="dropdownMenuButton1"
@@ -86,11 +94,10 @@
                 style="margin-right: 44px;"
                 height="40"
                 alt="profile photo">
-            </div>
           {% endif %}
-            <div class="float-right">
+            <div class="d-flex justify-content-end">
 
-              <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton1">
+              <ul class="dropdown-menu float-right"  aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="{% url 'security:logout' %}">Logout</a></li>
                 <li><a class="dropdown-item" href="{% url 'security:profile' %}">Profile settings</a></li>
                 <li><a class="dropdown-item" href="{% url 'blog:settings' %}">settings</a></li>
