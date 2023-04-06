@@ -23,6 +23,12 @@ class Setting(Timestamp):
         null=True,
         blank=True,
     )
+    default = models.BooleanField(default=True)
+    
+    def save(self, *args, **kwargs):
+        if self.theme or self.default_category: #...
+            self.default = False  
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return "settings"

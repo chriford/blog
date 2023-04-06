@@ -1,5 +1,6 @@
 from blog.models.image import Image
 from django.forms import ModelForm
+from django import forms
 from crispy_forms.helper import FormHelper
 from django.urls import reverse_lazy
 from crispy_forms.layout import (
