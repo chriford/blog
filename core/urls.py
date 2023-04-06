@@ -47,7 +47,7 @@ swagger_urlpatterns = [
 ] + third_party_urlpatterns
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("control-pannel/", admin.site.urls, name='admin'),
     path("", include("blog.urls", namespace="blog")),
     path("", include("security.urls", namespace="security")),
     path("page/not/found/", not_found_page_view, name="not-found-page"),

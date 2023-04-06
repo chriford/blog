@@ -17,13 +17,15 @@ from .views import (
     post_view,
     comment,
     setting,
+    about,
     comment_action,
 )
 
 app_name = "blog"
 urlpatterns = [
     path("", posts, name="index"),
-    path("posts/view/", posts, name="posts"),
+    path("blogs/view/", posts, name="posts"),
+    path("blog/about/", about, name="about"),
     path("management/", management, name="management"),
     path("settings/", setting, name="settings"),
     path(
@@ -31,16 +33,16 @@ urlpatterns = [
         model_form_data_create,
         name="model-form-data-create",
     ),
-    path("post/forms/page/", post_forms_page, name="post-forms-page"),
-    path("post/<str:title>/delete/blog/key/<int:pk>/", post_delete, name="post-delete"),
+    path("blog/forms/page/", post_forms_page, name="post-forms-page"),
+    path("blog/<str:title>/delete/blog/key/<int:pk>/", post_delete, name="post-delete"),
     path(
-        "post/comment/<int:pk>/action/<str:action_type>/update/",
+        "blog/comment/<int:pk>/action/<str:action_type>/update/",
         comment_action,
         name="comment_action",
     ),
-    path("post/<str:title>/update/blog/key/<int:pk>/", post_update, name="post-update"),
-    path("post/<str:title>/read/blog/key/<int:pk>/", post_view, name="post-view"),
-    path("post/pk/<int:pk>/title/<str:title>/comment/", comment, name="comment"),
+    path("blog/<str:title>/update/blog/key/<int:pk>/", post_update, name="post-update"),
+    path("blog/<str:title>/read/blog/key/<int:pk>/", post_view, name="post-view"),
+    path("blog/pk/<int:pk>/title/<str:title>/comment/", comment, name="comment"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]

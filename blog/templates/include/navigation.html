@@ -40,10 +40,12 @@
           <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:settings'%}">settings</a>
         </li>
-        <li class="nav-item px-2 d-flex">
-          <i class="nav-link fa fa-fw fa-headset py-3"></i>
-          <a class="nav-link px-2" aria-current="page" href="/admin/">Admin</a>
-        </li>
+        {% if user|has_role:'admin' %}
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="/control-pannel/">Admin</a>
+          </li>
+        {% endif %}
         </ul>
       <div class="text-white">
       {% if not request.user.is_authenticated %}
