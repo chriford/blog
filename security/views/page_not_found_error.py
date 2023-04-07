@@ -7,7 +7,8 @@ from django.shortcuts import (
 
 
 def not_found_exception(request, exception):
-    return redirect("page-not-found-page")
+    return HttpResponse("errrrrrrrrrrrrrrrrror")
+    return redirect("not-found-page")
 
 
 def not_found_page_view(request, *args, **kwargs):

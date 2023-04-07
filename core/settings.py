@@ -140,6 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "blog/staticfiles")]
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 MEDIA_URL = "/media/"
@@ -148,7 +149,6 @@ MEDIA_ROOT = BASE_DIR / "media/"
 if not os.path.exists(os.path.join(BASE_DIR, "blog/static")):
     os.mkdir(os.path.join(BASE_DIR, "blog/static"))
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "blog/static")]
 LOGIN_REDIRECT_URL = "security:login"
 LOGOUT_REDIRECT_URL = "security:signup"
 CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap5"]
