@@ -185,6 +185,7 @@
                 </div>
                 <div class="row">
                     {% for post in posts %}
+                    {% include 'blog/modal/image-attachment.html' %}
                         <div class="col-md-3 col-12 col-sm-6 col-lg-3">
                             <div class="card border">
                                 {% if post.image.file %}
