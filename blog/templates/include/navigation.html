@@ -23,7 +23,7 @@
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Posts</a>
         </li>
-        
+        {% comment %}
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="#">Free Gifs</a>
@@ -38,6 +38,7 @@
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="#">Paid photos</a>
         </li>
+        {% endcomment %}
         <li class="nav-item px-2 d-flex">
           <i class="nav-link fa fa-fw fa-headset py-3"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:about'%}">About</a>

@@ -237,7 +237,9 @@ def management(request):
     available_roles = RolesManager.get_roles_names()
     context = {
         "post_count": posts.count(),
+        "posts": posts,
         "category_count": categories.count(),
+        "categories": categories,
         "comment_count": comments.count(),
         "user_count": users.count(),
         "assigned_roles": raw_assigned_roles,
