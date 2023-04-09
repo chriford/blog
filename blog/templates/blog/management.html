@@ -20,7 +20,7 @@
 
         <div class="row mx-4 mr-0">
             <div class="row pt-3 col-12 col-sm-12 col-md-8 col-lg-8 pb-4
-                bg-white
+            bg-white
                 mb-3">
                 <div class="mb-0 col-md-3 col-lg-3 col-sm-6 col-6 col-xl-3
                     animate__animated animate__rubberBand" id="content">
@@ -163,7 +163,7 @@
                     </form>
                 </div>
                 <!-- <div class="animate__animated animate__tada bg-white mt-2"
-                id="content">
+                    id="content">
                 <button type="button" class="btn btn-group-sm btn-success w-100">Edit profile details</button>
             </div> -->
                 <!-- <div class="border">
@@ -175,14 +175,20 @@
     -->
     </div>
     <div class="mt-2 mx-3  animate__animated animate__fadeInUp animate__slow bg-white"
-            id="content">
+    id="content">
             <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}"
-                class="container pb-2 mt-2">
-                <div class="">
-                    <p class="text-muted h3">
-                        Blog Posts
-                    </p>
-                </div>
+            class="container pb-2 mt-2">
+            <div class="d-flex justify-content-between">
+                <p class="text-muted h3">
+                    Blog Posts
+                </p>
+                <a href="" class="text-decoration-none d-flex mt-2">
+                    <i class="fa fa-trash-o mt-1" aria-hidden="true"></i>
+                    <p class="px-1">
+                        Bin ({{request.user.deleted_blogs}})
+                    </p> 
+                </a>
+            </div>
                 <div class="row">
                     {% for post in posts %}
                     {% include 'blog/modal/image-attachment.html' %}
@@ -191,7 +197,7 @@
                                 {% if post.image.file %}
                                     <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{{post.image.file.url}}">
                                 {% else %}
-                                    <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+                                    <img nopin="nopin" data-bs-toggle="modal" data-bs-target="#exampleModal{{post.pk}}" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
                                 {% endif %}
                                     <p class="pb-2 px-2 h5 border-bottom">{{post.title}}</p>
                                 <div class="px-2 pb-2 border-bottom">
@@ -210,19 +216,39 @@
                                     </div>
                                 </div>
                                 <div class="text-center py-1 px-2 d-flex justify-content-between">
-                                    <a href="">
+                                    <a href="#">
                                         <i class="fa fa-edit" aria-hidden="true"></i>
                                     </a>
-                                    <a href="">
-                                        <i class="fa fa-trash bg-danger text-white" aria-hidden="true"></i>
+                                    <a href="#{% url 'blog:post-delete' title=post.title pk=post.pk status='permanent-delete' %}" id="deleteblog" onclick="deleteBlog('{{post.pk}}', '{{post.title}}', 'permanent-delete')">
+                                        <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                     </a>
-                                    <a href="">
+                                    <a href="#" id="deactivateblog" onclick="deactivateBlog('{{post.pk}}', '{{post.title}}', 'temporal-delete')">
                                         <i class=" fa fa-minus-square-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
+                    <script>
+                        const deleteBlog = (pk, title, status) => {
+                            const is_confirmed = confirm(`DELETE BLOG '${title}'`);
+                            if (is_confirmed) {
+                                const deleteblog = document.getElementById('deleteblog');
+                                deleteblog.href = `/blog/${title}/status/${status}/blog/${pk}/`
+                                deleteblog.onclick = ""
+                                deleteblog.click()
+                            }
+                        }
+                        const deactivateBlog = (pk, title, status) => {
+                            const is_confirmed = confirm(`DEACTIVATE BLOG '${title}'`);
+                            if(is_confirmed){
+                                const deactivateblog = document.getElementById('deactivateblog');
+                                deactivateblog.href = `/blog/${title}/status/${status}/blog/${pk}/`
+                                deactivateblog.onclick = ""
+                                deactivateblog.click()
+                            }
+                        } 
+                    </script>
                 </div>
             </form>
             </div>

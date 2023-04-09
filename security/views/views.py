@@ -11,13 +11,16 @@ from security.forms import UserCreationForm, UserProfileForm
 from blog_utils import (
     send_email,
 )
-
+from rolepermissions.roles import assign_role, clear_roles
+from blog.roles import User as UserRole
 
 def signup(request):
     if request.method == "POST":
         user_create_form = UserCreationForm(request.POST)
         if user_create_form.is_valid():
             user = user_create_form.save(commit=True)
+            clear_roles(user)
+            assign_role(user, UserRole)
             login(request, user)
             messages.success(request, "Registration successful")
             messages.success(

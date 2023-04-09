@@ -145,8 +145,9 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
         pk=pk,
         title=title,
     ).first()
-    if status == "temporal":
+    if status == "temporal-delete": # deactivate
         post.is_deleted = True
+        post.is_active = False
         post.save(
             update_fields=(
                 "is_active",
@@ -159,15 +160,15 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
             "blog:post-forms-page"
         )  # should redirect to the blog management page
 
-    elif status == "permanet":
-        post.delete()
+    elif status == "permanent-delete":
+        # post.delete()
         messages.success(request, f"Blog post deleted successfully!")
         return redirect(
             "blog:post-forms-page"
         )  # should redirect to the blog management page
 
     else:
-        pass
+        return HttpResponse(status)
 
 
 @has_role_decorator("admin")
@@ -224,9 +225,9 @@ def post_update(
     )  # should redirect to the blog management page
 
 
+@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 @has_role_decorator("admin")
 # @has_permission_decorator("can_manage_blog")
-@login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def management(request):
     posts = Post.objects.all()
     categories = Category.objects.all()

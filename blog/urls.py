@@ -34,7 +34,7 @@ urlpatterns = [
         name="model-form-data-create",
     ),
     path("blog/forms/page/", post_forms_page, name="post-forms-page"),
-    path("blog/<str:title>/delete/blog/key/<int:pk>/", post_delete, name="post-delete"),
+    path("blog/<str:title>/status/<str:status>/blog/<int:pk>/", post_delete, name="post-delete"),
     path(
         "blog/comment/<int:pk>/action/<str:action_type>/update/",
         comment_action,

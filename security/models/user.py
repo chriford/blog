@@ -73,6 +73,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
-
+    
     def __str__(self):
         return f"{self.username}|{self.email}"
+
+    @property
+    def deleted_blogs(self):
+        from blog.models import Post
+        from django.db.models import Q
+        posts = Post.objects.filter(
+            owner=self,
+            is_deleted=True, 
+            is_active=False,
+        )
+        return posts.count()
