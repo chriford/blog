@@ -84,7 +84,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="px-3 col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
+            <div class="px-3 pt-1 col-12 col-sm-12 col-md-4 col-lg-4 mt-sm-2">
                 <div class="animate__animated animate__backInDown animate__slow
                     bg-white" id="content">
                     <div style="margin-top: -.7em;">
@@ -145,23 +145,6 @@
                     </div>
                 </div>
 
-                <div class="animate__animated animate__backInUp animate__slow
-                    bg-white"
-                    id="content">
-                    <form method="post" enctype="multipart/form-data" action="{%
-                        url 'blog:model-form-data-create'
-                        'post-image-create-form' %}"
-                        class="container pb-2 mt-2">
-                        <div class="">
-                            <p class="text-muted h3">
-                                About Blog
-                            </p>
-                        </div>
-                        <div>
-                            {{request.user.profile.bio }}
-                        </div>
-                    </form>
-                </div>
                 <!-- <div class="animate__animated animate__tada bg-white mt-2"
                     id="content">
                 <button type="button" class="btn btn-group-sm btn-success w-100">Edit profile details</button>
@@ -172,16 +155,35 @@
             </div>
         </div>
         <!-- 
-    -->
+        -->
+    </div>
+    <div class="mx-3 animate__animated animate__backInUp animate__slow
+        bg-white"
+        id="content">
+        <form method="post" enctype="multipart/form-data" action="{%url 'blog:model-form-data-create'
+            'post-image-create-form' %}"
+            class="container pb-2 mt-2 ">
+            <div class="">
+                <p class="text-muted h3">
+                    About Blog
+                </p>
+            </div>
+            <div>
+                {{request.user.profile.bio }}
+            </div>
+        </form>
     </div>
     <div class="mt-2 mx-3  animate__animated animate__fadeInUp animate__slow bg-white"
     id="content">
             <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}"
             class="container pb-2 mt-2">
             <div class="d-flex justify-content-between">
-                <p class="text-muted h3">
-                    Blog Posts
-                </p>
+                <div class="w-90">
+
+                    <p class="text-muted text-center h3">
+                        Blog Posts
+                    </p>
+                </div>
                 <a href="" class="text-decoration-none d-flex mt-2">
                     <i class="fa fa-trash-o mt-1" aria-hidden="true"></i>
                     <p class="px-1">
@@ -199,7 +201,8 @@
                                 {% else %}
                                     <img nopin="nopin" data-bs-toggle="modal" data-bs-target="#exampleModal{{post.pk}}" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
                                 {% endif %}
-                                    <p class="pb-2 px-2 h5 border-bottom">{{post.title}}</p>
+                                    <p class="pb-2 px-2 h5 border-bottom text-center">{{post.title}}</p>
+                                    <p class=" pb-2 px-2 small">{{post.created_at|date}}</p>
                                 <div class="px-2 pb-2 border-bottom">
                                     <p>{{post.body|truncatechars:40}}</p>
                                     <div class="d-flex justify-content-between">
@@ -222,9 +225,15 @@
                                     <a href="#{% url 'blog:post-delete' title=post.title pk=post.pk status='permanent-delete' %}" id="deleteblog" onclick="deleteBlog('{{post.pk}}', '{{post.title}}', 'permanent-delete')">
                                         <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#" id="deactivateblog" onclick="deactivateBlog('{{post.pk}}', '{{post.title}}', 'temporal-delete')">
-                                        <i class=" fa fa-minus-square-o" aria-hidden="true"></i>
-                                    </a>
+                                    {% if not post.is_active and post.is_deleted %}
+                                        <a href="#" id="reactivateblog" onclick="reactivateBlog('{{post.pk}}', '{{post.title}}', 'reactivate-blog')">
+                                            <i class=" fa fa-plus-square-o" aria-hidden="true"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="#" id="deactivateblog" onclick="deactivateBlog('{{post.pk}}', '{{post.title}}', 'temporal-delete')">
+                                            <i class=" fa fa-minus-square-o" aria-hidden="true"></i>
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -243,6 +252,15 @@
                             const is_confirmed = confirm(`DEACTIVATE BLOG '${title}'`);
                             if(is_confirmed){
                                 const deactivateblog = document.getElementById('deactivateblog');
+                                deactivateblog.href = `/blog/${title}/status/${status}/blog/${pk}/`
+                                deactivateblog.onclick = ""
+                                deactivateblog.click()
+                            }
+                        } 
+                        const reactivateBlog = (pk, title, status) => {
+                            const is_confirmed = confirm(`REACTIVATE BLOG '${title}'`);
+                            if(is_confirmed){
+                                const deactivateblog = document.getElementById('reactivateblog');
                                 deactivateblog.href = `/blog/${title}/status/${status}/blog/${pk}/`
                                 deactivateblog.onclick = ""
                                 deactivateblog.click()

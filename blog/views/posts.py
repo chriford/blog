@@ -155,18 +155,23 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
                 "delete_on",
             )
         )
-        messages.success(request, f"Blog post disabled successfully!")
+        messages.success(request, f"Blog post deactivated!")
         return redirect(
-            "blog:post-forms-page"
+            "blog:management"
         )  # should redirect to the blog management page
 
     elif status == "permanent-delete":
         # post.delete()
-        messages.success(request, f"Blog post deleted successfully!")
-        return redirect(
-            "blog:post-forms-page"
-        )  # should redirect to the blog management page
+        messages.success(request, f"Blog post deleted permanently!")
+        return redirect("blog:management")  # should redirect to the blog management page
 
+    elif status == "reactivate-blog":
+        post.is_active = True
+        post.is_deleted = False
+        post.save()
+        messages.success(request, f"Blog post reactivated!")
+        return redirect("blog:management")  # should redirect to the blog management page
+        
     else:
         return HttpResponse(status)
 

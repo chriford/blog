@@ -77,13 +77,26 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f"{self.username}|{self.email}"
 
-    @property
-    def deleted_blogs(self):
+    def blog_obj(self):
         from blog.models import Post
         from django.db.models import Q
         posts = Post.objects.filter(
             owner=self,
-            is_deleted=True, 
-            is_active=False,
         )
-        return posts.count()
+        return posts
+    
+    @property
+    def deleted_blogs(self):
+        total_blog_posts = self.blog_obj().filter(
+            is_active=False,
+            is_deleted=True,
+        ).count()
+        return total_blog_posts
+    
+    @property
+    def active_blogs(self):
+        active_blog_posts = self.blog_obj().filter(
+            is_active=True
+        ).count()
+        return active_blog_posts
+    
