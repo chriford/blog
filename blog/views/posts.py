@@ -92,7 +92,6 @@ def model_form_data_create(request, form_arg: str):
 
     return redirect("blog:post-forms-page")
 
-
 @has_role_decorator('admin')
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def post_forms_page(request):
