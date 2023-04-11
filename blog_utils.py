@@ -6,7 +6,10 @@ from security.models import User, Profile
 from security.forms import UserCreationForm
 import types
 
-def send_email(recipient_list: list = [], subject: str = 'Reset Password', body: str = None) -> None:
+
+def send_email(
+    recipient_list: list = [], subject: str = "Reset Password", body: str = None
+) -> None:
     """A custom module for sending email,
     expects parameters:
     recipiet_list: a list of emails where the email will be sent to,

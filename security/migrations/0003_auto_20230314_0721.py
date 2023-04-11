@@ -4,20 +4,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('security', '0002_auto_20230314_0713'),
+        ("security", "0002_auto_20230314_0713"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='phone_number',
-            field=models.CharField(blank=True, max_length=15, null=True, verbose_name='Phone number'),
+            model_name="user",
+            name="phone_number",
+            field=models.CharField(
+                blank=True, max_length=15, null=True, verbose_name="Phone number"
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='last_name',
-            field=models.CharField(max_length=255, null=True, verbose_name='Last name'),
+            model_name="user",
+            name="last_name",
+            field=models.CharField(max_length=255, null=True, verbose_name="Last name"),
         ),
     ]

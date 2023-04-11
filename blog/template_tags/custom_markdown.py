@@ -5,7 +5,8 @@ from markdown import markdown
 
 register = template.Library()
 
-@register.filter(name='convert_markdown')
+
+@register.filter(name="convert_markdown")
 def convert_markdown(value):
     converted_value = markdown(value)
     return converted_value

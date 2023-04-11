@@ -6,16 +6,22 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('blog', '0017_like'),
+        ("blog", "0017_like"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='like',
-            name='liker',
-            field=models.OneToOneField(blank=True, help_text='The owner of this like.', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='liker', to=settings.AUTH_USER_MODEL),
+            model_name="like",
+            name="liker",
+            field=models.OneToOneField(
+                blank=True,
+                help_text="The owner of this like.",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="liker",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
