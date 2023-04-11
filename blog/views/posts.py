@@ -248,6 +248,7 @@ def management(request):
         "categories": categories,
         "comment_count": comments.count(),
         "user_count": users.count(),
+        "users": users,
         "assigned_roles": raw_assigned_roles,
         "available_roles": list(available_roles),
     }

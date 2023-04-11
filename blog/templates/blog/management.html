@@ -191,56 +191,94 @@
                     </p> 
                 </a>
             </div>
-                <div class="row">
-                    {% for post in posts %}
-                    {% include 'blog/modal/image-attachment.html' %}
-                        <div class="col-md-3 col-12 col-sm-6 col-lg-3">
-                            <div class="card border">
-                                {% if post.image.file %}
-                                    <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{{post.image.file.url}}">
-                                {% else %}
-                                    <img nopin="nopin" data-bs-toggle="modal" data-bs-target="#exampleModal{{post.pk}}" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
-                                {% endif %}
-                                    <p class="pb-2 px-2 h5 border-bottom text-center">{{post.title}}</p>
-                                    <p class=" pb-2 px-2 small">{{post.created_at|date}}</p>
-                                <div class="px-2 pb-2 border-bottom">
-                                    <p>{{post.body|truncatechars:40}}</p>
-                                    <div class="d-flex justify-content-between">
-                                        <span>
-                                            status: 
-                                        </span>
-                                        <span>
-                                            {% if post.is_active %} 
-                                            <i class="fa fa-circle text-success" aria-hidden="true"></i> 
-                                            {% else %}
-                                            <i class="fa fa-circle text-warning" aria-hidden="true"></i>
-                                            {% endif %}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="text-center py-1 px-2 d-flex justify-content-between">
-                                    <a href="#">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#{% url 'blog:post-delete' title=post.title pk=post.pk status='permanent-delete' %}" id="deleteblog" onclick="deleteBlog('{{post.pk}}', '{{post.title}}', 'permanent-delete')">
-                                        <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                                    </a>
-                                    {% if not post.is_active and post.is_deleted %}
-                                        <a href="#" id="reactivateblog" onclick="reactivateBlog('{{post.pk}}', '{{post.title}}', 'reactivate-blog')">
-                                            <i class=" fa fa-plus-square-o" aria-hidden="true"></i>
-                                        </a>
-                                    {% else %}
-                                        <a href="#" id="deactivateblog" onclick="deactivateBlog('{{post.pk}}', '{{post.title}}', 'temporal-delete')">
-                                            <i class=" fa fa-minus-square-o" aria-hidden="true"></i>
-                                        </a>
-                                    {% endif %}
+            <div class="row">
+                {% for post in posts %}
+                {% include 'blog/modal/image-attachment.html' %}
+                    <div class="col-md-3 col-12 col-sm-6 col-lg-3">
+                        <div class="card border">
+                            {% if post.image.file %}
+                                <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{{post.image.file.url}}">
+                            {% else %}
+                                <img nopin="nopin" data-bs-toggle="modal" data-bs-target="#exampleModal{{post.pk}}" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+                            {% endif %}
+                                <p class="pb-2 px-2 h5 border-bottom text-center">{{post.title}}</p>
+                                <p class=" pb-2 px-2 small">{{post.created_at|date}}</p>
+                            <div class="px-2 pb-2 border-bottom">
+                                <p>{{post.body|truncatechars:40}}</p>
+                                <div class="d-flex justify-content-between">
+                                    <span>
+                                        status: 
+                                    </span>
+                                    <span>
+                                        {% if post.is_active %} 
+                                        <i class="fa fa-circle text-success" aria-hidden="true"></i> 
+                                        {% else %}
+                                        <i class="fa fa-circle text-warning" aria-hidden="true"></i>
+                                        {% endif %}
+                                    </span>
                                 </div>
                             </div>
+                            <div class="text-center py-1 px-2 d-flex justify-content-between">
+                                <a href="#">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </a>
+                                <a href="#{% url 'blog:post-delete' title=post.title pk=post.pk status='permanent-delete' %}" id="deleteblog" onclick="deleteBlog('{{post.pk}}', '{{post.title}}', 'permanent-delete')">
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                </a>
+                                {% if not post.is_active and post.is_deleted %}
+                                    <a href="#" id="reactivateblog" onclick="reactivateBlog('{{post.pk}}', '{{post.title}}', 'reactivate-blog')">
+                                        <i class=" fa fa-plus-square-o" aria-hidden="true"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="#" id="deactivateblog" onclick="deactivateBlog('{{post.pk}}', '{{post.title}}', 'temporal-delete')">
+                                        <i class=" fa fa-minus-square-o" aria-hidden="true"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endfor %}
-                    <script src="{% static 'js/blog-status-modifier.js' %}"></script>
-                </div>
-            </form>
+                    </div>
+                {% endfor %}
             </div>
+        </form>
+    </div>
+    <div class="mx-3 animate__animated animate__backInUp animate__slow
+        bg-white"
+        id="content">
+        <form method="post" enctype="multipart/form-data" action="{%url 'blog:model-form-data-create'
+            'post-image-create-form' %}"
+            class="container pb-2 mt-2 ">
+            <div class="">
+                <p class="text-muted h3">
+                    Users
+                </p>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>username</th>
+                        <th>first name</th>
+                        <th>last name</th>
+                        <th>email</th>
+                        <th>active status</th>
+                        <th>phone no</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
 </div>
+
+<script src="{% static 'js/blog-status-modifier.js' %}"></script>
 {% endblock %}
