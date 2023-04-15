@@ -1,18 +1,14 @@
 <!-- Modal --> 
-<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ImageView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ImageViewLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       {% csrf_token %}
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
+        <h1 class="modal-title fs-5 text-muted" id="ImageViewLabel">Cover Image</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="image-view">
         N/A
-      </div>
-      <div class="modal-footer d-flex justify-content-between">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <a href="#" class="btn btn-primary" aria-disabled="true">Remove</button>
       </div>
     </div>
   </div>
