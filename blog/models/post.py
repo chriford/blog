@@ -72,3 +72,9 @@ class Post(Timestamp):
     @property
     def total_comments(self):
         return self.comment_objects().count()
+
+    @property
+    def image_form(self):
+        from blog.forms import ImageForm
+        form = ImageForm(initial={'post': self})
+        return form
