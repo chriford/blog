@@ -1,0 +1,22 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block head %}
+<style>
+    #body {
+        background-image: url("{% static 'image/home01.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<title>
+    Homepage
+</title>
+{% endblock %}
+{% block content %}
+
+<div id="body">
+    <h1>Welcome Home</h1>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+{% endblock %}

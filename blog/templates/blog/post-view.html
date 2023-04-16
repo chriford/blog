@@ -1,0 +1,181 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head %}
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: #6c757c;
+        animation: body 1.25s linear;
+      }
+      @keyframes body {
+        to {
+          background-color: rgb(151, 186, 222);
+        }
+      }
+      .header-options {
+        cursor: pointer;
+      }
+      .progress {
+        height: 3px;
+        width: 0%;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        animation: progress 0.6s linear;
+      }
+      @keyframes progress {
+        to {
+          background-color: rgb(122, 140, 125);
+          width: 100%;
+        }
+      }
+      #header-container {
+            background-image: url(/static/image/tech01.jpg); 
+            background-size: cover;
+            color: white;
+        }
+        #content {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+        .card {
+            background-color: rgb(245, 243, 243);
+        }
+    </style>
+</style>
+<title>
+    Post view
+</title>
+{% endblock %}
+{% block content %}
+<div id="header-container" class="d-flex justify-content-between">
+    <section id="header-section" class="container">
+        <div class="text-info">
+            <p class="h4">Top blogs</p>
+            <p class="h1">Over 36+ posts</p>
+        </div>     
+    </section>
+    <div class="mt-4 mx-2">
+        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary animate__animated animate__rubberBand"><li class="fa fa-fw fa-arrow-left"></li> back</a>
+    </div>
+</div>
+<div class="container ml-2 py-3 my-4 mt-4 mt-3" style="position:sticky;" id="content">
+    <div
+    style="margin-top: -2em;"
+    >    
+        <marquee 
+        behavior="scroll" 
+        direction="center"
+        class="text-white text-dark"
+        >
+        <p class="text-info">
+            ........................................................................................
+        </p>
+    </marquee>
+    </div>
+    <div class="row">
+        <div class="d-flex justify-content-center col-md-12 col-12 col-sm-12 col-lg-12">
+          <figure class="card animate__animated animate__fadeInUp w-100">
+                {% if post.image.file %}
+                    <img nopin="nopin" class="img-fluid" style="max-height:18rem; min-height: 6rem;" src="{{post.image.file.url}}">
+                {% else %}
+                    <img nopin="nopin" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+                {% endif %}
+                <div class="h3 text-center text-muted py-2">
+                    {{post.title}}
+                </div>
+                <div class="card-header border-bottom w-100 pb-1">
+                    <div class="d-flex py-2 justify-content-between align-content-center border-bottom pb-1">
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-save" style="top: -20px;"></li>
+                            <span class="mt-1 px-1">(10)</span>
+                        </sup>
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
+                            <span class="mt-1 px-1">(300)</span>
+                        </sup>
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
+                            <span class="mt-1 px-1">(1k)</span>
+                        </sup>
+                        <sup class="text-muted header-options d-flex">
+                            <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
+                        <span class="mt-1 px-1">({{post.total_comments}}k)</span>
+                        </sup>
+                    </div>
+                    <div class="card-body">
+                        <p class="h5 text-muted pt-4">
+                            {{post.body}}
+                        </p>
+                    </div>
+                    <form class="card-footr pb-4 bg-inherit" method="post" action="{% url 'blog:comment' post.pk post.title %}">
+                        {% csrf_token %}
+                        <div class="pb-3 embed-responsive">
+                            <span class="px-2">
+                                <textarea class=" w-100 p-2 border-gray" placeholder="comment" name="comment" rows="1" style="border-radius: 12px;"></textarea>
+                            </span>
+                            <div class="px-3 ">
+                                <button type="submit" class="float-right py-1 ml-2 px-1 position-absolute float-end">submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="">
+                        {% for comment in post.comments %}
+                            <div class="card px-3 pt-2 mx-2 mt-2" data-bs-toggle="hover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">
+                                <div class="text-left" >
+                                    {{comment.comment}}
+                                </div>
+                                <div class="w-100 d-flex">
+                                    <a href="{% url 'blog:comment_action' pk=comment.pk action_type='like' %}" class="text-decoration-none">
+                                        <li class="fa fa-fw fa-thumbs-up text-muted text-primary"></li>
+                                    </a> 
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Update('{{comment.comment}}')"  href="#" class="text-decoration-none mx-2">
+                                        <li class="fa fa-fw fa-pencil text-muted text-primary"></li>
+                                    </a>
+                                    <a onclick="Delete('{{comment}}')" href="#{% url 'blog:comment_action' pk=comment.pk action_type='delete' %}" class="float-right">
+                                        <li class="fa fa-fw fa-trash text-muted text-primary"></li>
+                                    </a>
+                                    <script>
+                                        const Update = async (comment) => {
+                                            const { value: text } = await Swal.fire({
+                                                input: 'text',
+                                                inputLabel: `${comment}`,
+                                                inputValue: `${comment}`,
+                                                inputPlaceholder: 'write comment',
+                                              })
+                                              
+                                              if (text) {
+                                                  `
+                                                  <form action="{% url 'blog:comment_action' pk=comment.pk action_type='update' %}" method="post">
+                                                      {% csrf_token %}
+                                                      <input type="hidden" name="comment" value="${text}" />
+                                                      <input type="submit" onclick="this.click()" value="update">
+                                                  </form>
+                                                `
+                                            }
+                                        }
+
+                                        const Delete = async (comment) => {
+                                            const button = await Swal.fire({
+                                                showConfirmButton: true,
+                                                showDenyButton: true,
+                                                title: "Are you sure you want to delete the comment?",
+                                                denyButtonText: 'Delete',
+                                                confirmButtonText: 'Cancel',
+                                            })
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+              </figure>
+          </div>
+      </div>
+</div>
+{% endblock %}

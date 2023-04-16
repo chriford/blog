@@ -1,0 +1,101 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head %}
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: rgb(73, 72, 72);
+        animation: body 1.25s linear;
+      }
+      @keyframes body {
+        to {
+          background-color: rgb(116, 123, 130);
+        }
+      }
+      .header-options {
+        cursor: pointer;
+      }
+      .progress {
+        height: 3px;
+        width: 0%;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        animation: progress 0.6s linear;
+      }
+      @keyframes progress {
+        to {
+          background-color: rgb(122, 140, 125);
+          width: 100%;
+        }
+      }
+      #header-container {
+            background-image: url(/static/image/tech01.jpg); 
+            background-size: cover;
+            color: white;
+        }
+        #content {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+        .card {
+            background-color: rgb(245, 243, 243);
+        }
+        body {
+            background-color: #6c757c;
+        }
+    </style>
+<title>
+    Post create
+</title>
+{% endblock %}
+{% block content %}
+<div id="header-container" class="d-flex justify-content-between">
+    <section id="header-section" class="container">
+        <div class="text-info">
+            <p class="h4">Top blogs</p>
+            <p class="h1">Over 36+ posts</p>
+        </div>
+    </section>
+    <div class="mt-4 mx-2">
+        <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary animate__animated animate__rubberBand"><li
+                class="fa fa-fw fa-arrow-left"></li> back</a>
+    </div>
+</div>
+
+<div class="container ml-2 py-3 my-4 mt-4 mt-3 bg-secondary" style="position:sticky;"
+    id="content">
+
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 pb-4">
+            <div class="animate__animated animate__backInDown" id="content">
+                <div style="margin-top: -.7em;">
+                    <form method="post" action="{% url 'blog:model-form-data-create' 'post-create-form' %}" class="container pb-2">
+                        {% crispy post_form %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="animate__animated animate__backInRight" id="content">
+                <div style="margin-top: -.7em;">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'blog:model-form-data-create' 'post-image-create-form' %}" class="container pb-2">
+                        {% crispy image_form %}
+                    </form>
+                </div>
+            </div>
+            <div class="animate__animated animate__backInRight mt-sm-2"  id="content">
+                <form method="post" action="{% url 'blog:model-form-data-create' 'category-create-form' %}" class="container pb-2 mt-2">
+                    {% crispy category_form %}
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 
+-->
+</div>
+{% endblock %}

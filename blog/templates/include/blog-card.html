@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="col-md-6 col-12 col-sm-12 col-lg-4">
+    <figure class="card animate__animated animate__zoomIn">
+        {% if post.image.file %}
+            <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{{post.image.file.url}}">
+        {% else %}
+            <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
+        {% endif %}
+        <div class="card-header h4 text-center">
+            {{post.title|truncatechars:60}}
+        </div>
+        <div class="card-body border-bottom pb-2">
+            <div class="d-flex justify-content-between align-content-center
+                border-bottom pb-1">
+                <sup class="text-muted header-options d-flex">
+                    <li class="fa fa-fw fa-save" style="top: -20px;"></li>
+                    <span class="mt-1 px-1">(10)</span>
+                </sup>
+                <sup class="text-muted header-options d-flex">
+                    <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
+                    <span class="mt-1 px-1">(300)</span>
+                </sup>
+                <sup class="text-muted header-options d-flex">
+                    <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
+                    <span class="mt-1 px-1">(1k)</span>
+                </sup>
+                <sup class="text-muted header-options d-flex">
+                    <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
+                    <span class="mt-1 px-1">({{post.total_comments}}k)</span>
+                </sup>
+            </div>
+            <div class="pb-0">
+                <p class="text-muted small">
+                    posted on {{post.created_at.date}}
+                </p>
+            </div>
+            <p class="h5 text-muted pt-0">
+                {{post.body|truncatechars:80}}
+            </p>
+        </div>
+        <p class="text-center">
+            <a id="{{post.pk}}" href="{% url 'blog:post-view' title=post.title pk=post.pk %}">Read more &plus;</a>
+        </p>
+    </figure>
+</div>

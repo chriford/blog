@@ -1,0 +1,114 @@
+{% load static %}
+{% load permission_tags %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+      <img
+      src="{% static 'logo/blog.png' %}"
+      class="rounded-circle"
+      alt="profile photo"
+      onclick="
+      const hiddenNavigatorBtn = document.getElementById(`hidden_btn`);  
+      hiddenNavigatorBtn.href = `{% url 'blog:posts' %}`; hiddenNavigatorBtn.click();
+      "
+      style="width: 10%; cursor:pointer;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasWithBothOptions"
+      aria-controls="offcanvasWithBothOptions" aria-label="Toggle sidebar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav d-flex justify-content-between me-auto my-2 my-lg-0
+        navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:posts'%}">Posts</a>
+        </li>
+        {% comment %}
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="#">Free Gifs</a>
+        </li>
+
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="#">Reviews</a>
+        </li>
+
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="#">Paid photos</a>
+        </li>
+        {% endcomment %}
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link fa fa-fw fa-headset py-3"></i>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:about'%}">About</a>
+        </li>
+        {% if user|has_role:'admin' %}
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="{% url 'blog:management'%}">Management</a>
+          </li>
+        {% endif %}
+        <li class="nav-item px-2 d-flex">
+          <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
+          <a class="nav-link px-2" aria-current="page" href="{% url 'blog:settings'%}">settings</a>
+        </li>
+        {% if user|has_role:'admin' %}
+          <li class="nav-item px-2 d-flex">
+            <i class="nav-link fa fa-fw fa-headset py-3"></i>
+            <a class="nav-link px-2" aria-current="page" href="/control-pannel/">Admin</a>
+          </li>
+        {% endif %}
+        </ul>
+      <div class="text-white">
+      {% if not request.user.is_authenticated %}
+        <a class="text-white mr-3 text-decoration-none" id="login" href="{% url 'security:login' %}">
+          Log in
+        </a>
+        {% if request.user.is_superuser %}
+          <a class="text-white h4 text-decoration-none" id="signup" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        {% else %}
+          <a class="text-white h4 text-decoration-none" id="signup" href="{% url 'security:signup' %}">
+        {% endif %}
+            <span class="badge bg-animate bg-info badge-info">Sign up
+          </span>
+        </a>
+        {% else %}
+        
+          {% if request.user.profile.photo %}
+          <img
+          src="{{request.user.profile.photo.url}}" alt="{{request.user.profile.photo.name}}"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false"
+                  class="rounded-circle w-auto dropdown dropdown-toggle"
+                  width="40"
+                  height="40"
+                  alt="profile photo">
+                  <div class="py-0">
+            {% else %}
+              <img
+              src="{% static 'image/guru.png' %}"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                class="rounded-circle dropdown dropdown-toggle"
+                width="40"
+                style="margin-right: 44px;"
+                height="40"
+                alt="profile photo">
+          {% endif %}
+            <div class="d-flex justify-content-end">
+
+              <ul class="dropdown-menu float-right"  aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{% url 'security:logout' %}">Logout</a></li>
+                <li><a class="dropdown-item" href="{% url 'security:profile' %}">Profile settings</a></li>
+                <li><a class="dropdown-item" href="{% url 'blog:settings' %}">settings</a></li>
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <a id="hidden_btn"></a>
+</nav>
+{% include '../auth/modal/register.html' %}

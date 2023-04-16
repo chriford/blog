@@ -1,0 +1,125 @@
+{% extends '../layout/base.html' %}
+{% load static %}
+{% load permission_tags %}
+{% block head %}
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: #6c757c;
+        animation: body 1.25s linear;
+      }
+      @keyframes body {
+        to {
+          background-color: rgb(151, 186, 222);
+        }
+      }
+      .header-options {
+        cursor: pointer;
+      }
+      .progress {
+        height: 3px;
+        width: 0%;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        animation: progress 0.6s linear;
+      }
+      @keyframes progress {
+        to {
+          background-color: rgb(122, 140, 125);
+          width: 100%;
+        }
+      }
+      #header-container {
+            background-image: url(/static/image/tech01.jpg); 
+            background-size: cover;
+            color: white;
+        }
+        #content {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+        .card {
+            background-color: rgb(245, 243, 243);
+        }
+    </style>
+<title>
+    Posts
+</title>
+{% endblock %}
+{% block content %}
+{% include 'include/sub-header.html' %}
+{% if not request.user.is_authenticated %}
+    <div class="d-flex">
+        <marquee class="py-0" behavior="" direction="right">
+            <sup class="text-muted">Join blogit, a community with over 400 users</sup>
+    </marquee>
+
+    <marquee class="py-0" behavior="" direction="right">
+        <sup class="text-muted">Join blogit, a community with over 400 users</sup>
+    </marquee>
+</div>
+{% else %}
+<br><br>
+{% endif %}
+<div class=" container ml-2 py-3 my-2 mt-1 " style="position:sticky;" id="content">
+    <div
+    style="margin-top: -2em;"
+    >    
+        <marquee 
+        behavior="scroll" 
+        direction="center"
+        class="text-white text-dark"
+        >
+        <p class="text-info">
+            ........................................................................................
+        </p>
+    </marquee>
+    </div>
+    <div class="row">
+        <div class="container">
+            <!-- <form class="container pb-3 row">
+                <select name="category" class="py-1 col-md-4">
+                    <option value="all">all</option>
+                    {% for category in categories %}
+                        <option value="{{category.id}}">{{category.name}}</option>
+                    {% endfor %}
+                </select>
+                <div class="col-md-4">
+                    <input type="text" name="post" placeholder="search blog post" class="py-1 px-2 w-45">
+                </div>
+                <div class="col-md-4">
+                    <button class="w-auto" >search</button>
+                </div>
+            </form> -->
+        </div>
+        {% if posts %}
+        {% for post in posts %}
+            {% if post.is_active %}
+                {% include 'include/blog-card.html' %}
+            {% else %}
+            {% endif %}
+        {% endfor %}
+        {% else %}
+        <p class="text-muted">
+            No posts avaliable yet
+        </p>
+        {% endif %}
+        {% if request.user|has_role:'admin' %}
+            <div class="col-md-6 col-12 col-sm-12 col-lg-4">
+                <a href="{% url 'blog:post-forms-page' %}" class="btn btn-outline-primary card h-75 d-flex justify-content-center align-content-center">
+                    <p class="text-muted h2 text-center">
+                        <div>
+                            <li class="fa fa-fw fa-plus" style="top: -20px;"></li>
+                            Add
+                        </div>
+                    </p>
+                </a>            
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
