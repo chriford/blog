@@ -17,7 +17,6 @@ from security.models import (
     Profile,
 )
 
-
 def user_profile_validator(user, profile):
     if not user.profile:
         user.profile = profile
