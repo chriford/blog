@@ -4,3 +4,4 @@ from .favorite import *
 from .comment import *
 from .setting import *
 from .about import *
+from .management import *
