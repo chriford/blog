@@ -8,13 +8,6 @@ from rest_framework import permissions
 from drf_yasg2.views import get_schema_view
 from drf_yasg2 import openapi
 
-from security.views import (
-    not_found_exception,
-    not_found_page_view,
-    internal_server_exception,
-    internal_server_page_view,
-)
-
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -50,14 +43,10 @@ urlpatterns = [
     path("control-pannel/", admin.site.urls, name='admin'),
     path("", include("blog.urls", namespace="blog")),
     path("", include("security.urls", namespace="security")),
-    path("page/not/found/", not_found_page_view, name="not-found-page"),
-    # path(
-    #     "internal/server/error/", internal_server_page_view, name="internal-server-page"
-    # ),
 ] + swagger_urlpatterns
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = not_found_exception
-# handler500 = internal_server_exception
+handler404 = 'security.views.page_not_found_error.not_found_page_view'
+handler500 = 'security.views.internal_server_error.internal_server_page_view'

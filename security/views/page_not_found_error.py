@@ -1,15 +1,6 @@
-from django.urls import reverse_lazy
 from django.shortcuts import (
-    HttpResponse,
     render,
-    redirect,
 )
-
-
-def not_found_exception(request, exception):
-    return HttpResponse("errrrrrrrrrrrrrrrrror")
-    return redirect("not-found-page")
-
 
 def not_found_page_view(request, *args, **kwargs):
     context = {
