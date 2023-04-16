@@ -160,7 +160,7 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
         )  # should redirect to the blog management page
 
     elif status == "permanent-delete":
-        # post.delete()
+        post.delete()
         messages.success(request, f"Blog post deleted permanently!")
         return redirect("blog:management")  # should redirect to the blog management page
 
