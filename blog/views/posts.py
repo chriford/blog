@@ -160,7 +160,7 @@ def post_delete(request, title: str, pk: int, status: str, *args, **kwargs):
         )  # should redirect to the blog management page
 
     elif status == "permanent-delete":
-        # post.delete()
+        post.delete()
         messages.success(request, f"Blog post deleted permanently!")
         return redirect("blog:management")  # should redirect to the blog management page
 
@@ -228,27 +228,3 @@ def post_update(
         "blog:post-forms-page"
     )  # should redirect to the blog management page
 
-
-@login_required(login_url=settings.LOGIN_REDIRECT_URL)
-@has_role_decorator("admin")
-# @has_permission_decorator("can_manage_blog")
-def management(request):
-    posts = Post.objects.all()
-    categories = Category.objects.all()
-    users = User.objects.all()
-    comments = Comment.objects.all()
-    assigned_roles = get_user_roles(request.user)
-    raw_assigned_roles = [role.get_name() for role in assigned_roles]
-    available_roles = RolesManager.get_roles_names()
-    context = {
-        "post_count": posts.count(),
-        "posts": posts,
-        "category_count": categories.count(),
-        "categories": categories,
-        "comment_count": comments.count(),
-        "user_count": users.count(),
-        "users": users,
-        "assigned_roles": raw_assigned_roles,
-        "available_roles": list(available_roles),
-    }
-    return render(request, "blog/management.html", context)
