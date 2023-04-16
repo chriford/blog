@@ -43,4 +43,4 @@ class PostForm(ModelForm):
 
     class Meta:
         model = Post
-        fields = ["owner", "title", "category", "body", "is_active"]
+        fields = ["title", "category", "body", "is_active"]
