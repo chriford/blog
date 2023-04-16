@@ -5,11 +5,6 @@ from django.shortcuts import (
     redirect,
 )
 
-
-def internal_server_exception(request, exception, *args, **kwargs):
-    return redirect("internal-server-page")
-
-
 def internal_server_page_view(request, *args, **kwargs):
     context = {
         "request": request,
