@@ -8,7 +8,7 @@ from django.core.mail import EmailMessage, get_connection
 
 from security.models import User, Profile
 from security.forms import UserCreationForm, UserProfileForm
-from blog_utils import (
+from blog.utils import (
     send_email,
 )
 from rolepermissions.roles import assign_role, clear_roles
