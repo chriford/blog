@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-q*j8d9$qbg%odd(0k&8l+zq(c84_*#9=nm$u3!h*t*kdq9$i_8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
@@ -155,7 +155,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap5"]
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 ROLEPERMISSIONS_MODULE = "blog.roles"
 
-# STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
