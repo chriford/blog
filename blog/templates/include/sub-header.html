@@ -3,7 +3,7 @@
     <section id="header-section" class="container">
         <div class="text-info">
             <p class="h4">Top blogs</p>
-            <p class="h1">Over 36+ posts</p>
+            <p class="h1">Over {{request.user.total_posts}} posts</p>
         </div>     
     </section>
     {% if request.user|has_role:'admin' %}
