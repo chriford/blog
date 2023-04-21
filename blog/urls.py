@@ -23,11 +23,11 @@ from .views import (
 
 app_name = "blog"
 urlpatterns = [
-    path("", posts, name="index"),
-    path("blogs/view/", posts, name="posts"),
+    path("", about, name="index"),
+    path("blogs/view/", about, name="posts"),
     path("blog/about/", about, name="about"),
-    path("management/", management, name="management"),
-    path("settings/", setting, name="settings"),
+    path("management/", about, name="management"),
+    path("settings/", about, name="settings"),
     path(
         "model-form/data/create/arg/<str:form_arg>",
         model_form_data_create,
