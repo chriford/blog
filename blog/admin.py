@@ -8,6 +8,7 @@ from blog.models import (
     Trash,
     Image,
     Voke,
+    Subscriber,
 )
 
 
@@ -80,6 +81,19 @@ class TrashAdmin(admin.ModelAdmin):
     ]
     list_filter = ["category"]
     list_per_page = 20
+
+
+@admin.register(Subscriber)
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = [
+        "user",
+        "is_subscribed",
+    ]
+    search_fields = [
+        "user",
+        "is_subscribed",
+    ]
+    list_per_page = 40
 
 
 @admin.register(Image)

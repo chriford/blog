@@ -49,10 +49,12 @@
             <a class="nav-link px-2" aria-current="page" href="{% url 'blog:management'%}">Management</a>
           </li>
         {% endif %}
+        {% comment %}
         <li class="nav-item px-2 d-flex">
           <i class="nav-link py-3 fa fa-fw fa-light fa-pen-to-square"></i>
           <a class="nav-link px-2" aria-current="page" href="{% url 'blog:settings'%}">settings</a>
         </li>
+        {% endcomment %}
         {% if user|has_role:'admin' %}
           <li class="nav-item px-2 d-flex">
             <i class="nav-link fa fa-fw fa-headset py-3"></i>
