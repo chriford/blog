@@ -100,3 +100,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         ).count()
         return active_blog_posts
     
+    @property
+    def total_posts(self):
+        from blog.models import Post
+        posts = Post.objects.all().count()
+        return f"{posts - 1}" if posts > 1 else posts
+        
