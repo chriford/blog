@@ -8,7 +8,6 @@ from blog.models.timestamp import Timestamp
 class Subscriber(Timestamp):
     user = models.ForeignKey(
         "security.User",
-        related_name="user",
         help_text=_("Subscriber to newsletter"),
         null=True,
         blank=True,
