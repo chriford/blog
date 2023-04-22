@@ -10,12 +10,18 @@ from blog.models.timestamp import Timestamp
 
 
 class Voke(Timestamp):
-    post = models.OneToOneField(
-        "blog.Post",
+    
+    user = models.ForeignKey(
+        "security.User",
         help_text=_("The owner of this like."),
         null=True,
         blank=True,
         on_delete=models.CASCADE,
+    )
+    entry_pk = models.PositiveIntegerField(
+        null=True,
+        help_text=_("The primary key of an entry eg comment or post, etc."),
+        unique=True,
     )
     table = models.CharField(
         verbose_name=_("Table"),

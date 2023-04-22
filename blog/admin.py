@@ -15,11 +15,11 @@ from blog.models import (
 @admin.register(Voke)
 class VokeAdmin(admin.ModelAdmin):
     list_display = [
-        "post",
+        "user",
+        "entry_pk",
         "table",
         "is_liked",
         "is_disliked",
-        "is_neutral",
     ]
     search_fields = [
         "like",
