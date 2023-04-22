@@ -7,7 +7,7 @@
         {% else %}
             <img nopin="nopin" oncontextmenu="return false;" class="img-fluid" style="max-height:13rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
         {% endif %}
-        <div class="card-header h4 text-center">
+        <div class="card-header h4 text-center" style="font-family: chilanka;">
             {{post.title|truncatechars:60}}
         </div>
         <div class="card-body border-bottom pb-2">
@@ -35,7 +35,7 @@
                     posted on {{post.created_at.date}}
                 </p>
             </div>
-            <p class="h5 text-muted pt-0">
+            <p class="h5 text-muted pt-0" style="font-family: chilanka;">
                 {{post.body|truncatechars:80}}
             </p>
         </div>
