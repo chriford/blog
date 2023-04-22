@@ -31,7 +31,15 @@ class Voke(Timestamp):
     )
     is_liked = models.BooleanField(default=False)
     is_disliked = models.BooleanField(default=False)
-    is_neutral = models.BooleanField(default=True)
-
+    
+    def save(self, *args, **kwargs):
+        if self.is_liked:
+            self.is_disliked = False
+        
+        if self.is_disliked:
+            self.is_liked = False
+    
+        super().save(*args, **kwargs)
+    
     def __str__(self):
         return self.is_neutral
