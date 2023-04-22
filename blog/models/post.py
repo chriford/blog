@@ -66,15 +66,23 @@ class Post(Timestamp):
 
     @property
     def likes(self):
-        like_objs = self.voke_objects().filter(
+        liked_objs = self.voke_objects().filter(
             Q(is_liked=True) 
             & Q(is_disliked=False)
             & Q(table='post') 
         )
-        count = like_objs.count()
+        count = liked_objs.count()
         return count
     
-    
+    @property
+    def dislikes(self):
+        disliked_objs = self.voke_objects().filter(
+            Q(is_disliked=True) 
+            & Q(is_liked=False)
+            & Q(table='post') 
+        )
+        count = disliked_objs.count()
+        return count
         
     @property
     def comments(self):
@@ -82,9 +90,7 @@ class Post(Timestamp):
 
     @property
     def total_comments(self):
-        return self.comment_objects().count()
-    
-    
+        return self.comment_objects().count()  
 
     @property
     def image_form(self):
