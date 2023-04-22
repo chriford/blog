@@ -54,14 +54,29 @@ def comment_action(request, pk: int, action_type: str):
     if action_type == "delete":
         comment.delete()
         messages.success(request, "comment has been deleted successfully")
+        return redirect(
+            reverse(
+                "blog:post-view",
+                kwargs={
+                    "pk": comment.post.pk,
+                    "title": comment.post.title,
+                },
+            )
+        )
 
     elif action_type == "update":
         if request.method == "POST":
-            return HttpResponse("comment to be updated soon")
-        context = {
-            "comment": comment,
-        }
-        return render(request, "blog/blog-comment-edit.html", context)
+            comment.comment = request.POST.get("comment")
+            comment.save()
+            return redirect(
+            reverse(
+                "blog:post-view",
+                kwargs={
+                    "pk": comment.post.pk,
+                    "title": comment.post.title,
+                },
+            )
+        )
 
     elif action_type == "like":
         blog_comment = request.POST.get("comment", None)
@@ -69,7 +84,7 @@ def comment_action(request, pk: int, action_type: str):
         messages.success(request, "comment added")
         return redirect(
             reverse(
-                "blog:comment",
+                "blog:post-view",
                 kwargs={
                     "pk": comment.post.pk,
                     "title": comment.post.title,
@@ -78,4 +93,12 @@ def comment_action(request, pk: int, action_type: str):
         )
 
     else:
-        return redirect("blog:posts")
+        return redirect(
+            reverse(
+                "blog:post-view",
+                kwargs={
+                    "pk": comment.post.pk,
+                    "title": comment.post.title,
+                },
+            )
+        )

@@ -57,7 +57,7 @@
         <div class="text-info">
             <p class="h4">Top blogs</p>
             <p class="h1">Over 36+ posts</p>
-        </div>     
+        </div>
     </section>
     <div class="mt-4 mx-2">
         <a href="{% url 'blog:posts' %}" class="btn btn-sm btn-primary animate__animated animate__rubberBand"><li class="fa fa-fw fa-arrow-left"></li> back</a>
@@ -126,33 +126,40 @@
                                     {{comment.comment}}
                                 </div>
                                 <div class="w-100 d-flex">
-                                    <a href="{% url 'blog:comment_action' pk=comment.pk action_type='like' %}" class="text-decoration-none">
+                                    <a href="#{% url 'blog:comment_action' pk=comment.pk action_type='like' %}" class="text-decoration-none">
                                         <li class="fa fa-fw fa-thumbs-up text-muted text-primary"></li>
                                     </a> 
                                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="Update('{{comment.comment}}')"  href="#" class="text-decoration-none mx-2">
                                         <li class="fa fa-fw fa-pencil text-muted text-primary"></li>
                                     </a>
-                                    <a onclick="Delete('{{comment}}')" href="#{% url 'blog:comment_action' pk=comment.pk action_type='delete' %}" class="float-right">
+                                    <a onclick="Delete('{{comment}}')" id="comment-delete-btn" href='#' class="float-right">
                                         <li class="fa fa-fw fa-trash text-muted text-primary"></li>
                                     </a>
                                     <script>
                                         const Update = async (comment) => {
-                                            const { value: text } = await Swal.fire({
-                                                input: 'text',
-                                                inputLabel: `${comment}`,
-                                                inputValue: `${comment}`,
-                                                inputPlaceholder: 'write comment',
+                                            await Swal.fire({
+                                                html: `
+                                            <form method="post" action="{% url 'blog:comment_action' pk=comment.pk action_type='update' %}">
+                                                {% csrf_token %}
+                                                <input type='text' class='form-control' name='comment' placeholder='edit comment' value='${comment}' />
+                                                <div id='comment-submit-btn'></div>
+                                            </form>
+                                                `,
+                                                confirmButtonText: '<i class="fa fa-thumbs-up"></i> done',
+                                                showClass: {
+                                                    popup: 'animate__animated animate__fadeInDown'
+                                                  },
+                                                  hideClass: {
+                                                    popup: 'animate__animated animate__fadeOutUp'
+                                                  }
+                                              }).then((results) => {
+                                                if (results.isConfirmed) {
+                                                    let submitBtn;
+                                                    submitBtn = document.getElementById('comment-submit-btn');
+                                                    submitBtn.innerHTML = "<input type='submit' id='submit-btn' />"
+                                                    document.getElementById('submit-btn').click()
+                                                }
                                               })
-                                              
-                                              if (text) {
-                                                  `
-                                                  <form action="{% url 'blog:comment_action' pk=comment.pk action_type='update' %}" method="post">
-                                                      {% csrf_token %}
-                                                      <input type="hidden" name="comment" value="${text}" />
-                                                      <input type="submit" onclick="this.click()" value="update">
-                                                  </form>
-                                                `
-                                            }
                                         }
 
                                         const Delete = async (comment) => {
@@ -162,6 +169,20 @@
                                                 title: "Are you sure you want to delete the comment?",
                                                 denyButtonText: 'Delete',
                                                 confirmButtonText: 'Cancel',
+                                                showClass: {
+                                                    popup: 'animate__animated animate__fadeInDown'
+                                                  },
+                                                  hideClass: {
+                                                    popup: 'animate__animated animate__fadeOutUp'
+                                                  }
+                                            }).then((result) => {
+                                                if (result.isDenied){
+                                                    let commentDeleteBtn;
+                                                    commentDeleteBtn = document.getElementById("comment-delete-btn")
+                                                    commentDeleteBtn.href = "{% url 'blog:comment_action' pk=comment.pk action_type='delete' %}"
+                                                    commentDeleteBtn.onclick = ""
+                                                    commentDeleteBtn.click()
+                                                }
                                             })
                                         }
                                     </script>
