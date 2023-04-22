@@ -15,9 +15,8 @@ from blog.models import (
 @admin.register(Voke)
 class VokeAdmin(admin.ModelAdmin):
     list_display = [
-        "user",
-        "upvoke",
-        "downvoke",
+        "post",
+        "table",
         "is_liked",
         "is_disliked",
         "is_neutral",
