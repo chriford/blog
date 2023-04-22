@@ -42,4 +42,4 @@ class Voke(Timestamp):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return self.is_neutral
+        return self.user.username
