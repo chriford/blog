@@ -85,7 +85,11 @@ class Profile(Timestamp):
         null=True,
         blank=True,
     )
-
+    about_blog = models.TextField(
+        verbose_name=_("About Blog"),
+        null=True,
+        blank=True,
+    )
     def __str__(self):
         return f"Profie | {self.first_name} {self.last_name} | User ID - {self.user_id}"
 
