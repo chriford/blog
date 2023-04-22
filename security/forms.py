@@ -87,6 +87,7 @@ class UserProfileForm(forms.ModelForm):
             "phone_number2",
             "birth_date",
             "bio",
+            "about_blog",
         ]
 
     def save(self, commit=True):
