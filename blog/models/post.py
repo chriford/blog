@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.db.models import Q
 from blog.models.category import Category
 from blog.models.timestamp import Timestamp
 
@@ -58,20 +58,39 @@ class Post(Timestamp):
         return post_comments
 
     def voke_objects(self):
-        from blog.models import Comment
-
-        post_comments = Comment.objects.filter(
-            post=self,
+        from blog.models import Voke
+        objects = Voke.objects.filter(
+            user=self.owner,
         )
-        return post_comments
+        return objects
 
+    @property
+    def likes(self):
+        liked_objs = self.voke_objects().filter(
+            Q(is_liked=True) 
+            & Q(is_disliked=False)
+            & Q(table='post') 
+        )
+        count = liked_objs.count()
+        return count
+    
+    @property
+    def dislikes(self):
+        disliked_objs = self.voke_objects().filter(
+            Q(is_disliked=True) 
+            & Q(is_liked=False)
+            & Q(table='post') 
+        )
+        count = disliked_objs.count()
+        return count
+        
     @property
     def comments(self):
         return self.comment_objects()
 
     @property
     def total_comments(self):
-        return self.comment_objects().count()
+        return self.comment_objects().count()  
 
     @property
     def image_form(self):

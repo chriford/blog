@@ -197,7 +197,7 @@
                     <div class="col-md-3 col-12 col-sm-6 col-lg-3">
                         <div class="card border">
                             {% if post.image.file %}
-                                <img id="image-view-btn{{post.pk}}" nopin="nopin" data-bs-toggle="modal" data-bs-target="#ImageView" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{{post.image.file.url}}">
+                                <img id="image-view-btn{{post.pk}}" onclick="imageViewModal('{{post.pk}}')" nopin="nopin" data-bs-toggle="modal" data-bs-target="#ImageView" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{{post.image.file.url}}">
                             {% else %}
                                 <img id="modal-triggerer-btn{{post.pk}}" nopin="nopin" data-bs-toggle="modal" data-bs-target="#exampleModal" oncontextmenu="return false;" class="img-fluid" style="max-height:8rem; min-height: 3rem;" src="{% static 'image/blank.png' %}">
                             {% endif %}
@@ -250,17 +250,16 @@
                         })
                     </script>
                     <script>
-                        let blogPostBgImageBtn;
-                        blogPostBgImageBtn = document.getElementById("image-view-btn{{post.pk}}")
-                        blogPostBgImageBtn.addEventListener('click', () => {
+                        function imageViewModal(pk){
+
+                            blogPostBgImageBtn = document.getElementById("image-view-btn{{post.pk}}")
                             let postForm;
                             blogPostForm = document.getElementById("image-view");
-                            if ('image-view-btn{{post.pk}}' === blogPostBgImageBtn.id){
-                                blogPostForm.innerHTML = `<div>
-                                    <img nopin="nopin" class="img-fluid" src="{{post.image.file.url}}">
-                                </div>`
-                            }
-                        })
+                            alert(typeof '{{post.pk}}')
+                            blogPostForm.innerHTML = `<div> 
+                                <img nopin="nopin" class="img-fluid" src="{{post.image.file.url}}">
+                            </div>`
+                        }
                     </script>
                     
                 {% endfor %}

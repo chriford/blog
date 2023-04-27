@@ -10,30 +10,36 @@ from blog.models.timestamp import Timestamp
 
 
 class Voke(Timestamp):
-    user = models.OneToOneField(
+    
+    user = models.ForeignKey(
         "security.User",
         help_text=_("The owner of this like."),
         null=True,
         blank=True,
         on_delete=models.CASCADE,
     )
-    upvoke = models.PositiveIntegerField(
-        verbose_name=_("Upvoke"),
-        help_text=_("Upvoke or like count"),
+    entry_pk = models.PositiveIntegerField(
         null=True,
-        blank=True,
-        default=0,
+        help_text=_("The primary key of an entry eg comment or post, etc."),
+        unique=True,
     )
-    downvoke = models.PositiveIntegerField(
-        verbose_name=_("Downvoke"),
-        help_text=_("Downvoke or diskike count"),
+    table = models.CharField(
+        verbose_name=_("Table"),
+        max_length=100,
         null=True,
-        blank=True,
-        default=0,
+        blank=False,
     )
     is_liked = models.BooleanField(default=False)
     is_disliked = models.BooleanField(default=False)
-    is_neutral = models.BooleanField(default=True)
-
+    
+    def save(self, *args, **kwargs):
+        if self.is_liked:
+            self.is_disliked = False
+        
+        if self.is_disliked:
+            self.is_liked = False
+    
+        super().save(*args, **kwargs)
+    
     def __str__(self):
-        return self.is_neutral
+        return self.user.username

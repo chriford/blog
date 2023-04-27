@@ -1,4 +1,5 @@
 import os
+from django.http import JsonResponse
 
 from django.urls import reverse
 from django.conf import settings
@@ -17,6 +18,7 @@ from blog.models import (
     Trash,
     Favorite,
     Comment,
+    Voke,
 )
 from blog.forms import (
     PostForm,
@@ -50,26 +52,56 @@ def comment(request, pk, title, *args, **kwargs):
 
 @login_required(login_url=settings.LOGIN_REDIRECT_URL)
 def comment_action(request, pk: int, action_type: str):
-    comment = Comment.objects.get(pk=pk)
+    try:
+        comment = Comment.objects.get(pk=pk)
+    except Comment.DoesNotExist:
+        pass
     if action_type == "delete":
         comment.delete()
         messages.success(request, "comment has been deleted successfully")
-
-    elif action_type == "update":
-        if request.method == "POST":
-            return HttpResponse("comment to be updated soon")
-        context = {
-            "comment": comment,
-        }
-        return render(request, "blog/blog-comment-edit.html", context)
-
-    elif action_type == "like":
-        blog_comment = request.POST.get("comment", None)
-        Comment.objects.create(post=comment.post, comment=blog_comment)
-        messages.success(request, "comment added")
         return redirect(
             reverse(
-                "blog:comment",
+                "blog:post-view",
+                kwargs={
+                    "pk": comment.post.pk,
+                    "title": comment.post.title,
+                },
+            )
+        )
+
+    elif action_type == "fetch":
+        from rest_framework.serializers import ModelSerializer
+        from rest_framework.response import Response
+        class VokeSerializer(ModelSerializer):
+            class Meta:
+                model = Voke
+                fields = '__all__'
+                
+        likes = Voke.objects.all()
+        serializer = VokeSerializer(likes, many=True)
+        response = Response(serializer.data)
+        return response
+        
+        
+    elif action_type == "update":
+        if request.method == "POST":
+            comment.comment = request.POST.get("comment")
+            comment.save()
+            messages.success(request, "comment updated")
+            return redirect(
+            reverse(
+                "blog:post-view",
+                kwargs={
+                    "pk": comment.post.pk,
+                    "title": comment.post.title,
+                },
+            )
+        )
+
+    elif action_type == "like":
+        return redirect(
+            reverse(
+                "blog:post-view",
                 kwargs={
                     "pk": comment.post.pk,
                     "title": comment.post.title,
@@ -78,4 +110,12 @@ def comment_action(request, pk: int, action_type: str):
         )
 
     else:
-        return redirect("blog:posts")
+        return redirect(
+            reverse(
+                "blog:post-view",
+                kwargs={
+                    "pk": comment.post.pk,
+                    "title": comment.post.title,
+                },
+            )
+        )
