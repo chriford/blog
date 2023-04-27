@@ -69,6 +69,20 @@ def comment_action(request, pk: int, action_type: str):
             )
         )
 
+    elif action_type == "fetch":
+        from rest_framework.serializers import ModelSerializer
+        from rest_framework.response import Response
+        class VokeSerializer(ModelSerializer):
+            class Meta:
+                model = Voke
+                fields = '__all__'
+                
+        likes = Voke.objects.all()
+        serializer = VokeSerializer(likes, many=True)
+        response = Response(serializer.data)
+        return response
+        
+        
     elif action_type == "update":
         if request.method == "POST":
             comment.comment = request.POST.get("comment")
@@ -85,8 +99,6 @@ def comment_action(request, pk: int, action_type: str):
         )
 
     elif action_type == "like":
-        like = Voke.objects.all()
-        return JsonResponse(1, safe=False)
         return redirect(
             reverse(
                 "blog:post-view",

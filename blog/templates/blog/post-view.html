@@ -95,16 +95,23 @@
                             <span class="mt-1 px-1">(10)</span>
                         </sup>
                         <sup class="text-muted header-options d-flex">
-                            <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
-                            <span class="mt-1 px-1">(300)</span>
+                            <a href="" class="text-muted text-decoration-none"> 
+                                <li class="fa fa-fw fa-thumbs-up" style="top: -20px;"></li>
+                                <span class="mt-1 px-1">({{post.likes}})</span>
+                            </a>
                         </sup>
                         <sup class="text-muted header-options d-flex">
-                            <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
-                            <span class="mt-1 px-1">(1k)</span>
+                            <a href="" class="text-muted text-decoration-none"> 
+
+                                <li class="fa fa-fw fa-thumbs-down" style="top: -20px;"></li>
+                                <span class="mt-1 px-1">({{post.dislikes}})</span>
+                            </a>
                         </sup>
                         <sup class="text-muted header-options d-flex">
-                            <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
-                        <span class="mt-1 px-1">({{post.total_comments}}k)</span>
+                            <a href="" class="text-muted text-decoration-none"> 
+                                <li class="fa fa-fw fa-comment" style="top: -20px;"></li>
+                                <span class="mt-1 px-1">({{post.total_comments}})</span>
+                            </a>
                         </sup>
                     </div>
                     <div class="card-body">
