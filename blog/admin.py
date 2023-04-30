@@ -9,8 +9,15 @@ from blog.models import (
     Image,
     Voke,
     Subscriber,
+    About,
 )
 
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = [
+        "text",
+    ]
 
 @admin.register(Voke)
 class VokeAdmin(admin.ModelAdmin):
